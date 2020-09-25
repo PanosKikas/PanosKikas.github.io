@@ -47,7 +47,7 @@ b, u, i, center,
 dl, dt, dd, ol, ul, li,
 fieldset, form, label, legend,
 table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, figcaption, figure, 
+article, aside, canvas, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section, summary,
 time, mark, audio, video {
 	margin: 0;
@@ -58,7 +58,7 @@ time, mark, audio, video {
 	vertical-align: baseline;
 }
 
-article, aside, details, figcaption, figure, 
+article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
 	display: block;
 }
@@ -86,12 +86,12 @@ table {
 	border-spacing: 0;
 }
 
-a[href], label[for], select, 
+a[href], label[for], select,
 input[type=checkbox], input[type=radio] {
 	cursor: pointer;
 }
 
-button, input[type=button], input[type=image], 
+button, input[type=button], input[type=image],
 input[type=reset], input[type=submit] {
 	padding: 0;
 	overflow: visible;
@@ -107,10 +107,10 @@ input[type=url], input[type=password], input[type=text], input[type=email], inpu
      box-sizing: border-box;-webkit-box-sizing: border-box; -moz-box-sizing: border-box;
 }
 
-button::-moz-focus-inner, 
-input[type=button]::-moz-focus-inner, 
-input[type=image]::-moz-focus-inner, 
-input[type=reset]::-moz-focus-inner, 
+button::-moz-focus-inner,
+input[type=button]::-moz-focus-inner,
+input[type=image]::-moz-focus-inner,
+input[type=reset]::-moz-focus-inner,
 input[type=submit]::-moz-focus-inner {
 	border: 0;
 }
@@ -122,7 +122,7 @@ body{
 	margin:0;
 	color:#a4a7ac;
 	font:18px Arial, Helvetica, sans-serif;
-	-webkit-text-size-adjust: none; 
+	-webkit-text-size-adjust: none;
 }
 img{border-style:none; vertical-align: top;}
 a{text-decoration:none; color:#6e6e6e;}
@@ -327,14 +327,16 @@ h2.slogan{
 	font-size: 18px;
 	padding: 0 0 0 20px;
 }
-.progress li span.photoshop{width: 100%;}
-.progress li span.illustrator{width: 70%;}
-.progress li span.indesign{width: 40%;}
-.progress li span.flash{width: 80%;}
-.progress li span.html{width: 75%;}
-.progress li span.wordpress{width: 85%;}
-.progress li span.jquery{width: 70%;}
-.progress li span.seo{width: 40%;}
+.progress li span.csharp{width: 100%;}
+.progress li span.unityengine{width: 100%;}
+.progress li span.python{width: 80%;}
+.progress li span.sql{width: 50%;}
+.progress li span.cplusplus{width: 70%;}
+.progress li span.java{width: 60%;}
+.progress li span.cleancode{width: 68%;}
+.progress li span.oopprinciples{width: 80%;}
+.progress li span.designpatterns{width: 58%;}
+.progress li span.versioncontrol{width: 85%;}
 .plagin_list{
 	width: 100%;
 	overflow: hidden;
@@ -563,7 +565,7 @@ transition: all 0.5s ease-in-out;
 transition: all 0.5s ease-in-out;
 }
 .footer-content .social li a{
-	display: table-cell;	
+	display: table-cell;
 	position: relative;
 }
 .footer-content .social li.email a{background: url(../images/icon_email.png) no-repeat 50% 50% ;}
