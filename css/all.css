@@ -446,11 +446,11 @@ transition: all 0.5s ease-in-out;
 }
 .item .image {
 	position: relative;
-  float: left;
 }
 .item .image img {
+  min-width: auto;
 	max-width: 100%;
-  float: left;
+	height:auto;
 	border-radius: 50%;
 }
 .item .hover {
