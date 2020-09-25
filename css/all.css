@@ -610,6 +610,12 @@ transition: all 0.5s ease-in-out;
 	height: auto;
 	border-radius: 8px;
 }
+
+.popup_portfolio ul li {
+  font-size: 16px;
+  margin-left: 30px;
+  list-style-type: circle;
+}
 .fancybox-close {
 	width: 46px;
 	height: 46px;
