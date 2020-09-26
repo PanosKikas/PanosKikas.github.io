@@ -191,12 +191,10 @@
 	</div>
 
 	<script>
-	document.addEventListener('readystatechange', event => {
-	 // When window loaded ( external resources are loaded too- `css`,`src`, etc...)
-	 if (event.target.readyState === "complete") {
-			 document.querySelector('li.active').click()
-	 }
-});
+
+	 document.addEventListener('DOMContentLoaded', function() {
+		 document.querySelector('li.active').click()
+ }, false);
 
 	</script>
 
