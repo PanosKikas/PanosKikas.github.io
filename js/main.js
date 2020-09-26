@@ -68,3 +68,7 @@ $(window).resize(function() {
         $( "#nav" ).removeClass("active");
     }
 });
+
+$(document).ready(function(){
+  document.querySelector('li.active').click();
+});
