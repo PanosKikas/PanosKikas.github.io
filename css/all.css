@@ -330,14 +330,16 @@ h2.slogan{
 .progress li span.csharp{width: 100%;}
 .progress li span.unityengine{width: 100%;}
 .progress li span.python{width: 80%;}
-.progress li span.sql{width: 45%;}
+.progress li span.sql{width: 55%;}
 .progress li span.cplusplus{width: 70%;}
 .progress li span.c{width: 30%;}
 .progress li span.java{width: 63%;}
-.progress li span.cleancode{width: 62%;}
-.progress li span.oopprinciples{width: 80%;}
-.progress li span.designpatterns{width: 52%;}
-.progress li span.versioncontrol{width: 85%;}
+.progress li span.cleancode{width: 60%;}
+.progress li span.oopprinciples{width: 91%;}
+.progress li span.solidprinciples{width: 80%;}
+.progress li span.designpatterns{width: 71%;}
+.progress li span.versioncontrol{width: 90%;}
+.progress li span.tdd{width: 55%;}
 .plagin_list{
 	width: 100%;
 	overflow: hidden;
