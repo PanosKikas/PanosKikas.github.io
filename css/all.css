@@ -327,6 +327,7 @@ h2.slogan{
 	font-size: 18px;
 	padding: 0 0 0 20px;
 }
+
 .progress li span.csharp{width: 100%;}
 .progress li span.unityengine{width: 100%;}
 .progress li span.python{width: 80%;}
@@ -340,6 +341,7 @@ h2.slogan{
 .progress li span.designpatterns{width: 71%;}
 .progress li span.versioncontrol{width: 90%;}
 .progress li span.testdriven{width: 55%;}
+
 .plagin_list{
 	width: 100%;
 	overflow: hidden;
