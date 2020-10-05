@@ -334,12 +334,12 @@ h2.slogan{
 .progress li span.cplusplus{width: 70%;}
 .progress li span.c{width: 30%;}
 .progress li span.java{width: 63%;}
-.progress li span.agilepractices{width: 60%;}
+.progress li span.agile {width: 60%;}
 .progress li span.oopprinciples{width: 91%;}
-.progress li span.solidprinciples{width: 80%;}
+.progress li span.solid{width: 80%;}
 .progress li span.designpatterns{width: 71%;}
 .progress li span.versioncontrol{width: 90%;}
-.progress li span.tdd{width: 55%;}
+.progress li span.testdriven{width: 55%;}
 .plagin_list{
 	width: 100%;
 	overflow: hidden;
