@@ -331,19 +331,19 @@ h2.slogan{
 .progress li span.csharp{width: 100%;}
 .progress li span.unityengine{width: 100%;}
 .progress li span.python{width: 80%;}
-.progress li span.solidity{width: 80%;}
+.progress li span.solidity{width: 50%;}
 .progress li span.sql{width: 60%;}
 .progress li span.cplusplus{width: 75%;}
 .progress li span.c{width: 47%;}
 .progress li span.javascript{width: 70%;}
 .progress li span.java{width: 60%;}
-.progress li span.react{width: 50%;}
+.progress li span.unreal{width: 50%;}
 .progress li span.agile {width: 100%;}
 .progress li span.oopprinciples{width: 100%;}
-.progress li span.solid{width: 78%;}
+.progress li span.tdd {width: 85%;}
+.progress li span.solid{width: 85%;}
 .progress li span.designpatterns{width: 85%;}
 .progress li span.versioncontrol{width: 100%;}
-.progress li span.tdd {width: 70%;}
 
 .plagin_list{
 	width: 100%;
