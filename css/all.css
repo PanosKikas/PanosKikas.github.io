@@ -531,9 +531,9 @@ transition: all 0.5s ease-in-out;
 	margin: 0 0 55px;
 	padding: 5px 0 18px 80px;
 }
-.box_contact span.email{background: url(../images/icon_email2.png) no-repeat;}
-.box_contact span.phone{background: url(../images/icon_phone.png) no-repeat;}
-.box_contact span.skype{background: url(../images/icon_skype.png) no-repeat;}
+.box_contact span.email{background: url(../images/email_icon.png) no-repeat;}
+.box_contact span.phone{background: url(../images/phone_icon.png) no-repeat;}
+.box_contact span.skype{background: url(../images/linkedin_icon.png) no-repeat;}
 /*footer
  */
 #footer {
@@ -723,17 +723,21 @@ transition: all 0.5s ease-in-out;
 		background-size:54px 41px;
 	}
 	.box_contact span.phone{
-		background-image: url(../images/icon_phone@x2.png);
+		background-image: url(../images/phone_icon.png);
 		background-size:54px 54px;
 	}
 	.box_contact span.skype{
-		background-image: url(../images/icon_skype@x2.png);
-		background-size:54px 51px;
+		background-image: url(../images/linkedin_icon.png);
+		background-size:54px 54px;
 	}
 /* begin add	 */
 	.fancybox-close {
 		background-image: url(../images/ico_btn-close@x2.png);
 		background-size:46px 46px;
 	}
+
+  .contact{
+    color: blue;
+  }
 /* end add	 */
 }
