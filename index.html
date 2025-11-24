@@ -11,6 +11,10 @@
 	<link rel="stylesheet" href="js/fancybox/jquery.fancybox.css" type="text/css" media="screen" />
 	<link rel="stylesheet" href="css/all.css" />
 	<link rel="stylesheet" href="css/screen.css" />
+	<link rel="stylesheet" href="assets/css/style.css" />
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
 	<script src="js/isotope.pkgd.min.js"></script>
 	<script src="js/cells-by-row.js"></script>
@@ -22,70 +26,295 @@
 </head>
 <body>
 	<div id="wrapper">
-		<div class="wrapper-holder">
-			<header id="header">
-				<a class="menu_trigger" href="#">menu</a>
-					<nav id="nav">
-						<ul>
-							<li><a class="active" href="index.html">Home</a></li>
-							<li><a href="myskills.html">My skills</a></li>
-							<li><a href="portfolio.html">Portfolio</a></li>
-							<li><a href="contact.html">Contact</a></li>
-						</ul>
-					</nav>
-				<h1 class="logo">Panos Kikas</h1>
-				<h2 class="slogan">Passionate Game Developer</h2>
-			</header>
-		</div>
+		<!-- Left Sidebar Navigation - Retro Gaming Style -->
+		<nav id="sidebar-nav" class="retro-sidebar">
+			<div class="sidebar-header">
+				<div class="retro-screen">
+					<h1 class="sidebar-logo">PANOS KIKAS</h1>
+					<div class="retro-divider"></div>
+					<h2 class="sidebar-slogan">GAME DEVELOPER</h2>
+				</div>
+			</div>
+			<ul class="retro-menu">
+				<li>
+					<a class="retro-menu-item active" href="index.html">
+						<span class="menu-text">Home</span>
+					</a>
+				</li>
+				<li>
+					<a class="retro-menu-item" href="myskills.html">
+						<span class="menu-text">Skills</span>
+					</a>
+				</li>
+				<li>
+					<a class="retro-menu-item" href="portfolio.html">
+						<span class="menu-text">Portfolio</span>
+					</a>
+				</li>
+				<li>
+					<a class="retro-menu-item" href="contact.html">
+						<span class="menu-text">Contact</span>
+					</a>
+				</li>
+			</ul>
+			<div class="sidebar-footer">
+				<div class="sidebar-contact">
+					<a href="mailto:panoskikas@protonmail.com" class="sidebar-link sidebar-email">
+						<svg class="email-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" fill="currentColor"/>
+						</svg>
+						<span>panoskikas@protonmail.com</span>
+					</a>
+					<a href="https://github.com/PanosKikas" target="_blank" rel="noopener noreferrer" class="sidebar-link sidebar-github">
+						<svg class="github-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.17 6.839 9.49.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.167 22 16.418 22 12c0-5.523-4.477-10-10-10z" fill="currentColor"/>
+						</svg>
+						<span>GitHub</span>
+					</a>
+				</div>
+			</div>
+		</nav>
+
+		<!-- Hero Section - Game Dev Focused -->
+		<section id="hero" class="hero-section">
+			<div class="hero-background">
+				<div class="hero-image-overlay"></div>
+				<div class="particles"></div>
+			</div>
+			<div class="hero-content">
+				<div class="hero-text">
+					<h1 class="hero-title">
+						<span class="title-line">Hey, I'm</span>
+						<span class="title-line highlight">Panos Kikas</span>
+					</h1>
+					<div class="hero-specialize">
+						<span>I specialize in</span>
+					</div>
+					<div class="hero-subtitle">
+						<span class="typing-text">Systems Designer</span>
+						<span class="cursor">|</span>
+					</div>
+					<p class="hero-description">
+						I'm currently working as a Systems Designer at <strong>Rockstar Games</strong>
+					</p>
+					<div class="hero-stats">
+						<div class="stat-item">
+							<div class="stat-number">5+</div>
+							<div class="stat-label">Years Experience</div>
+						</div>
+						<div class="stat-item">
+							<div class="stat-number">Unity</div>
+							<div class="stat-label">Primary Engine</div>
+						</div>
+						<div class="stat-item">
+							<div class="stat-number">C# /C++</div>
+							<div class="stat-label">Languages</div>
+						</div>
+					</div>
+					<div class="hero-buttons">
+						<a href="portfolio.html" class="btn-primary">View My Games</a>
+						<a href="contact.html" class="btn-secondary">Let's Talk</a>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Career Journey Section -->
 		<div class="wrapper-holder grey">
-			<section id="main">
-				<h2>Achievements</h2>
-				<div class="box_timeline_holder">
-					<div class="box_timeline">
-						<ul>
-							<li>
-								<div class="date">
-									<span>09/19</span>
-								</div>
-								<h3>Graduated from University</h3>
-								<p>Bachelor's Degree in Computer Science</p>
-							</li>
-							<li>
-								<div class="date">
-									<span>10/20</span>
-								</div>
-								<h3>Junior Game Developer at Traptics</h3>
-								<p>Making casual mobile games in Unity</p>
-							</li>
-							<li>
-								<div class="date">
-									<span>04/21</span>
-								</div>
-								<h3>Unity Developer at Luminous Group</h3>
-								<p>Making XR training applications using Unity</p>
-							</li>
-
-							<li>
-								<div class="date">
-									<span>10/22</span>
-								</div>
-								<h3>Mid-Unity Developer at Legendary Play</h3>
-								<p>Worked as a full-time Game Developer using .NET Core and Unity for Esports Heroes Idle RPG</p>
-							</li>
-							<li>
-								<div class="date">
-									<span>Now</span>
-								</div>
-								<h3>Designer: Systems at Rockstar North</h3>
-								<p>Working full-time as a Systems Designer at Rockstar Games</p>
-							</li>
-
-						</ul>
+			<section id="career" class="career-section">
+				<div class="career-header">
+					<h2 class="section-title">Professional Experience</h2>
+				</div>
+				<div class="career-timeline">
+					<div class="timeline-line"></div>
+					<div class="career-item active">
+						<div class="career-marker"></div>
+						<div class="career-content">
+							<img src="images/rockstargameslogo.svg" alt="Rockstar Games" class="career-company-icon" />
+							<div class="career-text">
+								<div class="career-date">Present</div>
+								<h3 class="career-title">Systems Designer</h3>
+								<div class="career-company">Rockstar Games</div>
+								<p class="career-description"></p>
+							</div>
+						</div>
+					</div>
+					<div class="career-item">
+						<div class="career-marker"></div>
+						<div class="career-content">
+							<img src="images/legendaryplay.svg" alt="Legendary Play" class="career-company-icon" />
+							<div class="career-text">
+								<div class="career-date">October 2022</div>
+								<h3 class="career-title">Mid-Level Unity Developer</h3>
+								<div class="career-company">Legendary Play</div>
+								<p class="career-description">Full-stack game developer for the Idle RPG: Esports Heroes, using .NET Core in the Game Server and Unity for the Frontend</p>
+							</div>
+						</div>
+					</div>
+					<div class="career-item">
+						<div class="career-marker"></div>
+						<div class="career-content">
+							<img src="images/luminousxrlogo.jpg" alt="Luminous Group" class="career-company-icon" />
+							<div class="career-text">
+								<div class="career-date">April 2021</div>
+								<h3 class="career-title">Unity Developer</h3>
+								<div class="career-company">Luminous XR</div>
+								<p class="career-description">Developing tools and applications for VR/AR training scenarios used by prominent companies such as Aramco and Pepsico</p>
+							</div>
+						</div>
+					</div>
+					<div class="career-item">
+						<div class="career-marker"></div>
+						<div class="career-content">
+							<img src="images/trapticslogo.jpg" alt="Traptics" class="career-company-icon" />
+							<div class="career-text">
+								<div class="career-date">October 2020</div>
+								<h3 class="career-title">Junior Game Developer</h3>
+								<div class="career-company">Traptics</div>
+								<p class="career-description">Developed casual board games for Android and iOS in Unity Engine</p>
+							</div>
+						</div>
+					</div>
+					<div class="career-item">
+						<div class="career-marker"></div>
+						<div class="career-content">
+							<img src="images/unimacedionalogo.png" alt="University" class="career-company-icon" />
+							<div class="career-text">
+								<div class="career-date">September 2019</div>
+								<h3 class="career-title">Bachelor's Degree in Computer Science</h3>
+								<div class="career-company">University of Macedonia</div>
+								<p class="career-description">Graduated from the University of Macedonia with a Computer Science Degree</p>
+							</div>
+						</div>
 					</div>
 				</div>
 			</section>
 		</div>
 	</div>
+
+	<script>
+		// Smooth scrolling
+		document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+			anchor.addEventListener('click', function (e) {
+				e.preventDefault();
+				const target = document.querySelector(this.getAttribute('href'));
+				if (target) {
+					target.scrollIntoView({
+						behavior: 'smooth',
+						block: 'start'
+					});
+				}
+			});
+		});
+
+		// Typing effect
+		const typingText = document.querySelector('.typing-text');
+		const texts = ['Unity Engine', 'Systems Design', 'Unreal Engine', 'SOLID Principles'];
+		let textIndex = 0;
+		let charIndex = 0;
+		let isDeleting = false;
+
+		function typeEffect() {
+			const currentText = texts[textIndex];
+			
+			if (isDeleting) {
+				typingText.textContent = currentText.substring(0, charIndex - 1);
+				charIndex--;
+			} else {
+				typingText.textContent = currentText.substring(0, charIndex + 1);
+				charIndex++;
+			}
+
+			if (!isDeleting && charIndex === currentText.length) {
+				setTimeout(() => isDeleting = true, 2000);
+			} else if (isDeleting && charIndex === 0) {
+				isDeleting = false;
+				textIndex = (textIndex + 1) % texts.length;
+			}
+
+			const speed = isDeleting ? 50 : 100;
+			setTimeout(typeEffect, speed);
+		}
+
+		if (typingText) {
+			typeEffect();
+		}
+
+		// Scroll animations
+		const observerOptions = {
+			threshold: 0.1,
+			rootMargin: '0px 0px -50px 0px'
+		};
+
+		const observer = new IntersectionObserver((entries) => {
+			entries.forEach(entry => {
+				if (entry.isIntersecting) {
+					entry.target.classList.add('animate');
+				}
+			});
+		}, observerOptions);
+
+		document.querySelectorAll('.career-item').forEach((item, index) => {
+			setTimeout(() => {
+				observer.observe(item);
+			}, index * 100);
+		});
+
+		// Parallax effect for hero and header visibility
+		const headerWrapper = document.querySelector('.wrapper-holder:not(.grey)');
+		window.addEventListener('scroll', () => {
+			const scrolled = window.pageYOffset;
+			const hero = document.querySelector('.hero-section');
+			if (hero) {
+				hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+				hero.style.opacity = 1 - (scrolled / 600);
+			}
+			
+			// Add scrolled class to header wrapper for styling
+			if (headerWrapper) {
+				if (scrolled > 100) {
+					headerWrapper.classList.add('scrolled');
+				} else {
+					headerWrapper.classList.remove('scrolled');
+				}
+			}
+		});
+
+		// Enhanced particle effect
+		function createParticles() {
+			const particlesContainer = document.querySelector('.particles');
+			if (!particlesContainer) return;
+
+			// Create more particles with variety
+			const particleCount = 120;
+			
+			for (let i = 0; i < particleCount; i++) {
+				const particle = document.createElement('div');
+				const size = Math.random() * 3 + 1; // 1-4px
+				const type = Math.random();
+				
+				if (type < 0.3) {
+					particle.className = 'particle particle-glow';
+				} else if (type < 0.6) {
+					particle.className = 'particle particle-trail';
+				} else {
+					particle.className = 'particle';
+				}
+				
+				particle.style.width = size + 'px';
+				particle.style.height = size + 'px';
+				particle.style.left = Math.random() * 100 + '%';
+				particle.style.top = Math.random() * 100 + '%';
+				particle.style.animationDelay = Math.random() * 5 + 's';
+				particle.style.animationDuration = (Math.random() * 4 + 3) + 's';
+				particle.style.opacity = Math.random() * 0.5 + 0.3;
+				
+				particlesContainer.appendChild(particle);
+			}
+		}
+
+		createParticles();
+	</script>
 
 </body>
 </html>

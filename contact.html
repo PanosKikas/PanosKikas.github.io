@@ -11,6 +11,10 @@
 	<link rel="stylesheet" href="js/fancybox/jquery.fancybox.css" type="text/css" media="screen" />
 	<link rel="stylesheet" href="css/all.css" />
 	<link rel="stylesheet" href="css/screen.css" />
+	<link rel="stylesheet" href="assets/css/style.css" />
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 	<!--[if lt IE 9]>
 		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 	<![endif]-->
@@ -22,29 +26,97 @@
 </head>
 <body>
 	<div id="wrapper" class="portfolio">
-		<div class="wrapper-holder">
-			<header id="header">
-				<a class="menu_trigger" href="#">menu</a>
-					<nav id="nav">
-						<ul>
-							<li><a href="index.html">Home</a></li>
-							<li><a href="myskills.html">My skills</a></li>
-							<li><a href="portfolio.html">Portfolio</a></li>
-							<li><a class="active" href="contact.html">Contact</a></li>
-						</ul>
-					</nav>
-			</header>
-		</div>
+		<!-- Left Sidebar Navigation - Retro Gaming Style -->
+		<nav id="sidebar-nav" class="retro-sidebar">
+			<div class="sidebar-header">
+				<div class="retro-screen">
+					<h1 class="sidebar-logo">PANOS KIKAS</h1>
+					<div class="retro-divider"></div>
+					<h2 class="sidebar-slogan">GAME DEVELOPER</h2>
+				</div>
+			</div>
+			<ul class="retro-menu">
+				<li>
+					<a class="retro-menu-item" href="index.html">
+						<span class="menu-icon">▶</span>
+						<span class="menu-text">Home</span>
+					</a>
+				</li>
+				<li>
+					<a class="retro-menu-item" href="myskills.html">
+						<span class="menu-icon">▶</span>
+						<span class="menu-text">Skills</span>
+					</a>
+				</li>
+				<li>
+					<a class="retro-menu-item" href="portfolio.html">
+						<span class="menu-icon">▶</span>
+						<span class="menu-text">Porfolio</span>
+					</a>
+				</li>
+				<li>
+					<a class="retro-menu-item active" href="contact.html">
+						<span class="menu-icon">▶</span>
+						<span class="menu-text">Contact</span>
+					</a>
+				</li>
+			</ul>
+			<div class="sidebar-footer">
+				<div class="sidebar-contact">
+					<a href="mailto:panoskikas@protonmail.com" class="sidebar-link sidebar-email">
+						<svg class="email-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" fill="currentColor"/>
+						</svg>
+						<span>panoskikas@protonmail.com</span>
+					</a>
+					<a href="https://github.com/PanosKikas" target="_blank" rel="noopener noreferrer" class="sidebar-link sidebar-github">
+						<svg class="github-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.17 6.839 9.49.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.167 22 16.418 22 12c0-5.523-4.477-10-10-10z" fill="currentColor"/>
+						</svg>
+						<span>GitHub</span>
+					</a>
+				</div>
+			</div>
+		</nav>
 		
 		<div class="wrapper-holder grey">
-			<section id="main">
-				<div class="images_holder"><img src="images/profile.png" alt=""></div>
-				<div class="box_contact">
-					<br /> <br />  <br />
-					<span class="email"><a href="mailto:kikaspanos@gmail.com""><h5 style="color:white">kikaspanos@gmail.com</h5></a></span>
-					<span class="skype"><a href="https://www.linkedin.com/in/panos-kikas-36a2221b6/"><h5 style="color:white">Panos Kikas</h5></a></span>
+			<section id="main" class="contact-section">
+				<div class="contact-header">
+					<div class="contact-profile">
+						<img src="images/profile.png" alt="Panos Kikas" class="profile-image">
+					</div>
+					<h2 class="contact-title">Get In Touch</h2>
+					<p class="contact-subtitle">For any enquiries feel free to contact me in my Email or LinkedIn</p>
 				</div>
-				<div class="clear"></div>
+				
+				<div class="contact-content">
+					<a href="mailto:panoskikas@protonmail.com" class="contact-card-link">
+						<div class="contact-card">
+							<div class="contact-icon">
+								<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+									<path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+									<polyline points="22,6 12,13 2,6"></polyline>
+								</svg>
+							</div>
+							<h3 class="contact-card-title">Email</h3>
+							<span class="contact-link">panoskikas@protonmail.com</span>
+						</div>
+					</a>
+					
+					<a href="https://www.linkedin.com/in/panos-kikas-36a2221b6/" target="_blank" rel="noopener noreferrer" class="contact-card-link">
+						<div class="contact-card">
+							<div class="contact-icon">
+								<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+									<path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+									<rect x="2" y="9" width="4" height="12"></rect>
+									<circle cx="4" cy="4" r="2"></circle>
+								</svg>
+							</div>
+							<h3 class="contact-card-title">LinkedIn</h3>
+							<span class="contact-link">Connect on LinkedIn</span>
+						</div>
+					</a>
+				</div>
 			</section>
 		</div>
 	</div>

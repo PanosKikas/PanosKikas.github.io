@@ -129,13 +129,16 @@ a{text-decoration:none; color:#6e6e6e;}
 a:hover{text-decoration:underline;}
 #wrapper{
 	width:100%;
-	height: 100%;
-	display:table;
+	min-height: 100%;
+	display:flex;
+	flex-direction: column;
+	box-sizing: content-box;
 }
 .wrapper-holder {
 	width:100%;
     display:table-row;
     background: #50af6f;
+	flex: 1;
 }
 .wrapper-holder.grey{background: #28292b;}
 #header {
@@ -330,18 +333,18 @@ h2.slogan{
 
 .progress li span.csharp{width: 100%;}
 .progress li span.unityengine{width: 100%;}
-.progress li span.python{width: 80%;}
-.progress li span.solidity{width: 50%;}
-.progress li span.sql{width: 60%;}
+.progress li span.unreal{width: 80%;}
 .progress li span.cplusplus{width: 75%;}
-.progress li span.c{width: 47%;}
-.progress li span.javascript{width: 70%;}
-.progress li span.java{width: 60%;}
-.progress li span.unreal{width: 50%;}
-.progress li span.agile {width: 100%;}
+.progress li span.python{width: 65%;}
+.progress li span.solidity{width: 50%;}
+.progress li span.sql{width: 55%;}
+.progress li span.c{width: 45%;}
+.progress li span.javascript{width: 55%;}
+.progress li span.java{width: 50%;}
+.progress li span.agile {width: 85%;}
 .progress li span.oopprinciples{width: 100%;}
 .progress li span.tdd {width: 85%;}
-.progress li span.solid{width: 85%;}
+.progress li span.solid{width: 100%;}
 .progress li span.designpatterns{width: 85%;}
 .progress li span.versioncontrol{width: 100%;}
 
@@ -628,7 +631,7 @@ transition: all 0.5s ease-in-out;
 .fancybox-close {
 	width: 46px;
 	height: 46px;
-	top: -23px;
+	top: 10px;
 	right: -20px;
 	background-image: url(../images/ico_btn-close.png);
 }
