@@ -56,19 +56,36 @@ $(document).ready(function() {
 	});
 // end add
 });
+// Debounce resize handler to prevent jitter
+var resizeTimer;
 $(window).resize(function() {
-    if($(document).width() > 768){
-      $( "#nav" ).addClass("active");
-      $( "#nav ul" ).attr('style','');
-      $( "#nav" ).attr('style','');
-      $( "#nav" ).removeClass("clicked");
-      $( "#nav .active" ).removeClass('active');
-    }
-    else {
-        $( "#nav" ).removeClass("active");
-    }
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(function() {
+        if($(document).width() > 1024){
+          $( "#nav" ).addClass("active");
+          $( "#nav ul" ).attr('style','');
+          $( "#nav" ).attr('style','');
+          $( "#nav" ).removeClass("clicked");
+          $( "#nav .active" ).removeClass('active');
+        }
+        else {
+            $( "#nav" ).removeClass("active");
+        }
+    }, 150);
 });
 
 $(document).ready(function(){
-  document.querySelector('li.active').click();
+  // Only run on pages that have filter navigation (portfolio page)
+  const filtersContainer = document.querySelector('#filters');
+  if (filtersContainer) {
+    const activeLi = document.querySelector('#filters li.active, .filters li.active');
+    if (activeLi && typeof activeLi.click === 'function') {
+      try {
+        activeLi.click();
+      } catch (e) {
+        // Silently fail if click doesn't work
+        console.debug('Could not trigger active filter click:', e);
+      }
+    }
+  }
 });

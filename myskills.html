@@ -27,6 +27,14 @@
 </head>
 <body>
 	<div id="wrapper" class="inner">
+		<!-- Mobile Menu Toggle -->
+		<div class="menu-toggle" id="menuToggle">
+			<span></span>
+			<span></span>
+			<span></span>
+		</div>
+		<div class="sidebar-overlay" id="sidebarOverlay"></div>
+		
 		<!-- Left Sidebar Navigation - Retro Gaming Style -->
 		<nav id="sidebar-nav" class="retro-sidebar">
 			<div class="sidebar-header">
@@ -44,15 +52,15 @@
 					</a>
 				</li>
 				<li>
-					<a class="retro-menu-item active" href="myskills.html">
-						<span class="menu-icon">▶</span>
-						<span class="menu-text">Skills</span>
-					</a>
-				</li>
-				<li>
 					<a class="retro-menu-item" href="portfolio.html">
 						<span class="menu-icon">▶</span>
 						<span class="menu-text">Porfolio</span>
+					</a>
+				</li>
+				<li>
+					<a class="retro-menu-item active" href="myskills.html">
+						<span class="menu-icon">▶</span>
+						<span class="menu-text">Skills</span>
 					</a>
 				</li>
 				<li>
@@ -116,6 +124,40 @@
 			</section>
 		</div>
 	</div>
+
+	<script>
+		// Mobile menu toggle
+		const menuToggle = document.getElementById('menuToggle');
+		const sidebar = document.querySelector('.retro-sidebar');
+		const overlay = document.getElementById('sidebarOverlay');
+		
+		if (menuToggle && sidebar) {
+			menuToggle.addEventListener('click', function() {
+				sidebar.classList.toggle('open');
+				overlay.classList.toggle('active');
+				menuToggle.classList.toggle('active');
+			});
+			
+			if (overlay) {
+				overlay.addEventListener('click', function() {
+					sidebar.classList.remove('open');
+					overlay.classList.remove('active');
+					menuToggle.classList.remove('active');
+				});
+			}
+			
+			const menuLinks = document.querySelectorAll('.retro-menu-item');
+			menuLinks.forEach(link => {
+				link.addEventListener('click', function() {
+					if (window.innerWidth <= 1024) {
+						sidebar.classList.remove('open');
+						overlay.classList.remove('active');
+						menuToggle.classList.remove('active');
+					}
+				});
+			});
+		}
+	</script>
 
 </body>
 </html>

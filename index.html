@@ -26,6 +26,14 @@
 </head>
 <body>
 	<div id="wrapper">
+		<!-- Mobile Menu Toggle -->
+		<div class="menu-toggle" id="menuToggle">
+			<span></span>
+			<span></span>
+			<span></span>
+		</div>
+		<div class="sidebar-overlay" id="sidebarOverlay"></div>
+		
 		<!-- Left Sidebar Navigation - Retro Gaming Style -->
 		<nav id="sidebar-nav" class="retro-sidebar">
 			<div class="sidebar-header">
@@ -42,13 +50,13 @@
 					</a>
 				</li>
 				<li>
-					<a class="retro-menu-item" href="myskills.html">
-						<span class="menu-text">Skills</span>
+					<a class="retro-menu-item" href="portfolio.html">
+						<span class="menu-text">Portfolio</span>
 					</a>
 				</li>
 				<li>
-					<a class="retro-menu-item" href="portfolio.html">
-						<span class="menu-text">Portfolio</span>
+					<a class="retro-menu-item" href="myskills.html">
+						<span class="menu-text">Skills</span>
 					</a>
 				</li>
 				<li>
@@ -138,7 +146,7 @@
 					<div class="career-item active">
 						<div class="career-marker"></div>
 						<div class="career-content">
-							<img src="images/rockstargameslogo.svg" alt="Rockstar Games" class="career-company-icon" />
+							<img src="images/rockstargameslogo.svg" alt="Rockstar Games" class="career-company-icon" loading="lazy" />
 							<div class="career-text">
 								<div class="career-date">Present</div>
 								<h3 class="career-title">Systems Designer</h3>
@@ -150,7 +158,7 @@
 					<div class="career-item">
 						<div class="career-marker"></div>
 						<div class="career-content">
-							<img src="images/legendaryplay.svg" alt="Legendary Play" class="career-company-icon" />
+							<img src="images/legendaryplay.svg" alt="Legendary Play" class="career-company-icon" loading="lazy" />
 							<div class="career-text">
 								<div class="career-date">October 2022</div>
 								<h3 class="career-title">Mid-Level Unity Developer</h3>
@@ -162,7 +170,7 @@
 					<div class="career-item">
 						<div class="career-marker"></div>
 						<div class="career-content">
-							<img src="images/luminousxrlogo.jpg" alt="Luminous Group" class="career-company-icon" />
+							<img src="images/luminousxrlogo.jpg" alt="Luminous Group" class="career-company-icon" loading="lazy" />
 							<div class="career-text">
 								<div class="career-date">April 2021</div>
 								<h3 class="career-title">Unity Developer</h3>
@@ -174,7 +182,7 @@
 					<div class="career-item">
 						<div class="career-marker"></div>
 						<div class="career-content">
-							<img src="images/trapticslogo.jpg" alt="Traptics" class="career-company-icon" />
+							<img src="images/trapticslogo.jpg" alt="Traptics" class="career-company-icon" loading="lazy" />
 							<div class="career-text">
 								<div class="career-date">October 2020</div>
 								<h3 class="career-title">Junior Game Developer</h3>
@@ -186,7 +194,7 @@
 					<div class="career-item">
 						<div class="career-marker"></div>
 						<div class="career-content">
-							<img src="images/unimacedionalogo.png" alt="University" class="career-company-icon" />
+							<img src="images/unimacedionalogo.png" alt="University" class="career-company-icon" loading="lazy" />
 							<div class="career-text">
 								<div class="career-date">September 2019</div>
 								<h3 class="career-title">Bachelor's Degree in Computer Science</h3>
@@ -201,140 +209,294 @@
 	</div>
 
 	<script>
-		// Smooth scrolling
-		document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-			anchor.addEventListener('click', function (e) {
-				e.preventDefault();
-				const target = document.querySelector(this.getAttribute('href'));
-				if (target) {
-					target.scrollIntoView({
-						behavior: 'smooth',
-						block: 'start'
-					});
-				}
-			});
-		});
-
-		// Typing effect
-		const typingText = document.querySelector('.typing-text');
-		const texts = ['Unity Engine', 'Systems Design', 'Unreal Engine', 'SOLID Principles'];
-		let textIndex = 0;
-		let charIndex = 0;
-		let isDeleting = false;
-
-		function typeEffect() {
-			const currentText = texts[textIndex];
-			
-			if (isDeleting) {
-				typingText.textContent = currentText.substring(0, charIndex - 1);
-				charIndex--;
-			} else {
-				typingText.textContent = currentText.substring(0, charIndex + 1);
-				charIndex++;
-			}
-
-			if (!isDeleting && charIndex === currentText.length) {
-				setTimeout(() => isDeleting = true, 2000);
-			} else if (isDeleting && charIndex === 0) {
-				isDeleting = false;
-				textIndex = (textIndex + 1) % texts.length;
-			}
-
-			const speed = isDeleting ? 50 : 100;
-			setTimeout(typeEffect, speed);
+		// Use window object to persist initialization state across script re-executions
+		if (!window.pageInitialized) {
+			window.pageInitialized = {};
 		}
-
-		if (typingText) {
-			typeEffect();
-		}
-
-		// Scroll animations
-		const observerOptions = {
-			threshold: 0.1,
-			rootMargin: '0px 0px -50px 0px'
-		};
-
-		const observer = new IntersectionObserver((entries) => {
-			entries.forEach(entry => {
-				if (entry.isIntersecting) {
-					entry.target.classList.add('animate');
-				}
-			});
-		}, observerOptions);
-
-		document.querySelectorAll('.career-item').forEach((item, index) => {
-			setTimeout(() => {
-				observer.observe(item);
-			}, index * 100);
-		});
-
-		// Parallax effect for hero and header visibility
-		const headerWrapper = document.querySelector('.wrapper-holder:not(.grey)');
-		const scrollIndicator = document.querySelector('.scroll-indicator');
 		
-		window.addEventListener('scroll', () => {
-			const scrolled = window.pageYOffset;
-			const hero = document.querySelector('.hero-section');
-			if (hero) {
-				hero.style.transform = `translateY(${scrolled * 0.5}px)`;
-				hero.style.opacity = 1 - (scrolled / 600);
+		// Prevent re-initialization on resize
+		(function() {
+			// Smooth scrolling
+			if (!window.pageInitialized.smoothScroll) {
+				document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+					anchor.addEventListener('click', function (e) {
+						e.preventDefault();
+						const target = document.querySelector(this.getAttribute('href'));
+						if (target) {
+							target.scrollIntoView({
+								behavior: 'smooth',
+								block: 'start'
+							});
+						}
+					});
+				});
+				window.pageInitialized.smoothScroll = true;
 			}
-			
-			// Hide scroll indicator when scrolled
-			if (scrollIndicator) {
-				if (scrolled > 50) {
-					scrollIndicator.style.opacity = '0';
-					scrollIndicator.style.pointerEvents = 'none';
-				} else {
-					scrollIndicator.style.opacity = '0.7';
-					scrollIndicator.style.pointerEvents = 'auto';
-				}
-			}
-			
-			// Add scrolled class to header wrapper for styling
-			if (headerWrapper) {
-				if (scrolled > 100) {
-					headerWrapper.classList.add('scrolled');
-				} else {
-					headerWrapper.classList.remove('scrolled');
-				}
-			}
-		});
 
-		// Enhanced particle effect
-		function createParticles() {
-			const particlesContainer = document.querySelector('.particles');
-			if (!particlesContainer) return;
+			// Typing effect - only initialize once
+			if (!window.pageInitialized.typingEffect) {
+				const typingText = document.querySelector('.typing-text');
+				if (typingText && !typingText.dataset.initialized) {
+					const texts = ['Unity Engine', 'Systems Design', 'Unreal Engine', 'SOLID Principles'];
+					const textsWithSemicolon = texts.map(text => text + ';');
+					let textIndex = 0;
+					let charIndex = 0;
+					let isDeleting = false;
+					let typingTimeout = null;
 
-			// Create more particles with variety
-			const particleCount = 120;
-			
-			for (let i = 0; i < particleCount; i++) {
-				const particle = document.createElement('div');
-				const size = Math.random() * 3 + 1; // 1-4px
-				const type = Math.random();
+					function typeEffect() {
+						if (!typingText || typingText.dataset.initialized !== 'true') return;
+						
+						const currentText = textsWithSemicolon[textIndex];
+						
+						if (isDeleting) {
+							typingText.textContent = currentText.substring(0, charIndex - 1);
+							charIndex--;
+						} else {
+							typingText.textContent = currentText.substring(0, charIndex + 1);
+							charIndex++;
+						}
+
+						if (!isDeleting && charIndex === currentText.length) {
+							typingTimeout = setTimeout(() => isDeleting = true, 2000);
+						} else if (isDeleting && charIndex === 0) {
+							isDeleting = false;
+							textIndex = (textIndex + 1) % textsWithSemicolon.length;
+						}
+
+						const speed = isDeleting ? 50 : 100;
+						typingTimeout = setTimeout(typeEffect, speed);
+					}
+
+					typingText.dataset.initialized = 'true';
+					typeEffect();
+					window.pageInitialized.typingEffect = true;
+				}
+			}
+
+			// Scroll animations - optimized with single observer
+			if (!window.pageInitialized.scrollObserver) {
+				const observerOptions = {
+					threshold: 0.1,
+					rootMargin: '0px 0px -50px 0px'
+				};
+
+				const observer = new IntersectionObserver((entries) => {
+					entries.forEach(entry => {
+						if (entry.isIntersecting) {
+							entry.target.classList.add('animate');
+							// Unobserve after animation to improve performance
+							observer.unobserve(entry.target);
+						}
+					});
+				}, observerOptions);
+
+				// Observe all items at once - no need for staggered timeouts
+				const careerItems = document.querySelectorAll('.career-item');
+				careerItems.forEach(item => {
+					observer.observe(item);
+				});
 				
-				if (type < 0.3) {
-					particle.className = 'particle particle-glow';
-				} else if (type < 0.6) {
-					particle.className = 'particle particle-trail';
-				} else {
-					particle.className = 'particle';
+				window.pageInitialized.scrollObserver = true;
+			}
+
+			// Parallax effect for hero and header visibility - disabled on mobile for performance
+			if (!window.pageInitialized.scrollHandler) {
+				const isMobileDevice = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) 
+					|| window.innerWidth <= 768 
+					|| ('ontouchstart' in window);
+				
+				// Cache DOM elements
+				const headerWrapper = document.querySelector('.wrapper-holder:not(.grey)');
+				const scrollIndicator = document.querySelector('.scroll-indicator');
+				const hero = document.querySelector('.hero-section');
+				
+				// Throttle scroll handler for better performance - more aggressive throttling
+				let ticking = false;
+				let lastScrollY = 0;
+				
+				function updateOnScroll() {
+					const scrolled = window.pageYOffset;
+					const scrollDelta = Math.abs(scrolled - lastScrollY);
+					lastScrollY = scrolled;
+					
+					// Skip update if scroll delta is too small (performance optimization)
+					if (scrollDelta < 5 && scrolled > 100) {
+						ticking = false;
+						return;
+					}
+					
+					if (hero && !isMobileDevice) {
+						// Only apply parallax on desktop
+						hero.style.transform = `translate3d(0, ${scrolled * 0.5}px, 0)`;
+						hero.style.opacity = 1 - (scrolled / 600);
+					} else if (hero && isMobileDevice) {
+						// On mobile, just handle opacity without transform for better performance
+						hero.style.opacity = Math.max(0.3, 1 - (scrolled / 600));
+					}
+					
+					// Hide scroll indicator when scrolled
+					if (scrollIndicator) {
+						if (scrolled > 50) {
+							scrollIndicator.style.opacity = '0';
+							scrollIndicator.style.pointerEvents = 'none';
+						} else {
+							scrollIndicator.style.opacity = '0.7';
+							scrollIndicator.style.pointerEvents = 'auto';
+						}
+					}
+					
+					// Add scrolled class to header wrapper for styling
+					if (headerWrapper) {
+						if (scrolled > 100) {
+							headerWrapper.classList.add('scrolled');
+						} else {
+							headerWrapper.classList.remove('scrolled');
+						}
+					}
+					ticking = false;
 				}
 				
-				particle.style.width = size + 'px';
-				particle.style.height = size + 'px';
-				particle.style.left = Math.random() * 100 + '%';
-				particle.style.top = Math.random() * 100 + '%';
-				particle.style.animationDelay = Math.random() * 5 + 's';
-				particle.style.animationDuration = (Math.random() * 4 + 3) + 's';
-				particle.style.opacity = Math.random() * 0.5 + 0.3;
+				window.addEventListener('scroll', () => {
+					if (!ticking) {
+						window.requestAnimationFrame(updateOnScroll);
+						ticking = true;
+					}
+				}, { passive: true });
 				
-				particlesContainer.appendChild(particle);
+				window.pageInitialized.scrollHandler = true;
 			}
+			
+			// Disable transitions during resize to prevent jitter - optimized
+			if (!window.pageInitialized.resizeHandler) {
+				let resizeTimerLocal;
+				let lastWidth = window.innerWidth;
+				
+				window.addEventListener('resize', () => {
+					const currentWidth = window.innerWidth;
+					// Only trigger if width actually changed significantly
+					if (Math.abs(currentWidth - lastWidth) > 10) {
+						document.body.classList.add('resizing');
+						clearTimeout(resizeTimerLocal);
+						resizeTimerLocal = setTimeout(() => {
+							document.body.classList.remove('resizing');
+							lastWidth = currentWidth;
+						}, 150);
+					}
+				}, { passive: true });
+				
+				window.pageInitialized.resizeHandler = true;
+			}
+		})();
+
+		// Enhanced particle effect - only create once
+		(function() {
+			function createParticles() {
+				// Check persistent flag
+				if (window.pageInitialized.particles) {
+					return;
+				}
+				
+				const particlesContainer = document.querySelector('.particles');
+				if (!particlesContainer) {
+					console.warn('Particles container not found');
+					return;
+				}
+
+				// Check if particles already exist or are marked as initialized
+				if (particlesContainer.children.length > 0 || particlesContainer.dataset.initialized === 'true') {
+					window.pageInitialized.particles = true;
+					return;
+				}
+
+				// Detect mobile/touch device and reduce particles for performance
+				const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) 
+					|| window.innerWidth <= 768 
+					|| ('ontouchstart' in window);
+				
+				// Reduce particles on mobile for better performance - even more aggressive reduction
+				const particleCount = isMobile ? 20 : (window.innerWidth <= 1024 ? 60 : 120);
+				
+				// Batch DOM operations for better performance
+				const fragment = document.createDocumentFragment();
+				
+				for (let i = 0; i < particleCount; i++) {
+					const particle = document.createElement('div');
+					const size = isMobile ? (Math.random() * 2 + 1) : (Math.random() * 3 + 1); // Smaller on mobile
+					const type = Math.random();
+					
+					// Simpler particles on mobile - no glow/trail variants
+					if (isMobile) {
+						particle.className = 'particle';
+					} else if (type < 0.3) {
+						particle.className = 'particle particle-glow';
+					} else if (type < 0.6) {
+						particle.className = 'particle particle-trail';
+					} else {
+						particle.className = 'particle';
+					}
+					
+					particle.style.width = size + 'px';
+					particle.style.height = size + 'px';
+					particle.style.left = Math.random() * 100 + '%';
+					particle.style.top = Math.random() * 100 + '%';
+					particle.style.animationDelay = Math.random() * 5 + 's';
+					particle.style.animationDuration = isMobile ? '8s' : ((Math.random() * 4 + 3) + 's'); // Slower on mobile
+					particle.style.opacity = isMobile ? (Math.random() * 0.4 + 0.3) : (Math.random() * 0.6 + 0.4);
+					
+					fragment.appendChild(particle);
+				}
+				
+				// Single DOM append for better performance
+				particlesContainer.appendChild(fragment);
+				
+				particlesContainer.dataset.initialized = 'true';
+				window.pageInitialized.particles = true;
+			}
+
+			// Create particles once when DOM is ready
+			if (document.readyState === 'loading') {
+				document.addEventListener('DOMContentLoaded', createParticles);
+			} else {
+				// DOM already loaded
+				createParticles();
+			}
+		})();
+	</script>
+
+	<script>
+		// Mobile menu toggle
+		const menuToggle = document.getElementById('menuToggle');
+		const sidebar = document.querySelector('.retro-sidebar');
+		const overlay = document.getElementById('sidebarOverlay');
+		
+		if (menuToggle && sidebar) {
+			menuToggle.addEventListener('click', function() {
+				sidebar.classList.toggle('open');
+				overlay.classList.toggle('active');
+				menuToggle.classList.toggle('active');
+			});
+			
+			if (overlay) {
+				overlay.addEventListener('click', function() {
+					sidebar.classList.remove('open');
+					overlay.classList.remove('active');
+					menuToggle.classList.remove('active');
+				});
+			}
+			
+			// Close menu when clicking a link on mobile
+			const menuLinks = document.querySelectorAll('.retro-menu-item');
+			menuLinks.forEach(link => {
+				link.addEventListener('click', function() {
+					if (window.innerWidth <= 1024) {
+						sidebar.classList.remove('open');
+						overlay.classList.remove('active');
+						menuToggle.classList.remove('active');
+					}
+				});
+			});
 		}
-
-		createParticles();
 	</script>
 
 </body>

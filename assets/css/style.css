@@ -624,8 +624,9 @@ blockquote {
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  background: linear-gradient(135deg, #06060a 0%, #050508 100%);
+  background: transparent;
   z-index: 1;
+  contain: layout style paint; /* Performance optimization - contain layout recalculations */
 }
 
 .hero-background {
@@ -653,7 +654,13 @@ blockquote {
   background-position: center;
   z-index: 1;
   opacity: 1;
-  animation: ambientBreath 20s ease-in-out infinite;
+  animation: none; /* Removed ambientBreath animation - was causing looping opacity change */
+  pointer-events: none;
+}
+
+
+.hero-background .particles {
+  z-index: 5 !important;
 }
 
 .hero-image-overlay::before {
@@ -705,53 +712,13 @@ blockquote {
   opacity: 0.6;
 }
 
-/* Hacker aesthetic elements */
+/* Hacker aesthetic elements - CRT effect removed */
 .hero-background::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: 
-    repeating-linear-gradient(
-      0deg,
-      transparent,
-      transparent 2px,
-      rgba(0, 255, 136, 0.03) 2px,
-      rgba(0, 255, 136, 0.03) 3px
-    );
-  background-size: 100% 100%;
-  animation: scanLine 8s linear infinite;
-  pointer-events: none;
-  opacity: 0.4;
-  z-index: 2;
+  display: none; /* CRT scanline effect removed */
 }
 
 .hero-background::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: 
-    repeating-linear-gradient(
-      45deg,
-      transparent,
-      transparent 10px,
-      rgba(0, 255, 136, 0.02) 10px,
-      rgba(0, 255, 136, 0.02) 11px
-    ),
-    repeating-linear-gradient(
-      -45deg,
-      transparent,
-      transparent 10px,
-      rgba(102, 126, 234, 0.02) 10px,
-      rgba(102, 126, 234, 0.02) 11px
-    );
-  background-size: 40px 40px;
-  animation: hexDrift 25s linear infinite;
+  display: none; /* CRT hex pattern effect removed */
   pointer-events: none;
   opacity: 0.3;
   z-index: 2;
@@ -880,20 +847,33 @@ blockquote {
 
 .particles {
   position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
   overflow: hidden;
-  z-index: 2;
+  z-index: 3;
+  pointer-events: none;
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
 }
 
 .particle {
   position: absolute;
   width: 2px;
   height: 2px;
-  background: rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.8);
   border-radius: 50%;
   animation: float 4s infinite ease-in-out;
-  box-shadow: 0 0 2px rgba(255, 255, 255, 0.5);
+  animation-play-state: running;
+  box-shadow: 0 0 3px rgba(255, 255, 255, 0.7);
+  pointer-events: none;
+  will-change: transform, opacity;
+  display: block !important;
+  visibility: visible !important;
+  transform: translateZ(0); /* Force GPU acceleration */
+  backface-visibility: hidden; /* Improve performance */
 }
 
 .particle-glow {
@@ -921,7 +901,7 @@ blockquote {
 
 @keyframes float {
   0%, 100% {
-    transform: translateY(0) translateX(0) scale(1);
+    transform: translate3d(0, 0, 0) scale(1);
     opacity: 0;
   }
   10% {
@@ -931,49 +911,49 @@ blockquote {
     opacity: 1;
   }
   100% {
-    transform: translateY(-100vh) translateX(calc(50px * var(--drift, 1))) scale(0.5);
+    transform: translate3d(calc(50px * var(--drift, 1)), -100vh, 0) scale(0.5);
     opacity: 0;
   }
 }
 
 @keyframes floatGlow {
   0%, 100% {
-    transform: translateY(0) translateX(0) scale(1);
+    transform: translate3d(0, 0, 0) scale(1);
     opacity: 0;
   }
   10% {
     opacity: 0.8;
   }
   50% {
-    transform: translateY(-50vh) translateX(30px) scale(1.2);
+    transform: translate3d(30px, -50vh, 0) scale(1.2);
     opacity: 1;
   }
   90% {
     opacity: 0.8;
   }
   100% {
-    transform: translateY(-100vh) translateX(60px) scale(0.3);
+    transform: translate3d(60px, -100vh, 0) scale(0.3);
     opacity: 0;
   }
 }
 
 @keyframes floatTrail {
   0%, 100% {
-    transform: translateY(0) translateX(0) scale(1);
+    transform: translate3d(0, 0, 0) scale(1);
     opacity: 0;
   }
   10% {
     opacity: 0.6;
   }
   50% {
-    transform: translateY(-50vh) translateX(-40px) scale(1.1);
+    transform: translate3d(-40px, -50vh, 0) scale(1.1);
     opacity: 0.8;
   }
   90% {
     opacity: 0.6;
   }
   100% {
-    transform: translateY(-100vh) translateX(-80px) scale(0.4);
+    transform: translate3d(-80px, -100vh, 0) scale(0.4);
     opacity: 0;
   }
 }
@@ -1189,11 +1169,13 @@ blockquote {
   align-items: center;
   justify-content: center;
   gap: 5px;
+  font-family: 'Courier New', 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
 }
 
 .typing-text {
   color: #fff;
   font-weight: 400;
+  font-family: 'Courier New', 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
 }
 
 .cursor {
@@ -1212,9 +1194,11 @@ blockquote {
 
 .hero-description {
   font-size: 18px;
-  margin-bottom: 40px;
+  margin-top: 15px;
+  margin-bottom: 30px;
   opacity: 0.9;
   font-weight: 300;
+  text-align: center;
 }
 
 .hero-buttons {
@@ -1338,13 +1322,15 @@ blockquote {
 }
 
 .sidebar-logo {
-  font-size: 24px;
+  font-size: 24px !important;
   font-weight: 700;
   color: #fff;
   margin: 0 0 6px 0;
   letter-spacing: -0.5px;
   font-family: 'Inter', sans-serif;
   line-height: 1.2;
+  transform: none !important;
+  zoom: 1 !important;
 }
 
 .retro-divider {
@@ -1352,12 +1338,14 @@ blockquote {
 }
 
 .sidebar-slogan {
-  font-size: 13px;
+  font-size: 13px !important;
   color: rgba(255, 255, 255, 0.6);
   margin: 0;
   font-weight: 400;
   font-family: 'Inter', sans-serif;
   letter-spacing: 0.3px;
+  transform: none !important;
+  zoom: 1 !important;
 }
 
 .retro-menu {
@@ -1490,15 +1478,20 @@ blockquote {
 /* Hide old header */
 
 /* Responsive sidebar */
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .retro-sidebar {
     transform: translateX(-100%);
     width: 280px;
     transition: transform 0.3s ease;
+    z-index: 9999;
+    visibility: visible;
+    display: flex;
   }
   
   .retro-sidebar.open {
-    transform: translateX(0);
+    transform: translateX(0) !important;
+    visibility: visible !important;
+    display: flex !important;
   }
   
   #wrapper {
@@ -1575,9 +1568,9 @@ blockquote {
 .career-item {
   position: relative;
   margin-bottom: 50px;
-  opacity: 0;
-  transform: translateX(-30px);
-  transition: all 0.5s ease;
+  opacity: 1;
+  transform: translateX(0);
+  transition: opacity 0.5s ease, transform 0.5s ease; /* Only transition specific properties */
 }
 
 .career-item.animate,
@@ -1626,13 +1619,14 @@ blockquote {
   border: 1px solid rgba(102, 126, 234, 0.2);
   border-radius: 12px;
   padding: 30px;
-  transition: all 0.3s ease;
+  transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease; /* Only transition needed properties */
   position: relative;
   display: flex;
   gap: 20px;
   align-items: flex-start;
   z-index: 1; /* Ensure content is above timeline-line */
   pointer-events: auto; /* Ensure content can receive hover events */
+  will-change: transform; /* Optimize for hover transforms */
 }
 
 .career-company-icon {
@@ -1748,7 +1742,7 @@ blockquote {
   }
   
   .career-marker {
-    left: -35px;
+    left: -38px;
     width: 12px;
     height: 12px;
   }
@@ -2773,7 +2767,6 @@ body {
 
 /* Position arrows further outside the popup box */
 .fancybox-prev span {
-  left: -40px !important; /* Positioned outside the box on the left */
   background-position: center center !important;
   background-size: 20px 20px !important;
   background-repeat: no-repeat !important;
@@ -2782,7 +2775,6 @@ body {
 }
 
 .fancybox-next span {
-  right: -40px !important; /* Positioned outside the box on the right */
   background-position: center center !important;
   background-size: 20px 20px !important;
   background-repeat: no-repeat !important;
@@ -2881,7 +2873,16 @@ body {
 @media (max-width: 768px) {
   .popup_portfolio {
     max-width: 95%;
+    max-height: 90vh;
     margin: 20px auto;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .popup_portfolio img {
+    max-height: 200px;
+    object-fit: cover;
   }
   
   .popup_portfolio h3 {
@@ -2906,9 +2907,152 @@ body {
   
   .popup_portfolio ul li {
     font-size: 14px;
-    margin: 10px 0;
+    margin: 8px 0;
+    line-height: 1.5;
+  }
+  
+  .popup_portfolio p {
+    line-height: 1.6;
   }
 
+  /* Align close button with popup edges on compact view */
+  .fancybox-close {
+    right: 5px !important;
+    top: 5px !important;
+    width: 36px !important;
+    height: 36px !important;
+  }
+
+  /* Make navigation arrows smaller on compact view */
+  .fancybox-nav span {
+    width: 40px !important;
+    height: 40px !important;
+    margin-top: -20px !important;
+  }
+  
+  /* Position buttons outside the popup on compact view */
+  .fancybox-prev span {
+    left: -20px !important;
+  }
+  
+  .fancybox-next span {
+    right: -20px !important;
+  }
+
+  .fancybox-prev span::before {
+    border-top-width: 7px !important;
+    border-bottom-width: 7px !important;
+    border-right-width: 10px !important;
+  }
+
+  .fancybox-next span::before {
+    border-top-width: 7px !important;
+    border-bottom-width: 7px !important;
+    border-left-width: 10px !important;
+  }
+  
+  /* Constrain fancybox container height on compact view */
+  .fancybox-wrap {
+    max-height: 90vh !important;
+    overflow-y: auto !important;
+  }
+  
+  .fancybox-skin {
+    max-height: 90vh !important;
+    overflow-y: auto !important;
+  }
+
+}
+
+@media (max-width: 480px) {
+  .popup_portfolio {
+    max-width: 98%;
+    max-height: 85vh;
+    margin: 10px auto;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .popup_portfolio img {
+    max-height: 150px;
+    object-fit: cover;
+  }
+  
+  .popup_portfolio h3 {
+    padding: 20px 15px 10px;
+    font-size: 20px;
+  }
+  
+  .popup_portfolio time {
+    padding: 0 15px 10px;
+  }
+  
+  .popup_portfolio p {
+    padding: 10px 15px;
+  }
+  
+  .popup_portfolio ul {
+    padding: 10px 15px 20px;
+  }
+  
+  .popup_portfolio ul li {
+    margin: 6px 0;
+    line-height: 1.4;
+    font-size: 13px;
+  }
+  
+  .popup_portfolio p {
+    line-height: 1.5;
+    margin-bottom: 10px;
+  }
+
+  /* Align close button with popup edges on very compact view */
+  .fancybox-close {
+    right: 5px !important;
+    top: 5px !important;
+    width: 32px !important;
+    height: 32px !important;
+  }
+
+  /* Make navigation arrows smaller on compact view */
+  .fancybox-nav span {
+    width: 36px !important;
+    height: 36px !important;
+    margin-top: -18px !important;
+  }
+
+  .fancybox-prev span::before {
+    border-top-width: 6px !important;
+    border-bottom-width: 6px !important;
+    border-right-width: 9px !important;
+  }
+
+  .fancybox-next span::before {
+    border-top-width: 6px !important;
+    border-bottom-width: 6px !important;
+    border-left-width: 9px !important;
+  }
+  
+  /* Position buttons outside the popup on very compact view */
+  .fancybox-prev span {
+    left: -20px !important;
+  }
+  
+  .fancybox-next span {
+    right: -20px !important;
+  }
+  
+  /* Constrain fancybox container height on very compact view */
+  .fancybox-wrap {
+    max-height: 85vh !important;
+    overflow-y: auto !important;
+  }
+  
+  .fancybox-skin {
+    max-height: 85vh !important;
+    overflow-y: auto !important;
+  }
 }
 
 /* Arcade Filter Buttons */
@@ -3075,17 +3219,34 @@ body {
   .arcade-grid,
   #container.arcade-grid,
   .item-list.arcade-grid {
-    gap: 30px !important;
-    padding: 20px 20px !important;
+    gap: 20px !important;
+    padding: 20px 10px !important;
     justify-content: center !important;
   }
   
   .arcade-grid li,
   #container.arcade-grid li,
   .item-list.arcade-grid li {
+    width: auto !important;
+    max-width: 320px !important;
+    flex: 0 0 auto !important;
+    padding: 0 !important;
+    margin: 0 auto 20px auto !important;
+    box-sizing: border-box !important;
+  }
+  
+  .arcade-card,
+  .arcade-grid .item {
     width: 100% !important;
-    max-width: 400px !important;
-    flex: 0 0 100% !important;
+    max-width: 320px !important;
+    box-sizing: border-box !important;
+    margin: 0 auto !important;
+  }
+  
+  .arcade-card-inner {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
   }
   
   .arcade-card-screen {
@@ -3468,4 +3629,567 @@ a.btn-primary::before, a.btn-secondary::before {
 a.btn-primary:hover::before, a.btn-secondary:hover::before {
   width: 300px;
   height: 300px;
+}
+
+/* Disable transitions during window resize to prevent jitter */
+body.resizing * {
+  transition: none !important;
+  animation-play-state: paused !important; /* Pause animations during resize */
+}
+
+/* Exclude particles and typing text from animation disable - keep them running */
+body.resizing .particle {
+  animation: float 4s infinite ease-in-out !important;
+}
+
+body.resizing .particle-glow {
+  animation: floatGlow 5s infinite ease-in-out !important;
+}
+
+body.resizing .particle-trail {
+  animation: floatTrail 6s infinite ease-in-out !important;
+}
+
+body.resizing .retro-sidebar {
+  transition: transform 0.1s ease !important;
+}
+
+/* Optimize transitions - reduce repaints during resize */
+@media (max-width: 1024px) {
+  /* Reduce layout shifts and improve performance */
+  .hero-section,
+  .career-item,
+  .arcade-card {
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+  }
+}
+
+/* ============================================
+   COMPREHENSIVE MOBILE RESPONSIVENESS
+   ============================================ */
+
+/* Mobile Sidebar Navigation */
+@media (max-width: 1024px) {
+  #wrapper {
+    margin-left: 0 !important;
+    width: 100% !important;
+  }
+  
+  .wrapper-holder {
+    margin-left: 0 !important;
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+  }
+  
+  /* Prevent sidebar header text from scaling */
+  .sidebar-logo {
+    font-size: 24px !important;
+  }
+  
+  .sidebar-slogan {
+    font-size: 13px !important;
+  }
+}
+
+@media (max-width: 1024px) {
+  /* Sidebar - Hidden by default, toggle with hamburger */
+  .retro-sidebar {
+    transform: translateX(-100%);
+    width: 280px;
+    transition: transform 0.3s ease;
+    z-index: 9999;
+    visibility: visible;
+    display: flex;
+  }
+  
+  .retro-sidebar.open {
+    transform: translateX(0) !important;
+    visibility: visible !important;
+    display: flex !important;
+  }
+  
+  /* Hamburger Menu Button */
+  .menu-toggle {
+    position: fixed;
+    top: 16px;
+    right: 16px;
+    width: 36px;
+    height: 36px;
+    z-index: 10000;
+    background: rgba(26, 22, 37, 0.9);
+    border: 2px solid rgba(102, 126, 234, 0.5);
+    border-radius: 8px;
+    display: flex !important;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    cursor: pointer;
+    padding: 7px;
+    backdrop-filter: blur(10px);
+    pointer-events: auto !important;
+    visibility: visible !important;
+  }
+  
+  .menu-toggle span {
+    display: block;
+    width: 20px;
+    height: 2.5px;
+    background: #fff;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+  }
+  
+  .menu-toggle.active span:nth-child(1) {
+    transform: rotate(45deg) translate(6px, 6px);
+  }
+  
+  .menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+  }
+  
+  .menu-toggle.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(6px, -6px);
+  }
+  
+  /* Overlay when sidebar is open */
+  .sidebar-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 9998;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    display: block;
+  }
+  
+  .sidebar-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  
+  /* Sidebar header adjustments for mobile */
+  .sidebar-header {
+    padding-top: 60px !important; /* Add space at top so hamburger doesn't overlap */
+  }
+  
+  /* Keep sidebar header text consistent at all mobile sizes */
+  .sidebar-logo {
+    font-size: 24px !important;
+  }
+  
+  .sidebar-slogan {
+    font-size: 13px !important;
+  }
+  
+  /* Hero Section Mobile */
+  .hero-section {
+    padding: 80px 20px 40px;
+    min-height: 100vh;
+    height: auto;
+  }
+  
+  .hero-title {
+    font-size: 36px !important;
+    letter-spacing: 2px !important;
+    line-height: 1.1 !important;
+  }
+  
+  .hero-title .title-line {
+    display: block;
+  }
+  
+  .hero-specialize {
+    font-size: 14px !important;
+    margin-bottom: 10px;
+  }
+  
+  .hero-subtitle {
+    font-size: 20px !important;
+    min-height: 32px;
+  }
+  
+  .hero-description {
+    font-size: 15px !important;
+    padding: 0 10px;
+  }
+  
+  .hero-stats {
+    gap: 15px !important;
+    margin: 30px 0 !important;
+  }
+  
+  .stat-item {
+    min-width: 100px !important;
+    max-width: 140px !important;
+    padding: 15px !important;
+  }
+  
+  .stat-number {
+    font-size: 22px !important;
+  }
+  
+  .stat-label {
+    font-size: 10px !important;
+  }
+  
+  .hero-buttons {
+    gap: 15px !important;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .btn-primary, .btn-secondary {
+    padding: 14px 35px !important;
+    font-size: 13px !important;
+    width: 100%;
+    max-width: 280px;
+  }
+  
+  .scroll-indicator {
+    bottom: 20px !important;
+  }
+  
+  /* Career Timeline Mobile */
+  .career-section {
+    padding: 40px 20px !important;
+  }
+  
+  .career-header {
+    margin-bottom: 40px;
+  }
+  
+  .section-title {
+    font-size: 32px !important;
+    margin-bottom: 30px !important;
+  }
+  
+  .career-timeline {
+    padding-left: 40px !important;
+  }
+  
+  .career-marker {
+    left: -38px !important;
+    width: 14px !important;
+    height: 14px !important;
+  }
+  
+  .timeline-line {
+    left: 12px !important;
+    width: 2px;
+  }
+  
+  .career-content {
+    padding: 20px !important;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .career-company-icon {
+    width: 56px !important;
+    height: 56px !important;
+    min-width: 56px !important;
+  }
+  
+  .career-title {
+    font-size: 18px !important;
+  }
+  
+  .career-company {
+    font-size: 14px !important;
+  }
+  
+  .career-description {
+    font-size: 13px !important;
+  }
+  
+  .career-item {
+    margin-bottom: 35px;
+  }
+  
+  /* Portfolio Mobile */
+  .portfolio-section {
+    padding: 40px 15px !important;
+  }
+  
+  .portfolio-header .section-title {
+    font-size: 28px !important;
+  }
+  
+  .arcade-filters {
+    flex-direction: column;
+    gap: 10px;
+    padding: 0 10px;
+  }
+  
+  .filter-btn {
+    width: 100%;
+    padding: 12px 20px !important;
+    font-size: 12px !important;
+  }
+  
+  .arcade-grid {
+    gap: 15px !important;
+    padding: 0 10px !important;
+  }
+  
+  .arcade-grid li,
+  #container.arcade-grid li,
+  .item-list.arcade-grid li {
+    width: auto !important;
+    max-width: 300px !important;
+    flex: 0 0 auto !important;
+    padding: 0 !important;
+    margin: 0 auto 15px auto !important;
+  }
+  
+  .arcade-card {
+    width: 100% !important;
+    max-width: 300px !important;
+    box-sizing: border-box !important;
+    margin: 0 auto !important;
+  }
+  
+  .arcade-card-inner {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+  
+  /* Skills Page Mobile */
+  .skills_holder {
+    flex-direction: column !important;
+    gap: 30px;
+  }
+  
+  .skills_holder .column,
+  .skills_holder .column.column-add {
+    width: 100% !important;
+    margin: 0 !important;
+    float: none !important;
+  }
+  
+  #main .skills_holder h2 {
+    font-size: 24px !important;
+    margin-bottom: 20px !important;
+  }
+  
+  .skills_holder p {
+    font-size: 14px !important;
+    line-height: 1.6;
+    margin-bottom: 25px;
+  }
+  
+  .progress li {
+    height: 38px !important;
+    line-height: 38px !important;
+  }
+  
+  .progress li span {
+    font-size: 13px !important;
+    padding: 0 0 0 15px !important;
+  }
+  
+  /* Contact Mobile */
+  .contact-section {
+    padding: 40px 20px !important;
+  }
+  
+  .contact-title {
+    font-size: 32px !important;
+  }
+  
+  .contact-content {
+    flex-direction: column;
+    gap: 30px !important;
+  }
+  
+  .contact-card-link {
+    min-width: auto !important;
+    max-width: 100% !important;
+  }
+  
+  .contact-card {
+    padding: 30px 20px !important;
+  }
+  
+  /* General Mobile Improvements */
+  #main {
+    padding: 20px 15px !important;
+    margin-left: 0 !important;
+  }
+  
+  .wrapper-holder {
+    padding: 40px 15px !important;
+  }
+  
+  .wrapper-holder.grey {
+    padding: 40px 15px !important;
+  }
+  
+  /* Text sizing */
+  h1 {
+    font-size: 28px !important;
+  }
+  
+  h2 {
+    font-size: 24px !important;
+  }
+  
+  h3 {
+    font-size: 20px !important;
+  }
+  
+  p {
+    font-size: 14px !important;
+    line-height: 1.6;
+  }
+}
+
+/* Hide mobile menu on desktop */
+@media (min-width: 1025px) {
+  .menu-toggle,
+  .sidebar-overlay {
+    display: none !important;
+  }
+  
+  .retro-sidebar {
+    transform: translateX(0) !important;
+  }
+}
+
+/* Respect user's motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  .particles {
+    display: none !important;
+  }
+}
+
+/* Performance optimizations for mobile - only hide particles */
+@media (max-width: 768px) {
+  /* Hide particles on mobile for better performance */
+  .particles,
+  .particle,
+  .particle-glow,
+  .particle-trail {
+    display: none !important;
+  }
+  
+  /* Only hide particles on mobile - keep all other animations the same */
+  
+  /* Optimize transforms - simpler on mobile */
+  .arcade-card:hover .arcade-card-inner {
+    transform: translateY(-5px) !important;
+  }
+  
+  /* Reduce box-shadows on mobile */
+  .arcade-card-inner,
+  .career-content {
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2) !important;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Hide particles on very small screens for performance */
+  .particles,
+  .particle,
+  .particle-glow,
+  .particle-trail {
+    display: none !important;
+  }
+  
+  /* Simplify card hover effects */
+  .arcade-card:hover .arcade-card-inner {
+    transform: none !important;
+  }
+  
+  .hero-title {
+    font-size: 28px !important;
+    letter-spacing: 1px !important;
+  }
+  
+  .hero-subtitle {
+    font-size: 18px !important;
+  }
+  
+  .hero-description {
+    font-size: 14px !important;
+  }
+  
+  .stat-item {
+    min-width: 80px !important;
+    max-width: 100px !important;
+    padding: 12px !important;
+  }
+  
+  .stat-number {
+    font-size: 18px !important;
+  }
+  
+  .section-title {
+    font-size: 24px !important;
+  }
+  
+  .career-content {
+    padding: 15px !important;
+  }
+  
+  .btn-primary, .btn-secondary {
+    padding: 12px 25px !important;
+    font-size: 12px !important;
+  }
+  
+  /* Keep sidebar header text consistent - prevent scaling */
+  .sidebar-logo {
+    font-size: 24px !important;
+  }
+  
+  .sidebar-slogan {
+    font-size: 13px !important;
+  }
+  
+  .retro-menu-item {
+    padding: 12px 20px !important;
+    font-size: 14px !important;
+  }
+}
+
+/* Touch-friendly improvements */
+@media (hover: none) and (pointer: coarse) {
+  .btn-primary, .btn-secondary {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  .retro-menu-item {
+    min-height: 44px;
+    padding: 14px 30px;
+  }
+  
+  .filter-btn {
+    min-height: 44px;
+    padding: 14px 25px;
+  }
+  
+  /* Remove hover effects on touch devices */
+  .arcade-card:hover {
+    transform: none;
+  }
+  
+  .stat-item:hover {
+    transform: none;
+  }
 }
