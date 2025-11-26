@@ -117,6 +117,14 @@
 					</div>
 				</div>
 			</div>
+			<div class="scroll-indicator">
+				<span class="scroll-text">Scroll</span>
+				<div class="scroll-arrow">
+					<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path d="M7 10L12 15L17 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+					</svg>
+				</div>
+			</div>
 		</section>
 
 		<!-- Career Journey Section -->
@@ -262,12 +270,25 @@
 
 		// Parallax effect for hero and header visibility
 		const headerWrapper = document.querySelector('.wrapper-holder:not(.grey)');
+		const scrollIndicator = document.querySelector('.scroll-indicator');
+		
 		window.addEventListener('scroll', () => {
 			const scrolled = window.pageYOffset;
 			const hero = document.querySelector('.hero-section');
 			if (hero) {
 				hero.style.transform = `translateY(${scrolled * 0.5}px)`;
 				hero.style.opacity = 1 - (scrolled / 600);
+			}
+			
+			// Hide scroll indicator when scrolled
+			if (scrollIndicator) {
+				if (scrolled > 50) {
+					scrollIndicator.style.opacity = '0';
+					scrollIndicator.style.pointerEvents = 'none';
+				} else {
+					scrollIndicator.style.opacity = '0.7';
+					scrollIndicator.style.pointerEvents = 'auto';
+				}
 			}
 			
 			// Add scrolled class to header wrapper for styling
