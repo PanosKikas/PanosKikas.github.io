@@ -48,6 +48,11 @@
 					<div class="retro-divider"></div>
 					<h2 class="sidebar-slogan">GAME DEVELOPER</h2>
 				</div>
+				<button class="sidebar-collapse-btn" id="sidebarCollapseBtn" title="Collapse Sidebar">
+					<svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+					</svg>
+				</button>
 			</div>
 			<ul class="retro-menu">
 				<li>
@@ -240,6 +245,8 @@
 						</div>
 					</div>
 				</div>
+				<!-- Bottom spacer -->
+				<div style="height: 15px; width: 100%; flex-shrink: 0;"></div>
 			</section>
 		</div>
 	</div>
@@ -735,16 +742,41 @@
 	</script>
 
 	<script>
-		// Mobile menu toggle
+		// Sidebar toggle functionality
 		const menuToggle = document.getElementById('menuToggle');
 		const sidebar = document.querySelector('.retro-sidebar');
 		const overlay = document.getElementById('sidebarOverlay');
+		const collapseBtn = document.getElementById('sidebarCollapseBtn');
+		const wrapper = document.getElementById('wrapper');
+		
+		function collapseSidebar() {
+			sidebar.classList.add('collapsed');
+			wrapper.classList.add('sidebar-collapsed');
+			menuToggle.classList.add('visible');
+			localStorage.setItem('sidebarCollapsed', 'true');
+		}
+		
+		function expandSidebar() {
+			sidebar.classList.remove('collapsed');
+			wrapper.classList.remove('sidebar-collapsed');
+			menuToggle.classList.remove('visible');
+			menuToggle.classList.remove('active');
+			localStorage.setItem('sidebarCollapsed', 'false');
+		}
+		
+		if (collapseBtn) {
+			collapseBtn.addEventListener('click', collapseSidebar);
+		}
 		
 		if (menuToggle && sidebar) {
 			menuToggle.addEventListener('click', function() {
-				sidebar.classList.toggle('open');
-				overlay.classList.toggle('active');
-				menuToggle.classList.toggle('active');
+				if (window.innerWidth > 1024 && sidebar.classList.contains('collapsed')) {
+					expandSidebar();
+				} else {
+					sidebar.classList.toggle('open');
+					overlay.classList.toggle('active');
+					menuToggle.classList.toggle('active');
+				}
 			});
 			
 			if (overlay) {
@@ -765,6 +797,10 @@
 					}
 				});
 			});
+		}
+		
+		if (window.innerWidth > 1024 && localStorage.getItem('sidebarCollapsed') === 'true') {
+			collapseSidebar();
 		}
 	</script>
 
