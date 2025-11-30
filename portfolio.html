@@ -6,11 +6,12 @@
 
 <head>
 	<meta charset="utf-8">
+	<link rel="icon" type="image/svg+xml" href="favicon.svg">
 	<meta name="viewport"
 		content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<meta name="format-detection" content="telephone=no">
-	<title>Panagiotis Kikas - Portfolio</title>
+	<title>Panos Kikas - Portfolio</title>
 	<link rel="stylesheet" href="js/fancybox/jquery.fancybox.css" type="text/css" media="screen" />
 	<link rel="stylesheet" href="css/all.css" />
 	<link rel="stylesheet" href="css/screen.css" />
@@ -28,78 +29,12 @@
 	<script src="js/cells-by-row.js" type="text/javascript"></script>
 	<script type="text/javascript" src="js/fancybox/jquery.fancybox.pack.js"></script>
 	<script type="text/javascript" src="js/main.js"></script>
+	<script type="text/javascript" src="js/sidebar-component.js"></script>
 </head>
 
 <body>
 	<div id="wrapper" class="portfolio">
-		<!-- Mobile Menu Toggle -->
-		<div class="menu-toggle" id="menuToggle">
-			<span></span>
-			<span></span>
-			<span></span>
-		</div>
-		<div class="sidebar-overlay" id="sidebarOverlay"></div>
-		
-		<!-- Left Sidebar Navigation -->
-		<nav id="sidebar-nav" class="retro-sidebar">
-			<div class="sidebar-header">
-				<div class="retro-screen">
-					<h1 class="sidebar-logo">PANOS KIKAS</h1>
-					<div class="retro-divider"></div>
-					<h2 class="sidebar-slogan">GAME DEVELOPER</h2>
-				</div>
-				<button class="sidebar-collapse-btn" id="sidebarCollapseBtn" title="Collapse Sidebar">
-					<svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-						<path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-					</svg>
-				</button>
-			</div>
-			<ul class="retro-menu">
-				<li>
-					<a class="retro-menu-item" href="index.html">
-						<span class="menu-text">Home</span>
-					</a>
-				</li>
-				<li>
-					<a class="retro-menu-item active" href="portfolio.html">
-						<span class="menu-text">Portfolio</span>
-					</a>
-				</li>
-				<li>
-					<a class="retro-menu-item" href="myskills.html">
-						<span class="menu-text">Skills</span>
-					</a>
-				</li>
-				<li>
-					<a class="retro-menu-item" href="contact.html">
-						<span class="menu-text">Contact</span>
-					</a>
-				</li>
-			</ul>
-			<div class="sidebar-footer">
-				<div class="sidebar-contact">
-					<a href="mailto:panoskikas@protonmail.com" class="sidebar-link sidebar-email">
-						<svg class="email-icon" width="16" height="16" viewBox="0 0 24 24" fill="none"
-							xmlns="http://www.w3.org/2000/svg">
-							<path
-								d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"
-								fill="currentColor" />
-						</svg>
-						<span>panoskikas@protonmail.com</span>
-					</a>
-					<a href="https://github.com/PanosKikas" target="_blank" rel="noopener noreferrer"
-						class="sidebar-link sidebar-github">
-						<svg class="github-icon" width="16" height="16" viewBox="0 0 24 24" fill="none"
-							xmlns="http://www.w3.org/2000/svg">
-							<path
-								d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.17 6.839 9.49.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.167 22 16.418 22 12c0-5.523-4.477-10-10-10z"
-								fill="currentColor" />
-						</svg>
-						<span>GitHub</span>
-					</a>
-				</div>
-			</div>
-		</nav>
+		<sidebar-nav></sidebar-nav>
 
 		<!-- Portfolio Section -->
 		<div class="wrapper-holder grey">
@@ -738,69 +673,6 @@
 
 		if (filterHobbyBtn) {
 			filterHobbyBtn.addEventListener('click', showHobbyOnly);
-		}
-	</script>
-
-	<script>
-		// Sidebar toggle functionality
-		const menuToggle = document.getElementById('menuToggle');
-		const sidebar = document.querySelector('.retro-sidebar');
-		const overlay = document.getElementById('sidebarOverlay');
-		const collapseBtn = document.getElementById('sidebarCollapseBtn');
-		const wrapper = document.getElementById('wrapper');
-		
-		function collapseSidebar() {
-			sidebar.classList.add('collapsed');
-			wrapper.classList.add('sidebar-collapsed');
-			menuToggle.classList.add('visible');
-			localStorage.setItem('sidebarCollapsed', 'true');
-		}
-		
-		function expandSidebar() {
-			sidebar.classList.remove('collapsed');
-			wrapper.classList.remove('sidebar-collapsed');
-			menuToggle.classList.remove('visible');
-			menuToggle.classList.remove('active');
-			localStorage.setItem('sidebarCollapsed', 'false');
-		}
-		
-		if (collapseBtn) {
-			collapseBtn.addEventListener('click', collapseSidebar);
-		}
-		
-		if (menuToggle && sidebar) {
-			menuToggle.addEventListener('click', function() {
-				if (window.innerWidth > 1024 && sidebar.classList.contains('collapsed')) {
-					expandSidebar();
-				} else {
-					sidebar.classList.toggle('open');
-					overlay.classList.toggle('active');
-					menuToggle.classList.toggle('active');
-				}
-			});
-			
-			if (overlay) {
-				overlay.addEventListener('click', function() {
-					sidebar.classList.remove('open');
-					overlay.classList.remove('active');
-					menuToggle.classList.remove('active');
-				});
-			}
-			
-			const menuLinks = document.querySelectorAll('.retro-menu-item');
-			menuLinks.forEach(link => {
-				link.addEventListener('click', function() {
-					if (window.innerWidth <= 1024) {
-						sidebar.classList.remove('open');
-						overlay.classList.remove('active');
-						menuToggle.classList.remove('active');
-					}
-				});
-			});
-		}
-		
-		if (window.innerWidth > 1024 && localStorage.getItem('sidebarCollapsed') === 'true') {
-			collapseSidebar();
 		}
 	</script>
 
