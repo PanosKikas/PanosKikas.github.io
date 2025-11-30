@@ -2067,7 +2067,7 @@ blockquote {
 .career-marker {
   position: absolute;
   left: -50px;
-  top: 8px;
+  top: 25px;
   width: 16px;
   height: 16px;
   border-radius: 50%;
@@ -2123,6 +2123,7 @@ blockquote {
   background: transparent;
   padding: 0;
   flex-shrink: 0;
+  margin-top: 30px; /* Align with role title, not date */
 }
 
 .career-text {
