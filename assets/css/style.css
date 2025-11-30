@@ -817,6 +817,135 @@ blockquote {
   pointer-events: none;
 }
 
+/* 2D/3D view mode - toggles Z-axis visibility */
+/* Hide Z-axis elements in 2D mode */
+.hero-section.view-2d .coordinate-axis .z-axis {
+  opacity: 0;
+}
+
+/* Ensure Z-axis elements have transition for smooth show/hide */
+.coordinate-axis .z-axis {
+  transition: opacity 0.3s ease;
+}
+
+/* 3D mode - buttons get 3D appearance */
+.hero-section.view-3d .btn-primary,
+.hero-section.view-3d .btn-secondary {
+  transform: perspective(500px) rotateX(10deg) translateY(-2px);
+  box-shadow: 
+    0 4px 0 rgba(0, 0, 0, 0.3),
+    0 8px 15px rgba(0, 0, 0, 0.3),
+    0 15px 30px rgba(102, 126, 234, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  border-bottom-width: 4px;
+}
+
+.hero-section.view-3d .btn-primary:hover,
+.hero-section.view-3d .btn-secondary:hover {
+  transform: perspective(500px) rotateX(5deg) translateY(0);
+  box-shadow: 
+    0 2px 0 rgba(0, 0, 0, 0.3),
+    0 4px 10px rgba(0, 0, 0, 0.3),
+    0 8px 20px rgba(102, 126, 234, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.hero-section.view-3d .btn-primary:active,
+.hero-section.view-3d .btn-secondary:active {
+  transform: perspective(500px) rotateX(0deg) translateY(2px);
+  box-shadow: 
+    0 0 0 rgba(0, 0, 0, 0.3),
+    0 2px 5px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+/* Smooth transition for buttons */
+.hero-buttons .btn-primary,
+.hero-buttons .btn-secondary {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* 3D mode - stat items get 3D appearance */
+.hero-section.view-3d .stat-item {
+  transform: perspective(500px) rotateX(8deg) translateY(-2px);
+  box-shadow: 
+    0 4px 0 rgba(0, 0, 0, 0.25),
+    0 8px 15px rgba(0, 0, 0, 0.2),
+    0 12px 25px rgba(102, 126, 234, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  border-bottom: 3px solid rgba(102, 126, 234, 0.3);
+}
+
+.hero-section.view-3d .stat-item:hover {
+  transform: perspective(500px) rotateX(4deg) translateY(0);
+  box-shadow: 
+    0 2px 0 rgba(0, 0, 0, 0.25),
+    0 4px 10px rgba(0, 0, 0, 0.2),
+    0 8px 20px rgba(102, 126, 234, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+/* Smooth transition for stat items */
+.hero-stats .stat-item {
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border 0.3s ease;
+}
+
+/* 3D mode - hero text gets 3D appearance */
+.hero-section.view-3d .hero-title {
+  transform: scale(1.02);
+}
+
+.hero-section.view-3d .hero-title .title-line {
+  text-shadow: 
+    0 1px 0 rgba(0, 0, 0, 0.2),
+    0 2px 0 rgba(0, 0, 0, 0.15),
+    0 3px 0 rgba(0, 0, 0, 0.1),
+    0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.hero-section.view-3d .hero-title .title-line.highlight {
+  text-shadow: 
+    0 1px 0 rgba(0, 0, 0, 0.2),
+    0 2px 0 rgba(0, 0, 0, 0.15),
+    0 3px 0 rgba(0, 0, 0, 0.1),
+    0 4px 8px rgba(0, 0, 0, 0.2),
+    0 0 15px rgba(102, 126, 234, 0.5),
+    0 0 30px rgba(102, 126, 234, 0.2);
+}
+
+.hero-section.view-3d .hero-specialize {
+  transform: perspective(600px) rotateX(6deg);
+  text-shadow: 
+    0 2px 0 rgba(0, 0, 0, 0.2),
+    0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.hero-section.view-3d .hero-subtitle {
+  transform: perspective(600px) rotateX(6deg);
+  text-shadow: 
+    0 2px 0 rgba(0, 0, 0, 0.2),
+    0 4px 0 rgba(0, 0, 0, 0.15),
+    0 6px 10px rgba(0, 0, 0, 0.3),
+    0 10px 20px rgba(102, 126, 234, 0.15);
+}
+
+.hero-section.view-3d .hero-description {
+  transform: scale(1.01);
+  text-shadow: 
+    0 2px 0 rgba(0, 0, 0, 0.25),
+    0 4px 0 rgba(0, 0, 0, 0.15),
+    0 6px 10px rgba(0, 0, 0, 0.3),
+    0 10px 20px rgba(102, 126, 234, 0.15);
+}
+
+/* Smooth transitions for hero text elements */
+.hero-title,
+.hero-specialize,
+.hero-subtitle,
+.hero-description {
+  transition: transform 0.3s ease, text-shadow 0.3s ease;
+}
+
 .pause-btn:hover, .step-btn:hover {
   background: linear-gradient(135deg, rgba(102, 126, 234, 0.5) 0%, rgba(118, 75, 162, 0.4) 100%);
   border-color: rgba(102, 126, 234, 0.6);
