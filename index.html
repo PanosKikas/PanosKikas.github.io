@@ -502,6 +502,28 @@
 				});
 			}
 		})();
+
+		// Scene/Game view toggle functionality
+		(function() {
+			const viewportTabs = document.querySelectorAll('.viewport-tab');
+			const heroSection = document.querySelector('.hero-section');
+			
+			viewportTabs.forEach(tab => {
+				tab.addEventListener('click', function() {
+					// Remove active from all tabs
+					viewportTabs.forEach(t => t.classList.remove('active'));
+					// Add active to clicked tab
+					this.classList.add('active');
+					
+					// Toggle game view mode
+					if (this.textContent === 'Game') {
+						heroSection.classList.add('game-view');
+					} else {
+						heroSection.classList.remove('game-view');
+					}
+				});
+			});
+		})();
 	</script>
 
 </body>

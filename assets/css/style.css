@@ -797,6 +797,26 @@ blockquote {
   animation-play-state: paused !important;
 }
 
+/* Game view mode - hides editor gizmos (axis, grid, stats, scene info) */
+.hero-section.game-view .coordinate-axis {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.hero-section.game-view .hero-image-overlay::before {
+  opacity: 0;
+}
+
+.hero-section.game-view .viewport-stats {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.hero-section.game-view .viewport-scene-info {
+  opacity: 0;
+  pointer-events: none;
+}
+
 .pause-btn:hover, .step-btn:hover {
   background: linear-gradient(135deg, rgba(102, 126, 234, 0.5) 0%, rgba(118, 75, 162, 0.4) 100%);
   border-color: rgba(102, 126, 234, 0.6);
@@ -845,6 +865,7 @@ blockquote {
   color: rgba(150, 200, 150, 0.9);
   backdrop-filter: blur(15px);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  transition: opacity 0.3s ease;
 }
 
 .stat-row {
@@ -879,6 +900,7 @@ blockquote {
   display: flex;
   align-items: center;
   gap: 8px;
+  transition: opacity 0.3s ease;
 }
 
 .viewport-scene-info::before {
@@ -1018,6 +1040,7 @@ blockquote {
   animation: gridDrift 30s linear infinite;
   pointer-events: none;
   opacity: 1;
+  transition: opacity 0.3s ease;
 }
 
 .hero-image-overlay::after {
