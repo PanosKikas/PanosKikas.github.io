@@ -481,6 +481,63 @@
 				afterShow: function() {
 					// Ensure navigation arrows respect the filtered group
 					var visibleItems = getVisibleFancyboxItems();
+					
+					// Add swipe support for mobile
+					var touchStartX = 0;
+					var touchEndX = 0;
+					var minSwipeDistance = 50;
+					
+					function handleSwipe(direction) {
+						var current = $.fancybox.current;
+						if (!current) return;
+						
+						var visibleItems = getVisibleFancyboxItems();
+						if (visibleItems.length === 0) return;
+						
+						var currentElement = current.element[0];
+						var currentIndex = visibleItems.indexOf(currentElement);
+						if (currentIndex === -1) currentIndex = 0;
+						
+						var nextIndex = currentIndex + direction;
+						if (nextIndex < 0) {
+							nextIndex = visibleItems.length - 1;
+						} else if (nextIndex >= visibleItems.length) {
+							nextIndex = 0;
+						}
+						
+						var nextItem = visibleItems[nextIndex];
+						var nextHref = $(nextItem).attr('href');
+						
+						$.fancybox.close();
+						setTimeout(function() {
+							var $targetItem = $('.fancybox[href="' + nextHref + '"]');
+							if ($targetItem.length) {
+								$targetItem.trigger('click');
+							}
+						}, 150);
+					}
+					
+					$('.fancybox-wrap, .fancybox-inner, .popup_portfolio').off('touchstart.swipe touchend.swipe');
+					
+					$('.fancybox-wrap, .fancybox-inner, .popup_portfolio').on('touchstart.swipe', function(e) {
+						touchStartX = e.originalEvent.touches[0].clientX;
+					});
+					
+					$('.fancybox-wrap, .fancybox-inner, .popup_portfolio').on('touchend.swipe', function(e) {
+						touchEndX = e.originalEvent.changedTouches[0].clientX;
+						var swipeDistance = touchEndX - touchStartX;
+						
+						if (Math.abs(swipeDistance) > minSwipeDistance) {
+							if (swipeDistance > 0) {
+								// Swiped right - go to previous
+								handleSwipe(-1);
+							} else {
+								// Swiped left - go to next
+								handleSwipe(1);
+							}
+						}
+					});
+					
 					if (visibleItems.length > 1) {
 						// Force show navigation arrows
 						setTimeout(function() {
