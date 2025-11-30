@@ -1656,7 +1656,7 @@ blockquote {
   color: rgba(255, 255, 255, 0.7);
   text-transform: uppercase;
   letter-spacing: 1px;
-  font-family: 'Courier New', monospace;
+  font-family: 'Inter', sans-serif;
 }
 
 .hero-description strong {
@@ -1792,6 +1792,7 @@ blockquote {
   opacity: 0.9;
   font-weight: 300;
   text-align: center;
+  font-family: 'Inter', sans-serif;
 }
 
 .hero-buttons {
