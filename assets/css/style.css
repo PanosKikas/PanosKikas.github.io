@@ -1373,7 +1373,7 @@ blockquote {
   z-index: 2;
   text-align: center;
   color: #fff;
-  padding: 0 20px;
+  padding: 100px 20px 0 20px; /* 100px top padding to ensure gap from viewport toolbar */
   max-width: 1200px;
   margin: 0 auto;
   background: transparent !important;
@@ -3172,13 +3172,13 @@ body {
 }
 
 /* Create a blocking overlay that prevents navigation arrow clicks in the top-right corner */
-/* Positioned to avoid overlapping the close button (which is at right: 24px, width: 40px) */
+/* Positioned to avoid overlapping the close button (which is at right: -20px, width: 40px) */
 .fancybox-wrap::before {
   content: '';
   position: absolute;
-  top: -20px;
-  right: 70px; /* Start after close button area (button at right:24px + width:40px + margin) */
-  width: calc(40% - 70px); /* Match right navigation width minus the blocked area */
+  top: -30px;
+  right: 30px; /* Start after close button area */
+  width: calc(40% - 30px); /* Match right navigation width minus the blocked area */
   height: 60px;
   z-index: 8041 !important; /* Just above navigation (8040) but below close button (9999) */
   pointer-events: auto; /* Block navigation clicks in this area */
@@ -3254,11 +3254,14 @@ body {
 }
 
 /* Fancybox close button - Professional style */
+/* Using fixed positioning to prevent drift as viewport width changes */
 .fancybox-close {
   width: 40px !important;
   height: 40px !important;
-  top: -12px !important;
-  right: 24px !important;
+  /* Position relative to .fancybox-skin top-right corner */
+  top: -20px !important;
+  right: 28px !important;
+  left: auto !important;
   background: rgba(20, 20, 30, 0.95) !important;
   backdrop-filter: blur(10px);
   border: 2px solid rgba(102, 126, 234, 0.6) !important;
@@ -3267,7 +3270,7 @@ body {
   position: absolute !important;
   z-index: 9999 !important;
   cursor: pointer !important;
-  transition: all 0.3s ease !important;
+  transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease !important;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4), 0 0 15px rgba(102, 126, 234, 0.3);
   pointer-events: auto !important;
 }
@@ -3397,7 +3400,7 @@ body {
 .fancybox-close:hover {
   background: rgba(30, 30, 40, 0.9) !important;
   border-color: rgba(255, 255, 255, 0.2) !important;
-  transform: scale(1.05);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.5), 0 0 20px rgba(102, 126, 234, 0.4);
 }
 
 .fancybox-close:hover::before,
@@ -4257,9 +4260,14 @@ body.resizing .retro-sidebar {
   
   /* Hero Section Mobile */
   .hero-section {
-    padding: 80px 20px 40px;
+    padding: 60px 20px 40px;
     min-height: 650px;
     height: auto;
+    align-items: flex-start; /* Align content to top instead of center on mobile */
+  }
+  
+  .hero-content {
+    padding-top: 100px !important; /* Ensure 100px minimum from viewport top */
   }
   
   .hero-title {
@@ -4345,6 +4353,17 @@ body.resizing .retro-sidebar {
 @media (max-width: 768px) {
   .hero-section {
     min-height: 600px;
+    padding-top: 50px !important;
+    align-items: flex-start !important;
+  }
+  
+  .hero-content {
+    margin-top: 100px !important; /* Ensure minimum 100px gap from viewport toolbar */
+    padding-top: 20px !important;
+  }
+  
+  .hero-text {
+    padding-top: 60px !important; /* Additional padding on hero text for toolbar clearance */
   }
   
   .hero-buttons {
