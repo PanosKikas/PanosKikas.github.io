@@ -658,7 +658,7 @@ blockquote {
   width: 100%;
   max-width: 100vw;
   display: flex;
-  align-items: center;
+  align-items: flex-start; /* Anchor content to top */
   justify-content: center;
   overflow: hidden;
   background: transparent;
@@ -1373,7 +1373,7 @@ blockquote {
   z-index: 2;
   text-align: center;
   color: #fff;
-  padding: 40px 20px 0 20px; /* Top padding to ensure gap from viewport toolbar */
+  padding: 85px 20px 0 20px; /* Fixed 85px gap from top toolbar */
   max-width: 1200px;
   margin: 0 auto;
   background: transparent !important;
@@ -1388,7 +1388,7 @@ blockquote {
 .hero-title {
   font-size: 72px;
   font-weight: 800;
-  margin-bottom: 20px;
+  margin-bottom: 5px;
   line-height: 1.2;
   text-transform: uppercase;
   letter-spacing: 4px;
@@ -1544,7 +1544,7 @@ blockquote {
   font-size: 18px;
   font-weight: 400;
   color: rgba(255, 255, 255, 0.7);
-  margin-top: -5px;
+  margin-top: 0;
   margin-bottom: 15px;
   text-align: center;
   font-family: 'Inter', sans-serif;
@@ -4260,10 +4260,10 @@ body.resizing .retro-sidebar {
   
   /* Hero Section Mobile */
   .hero-section {
-    padding: 60px 20px 40px;
+    padding: 20px 20px 40px;
     min-height: 650px;
     height: auto;
-    align-items: flex-start; /* Align content to top instead of center on mobile */
+    align-items: flex-start; /* Anchor content to top - 150px gap from hero-content padding */
   }
   
   .hero-title {
@@ -4349,8 +4349,8 @@ body.resizing .retro-sidebar {
 @media (max-width: 768px) {
   .hero-section {
     min-height: 600px;
-    padding-top: 50px !important;
-    align-items: flex-start !important;
+    padding-top: 0 !important;
+    align-items: flex-start !important; /* Anchor to top - 150px gap from hero-content padding */
   }
   
   .hero-buttons {
@@ -4724,6 +4724,52 @@ body.resizing .retro-sidebar {
   
   .stat-item:hover {
     transform: none;
+  }
+}
+
+/* Lock hero elements in place for short viewports (below 780px height) */
+@media (max-height: 780px) {
+  .hero-section {
+    display: block !important;
+    position: relative !important;
+    height: auto !important;
+    min-height: 780px !important; /* Fixed minimum to prevent collapse */
+    overflow: visible !important;
+  }
+  
+  .hero-content {
+    position: absolute !important;
+    top: 85px !important; /* Fixed 85px from top */
+    left: 0 !important;
+    right: 0 !important;
+    padding-top: 0 !important;
+    margin: 0 auto !important;
+  }
+  
+  .hero-text {
+    position: relative !important;
+  }
+  
+  .hero-title {
+    position: relative !important;
+  }
+  
+  .hero-stats {
+    position: relative !important;
+  }
+  
+  .hero-buttons {
+    position: relative !important;
+    margin-bottom: 120px !important; /* Space for scroll indicator and axis */
+  }
+  
+  .scroll-indicator {
+    position: absolute !important;
+    bottom: 30px !important;
+  }
+  
+  .coordinate-axis {
+    bottom: 25px !important;
   }
 }
 
