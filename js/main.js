@@ -69,43 +69,49 @@
   //  Typed Js
   // ========================================================================= //
 
+  // Only initialize Typed.js if library is loaded and elements exist
   var typed = $(".typed");
+  if (typed.length > 0 && typeof $.fn.typed !== 'undefined') {
+    $(function() {
+      var strings = $('.typed-items').text();
+      strings = $('.typed-items').data('typed-person') + ',' + strings;
+      strings = strings.split(',');
 
-  $(function() {
-    var strings = $('.typed-items').text();
-    strings = $('.typed-items').data('typed-person') + ',' + strings;
-    strings = strings.split(',');
-
-    typed.typed({
-      strings: strings,
-      typeSpeed: 100,
-      loop: true,
+      typed.typed({
+        strings: strings,
+        typeSpeed: 100,
+        loop: true,
+      });
     });
-  });
+  }
 
   // ========================================================================= //
   //  Owl Carousel Services
   // ========================================================================= //
 
-  $('.services-carousel').owlCarousel({
-    autoplay: true,
-    loop: true,
-    margin: 20,
-    dots: true,
-    nav: false,
-    responsiveClass: true,
-    responsive: {
-      0: {
-        items: 1
-      },
-      768: {
-        items: 2
-      },
-      900: {
-        items: 4
+  // Only initialize Owl Carousel if library is loaded and elements exist
+  var servicesCarousel = $('.services-carousel');
+  if (servicesCarousel.length > 0 && typeof $.fn.owlCarousel !== 'undefined') {
+    servicesCarousel.owlCarousel({
+      autoplay: true,
+      loop: true,
+      margin: 20,
+      dots: true,
+      nav: false,
+      responsiveClass: true,
+      responsive: {
+        0: {
+          items: 1
+        },
+        768: {
+          items: 2
+        },
+        900: {
+          items: 4
+        }
       }
-    }
-  });
+    });
+  }
 
   // ========================================================================= //
   //  Porfolio isotope and filter
@@ -127,17 +133,25 @@
   });
 
   // Initiate venobox (lightbox feature used in portofilo)
+  // Only initialize venobox if library is loaded and elements exist
   $(document).ready(function() {
-    $('.venobox').venobox();
+    var venoboxElements = $('.venobox');
+    if (venoboxElements.length > 0 && typeof $.fn.venobox !== 'undefined') {
+      venoboxElements.venobox();
+    }
   });
 
   // Portfolio details carousel
-  $(".portfolio-details-carousel").owlCarousel({
-    autoplay: true,
-    dots: true,
-    loop: true,
-    items: 1
-  });
+  // Only initialize Owl Carousel if library is loaded and elements exist
+  var portfolioCarousel = $(".portfolio-details-carousel");
+  if (portfolioCarousel.length > 0 && typeof $.fn.owlCarousel !== 'undefined') {
+    portfolioCarousel.owlCarousel({
+      autoplay: true,
+      dots: true,
+      loop: true,
+      items: 1
+    });
+  }
 
   // Original portfolio/item-list functionality
   $(document).ready(function() {

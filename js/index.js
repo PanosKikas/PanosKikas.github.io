@@ -8,6 +8,11 @@ if (!window.pageInitialized) {
 	window.pageInitialized = {};
 }
 
+// Debug: Check if animations are being disabled
+if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+	console.warn('⚠️ Animations disabled: prefers-reduced-motion is enabled in your OS/browser settings');
+}
+
 // Wait for DOM to be ready before initializing
 function initIndexPage() {
 	// Prevent re-initialization on resize
@@ -191,8 +196,9 @@ function initIndexPage() {
 		// Parallax effect for hero and header visibility - disabled on mobile for performance
 		if (!window.pageInitialized.scrollHandler) {
 			// Detect mobile device - only by user agent and screen size, NOT touch capability
+			// Use 1024px threshold instead of 768px to ensure laptops get animations
 			const isMobileUserAgent = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-			const isMobileDevice = isMobileUserAgent || window.innerWidth <= 768;
+			const isMobileDevice = isMobileUserAgent || window.innerWidth <= 1024;
 			
 			// Cache DOM elements
 			const headerWrapper = document.querySelector('.wrapper-holder:not(.grey)');
@@ -299,8 +305,9 @@ function initIndexPage() {
 
 			// Detect mobile device - only by user agent and screen size, NOT touch capability
 			// (many laptops have touchscreens but should still get particles)
+			// Use 1024px threshold instead of 768px to ensure laptops get animations
 			const isMobileDevice = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-			const isSmallScreen = window.innerWidth <= 768;
+			const isSmallScreen = window.innerWidth <= 1024;
 			const isMobile = isMobileDevice || isSmallScreen;
 			
 			// Reduce particles on mobile for better performance, full particles on desktop/laptop

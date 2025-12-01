@@ -51,7 +51,8 @@ body {
 }
 
 /* Reduce motion for users who prefer it AND for performance */
-@media (prefers-reduced-motion: reduce) {
+/* Disabled prefers-reduced-motion to allow animations on all devices */
+/* @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
   *::after {
@@ -65,7 +66,7 @@ body {
     display: none !important;
   }
   
-  /* Remove expensive backdrop-filter */
+  Remove expensive backdrop-filter
   .viewport-toolbar,
   .viewport-stats,
   .viewport-scene-info,
@@ -76,7 +77,7 @@ body {
   .popup_portfolio {
     backdrop-filter: none !important;
   }
-}
+} */
 
 /*--------------------------------------------------------------
 # Global Scrollbar Styling
@@ -4775,7 +4776,8 @@ body.resizing .retro-sidebar {
 }
 
 /* Respect user's motion preferences */
-@media (prefers-reduced-motion: reduce) {
+/* Disabled prefers-reduced-motion to allow animations on all devices */
+/* @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
   *::after {
@@ -4787,7 +4789,7 @@ body.resizing .retro-sidebar {
   .particles {
     display: none !important;
   }
-}
+} */
 
 /* Performance optimizations for mobile - only hide particles */
 @media (max-width: 768px) {
