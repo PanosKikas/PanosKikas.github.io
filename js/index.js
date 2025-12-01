@@ -112,6 +112,11 @@ function initIndexPage() {
 				};
 
 				window.stepTyping = function() {
+					// Only allow stepping when paused
+					if (!isPaused) {
+						return;
+					}
+					
 					if (!typingText || typingText.dataset.initialized !== 'true') return;
 					
 					const currentText = textsWithSemicolon[textIndex];
