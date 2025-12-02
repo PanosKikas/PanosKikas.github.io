@@ -1914,7 +1914,7 @@ blockquote {
 }
 
 /* Hide collapse button on mobile (hamburger handles it) */
-@media (max-width: 1024px) {
+@media (max-width: 768px) {
   .sidebar-collapse-btn {
     display: none;
   }
@@ -1922,6 +1922,8 @@ blockquote {
 
 .retro-screen {
   position: relative;
+  transition: opacity 0.3s ease 0.15s, transform 0.3s ease 0.15s, visibility 0.3s ease 0.15s;
+  white-space: nowrap;
 }
 
 .sidebar-logo {
@@ -1934,6 +1936,7 @@ blockquote {
   line-height: 1.3;
   transform: none !important;
   zoom: 1 !important;
+  white-space: nowrap;
 }
 
 .retro-divider {
@@ -1949,6 +1952,7 @@ blockquote {
   letter-spacing: 0.3px;
   transform: none !important;
   zoom: 1 !important;
+  transition: transform 0.3s ease 0.15s;
 }
 
 .retro-menu {
@@ -1974,7 +1978,7 @@ blockquote {
   background: transparent;
   border: none;
   border-left: 3px solid transparent;
-  transition: all 0.2s ease;
+  transition: color 0.2s ease, background 0.2s ease, padding 0.3s ease;
   font-size: 15px;
   font-weight: 500;
   letter-spacing: 0.2px;
@@ -1990,6 +1994,7 @@ blockquote {
   color: #fff;
   background: rgba(102, 126, 234, 0.1);
   border-left-color: rgba(102, 126, 234, 0.5);
+  transition: color 0.2s ease, background 0.2s ease, border-left-color 0.2s ease;
 }
 
 .retro-menu-item.active {
@@ -1997,6 +2002,7 @@ blockquote {
   background: rgba(102, 126, 234, 0.15);
   border-left-color: #667eea;
   font-weight: 600;
+  transition: color 0.2s ease, padding 0.3s ease, background 0.2s ease 0.5s !important;
 }
 
 .retro-menu-item.active::before {
@@ -2020,6 +2026,7 @@ blockquote {
 
 .menu-text {
   flex: 1;
+  transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease, width 0.3s ease;
 }
 
 .sidebar-footer {
@@ -2095,6 +2102,18 @@ blockquote {
   cursor: pointer;
 }
 
+/* Prevent border flash during sidebar transitions */
+.retro-sidebar.collapsed .retro-menu-item,
+.retro-sidebar:not(.collapsed) .retro-menu-item {
+  border-left-color: transparent !important;
+  transition: color 0.2s ease, background 0.2s ease, padding 0.3s ease !important;
+}
+
+.retro-sidebar:not(.collapsed) .retro-menu-item.active {
+  background: rgba(102, 126, 234, 0.15) !important;
+  transition: color 0.2s ease, padding 0.3s ease !important;
+}
+
 .retro-sidebar.collapsed .sidebar-header {
   padding: 20px 0;
   margin: 0;
@@ -2111,7 +2130,29 @@ blockquote {
 }
 
 .retro-sidebar.collapsed .retro-screen {
-  display: none;
+  opacity: 0;
+  visibility: hidden;
+  max-width: 0;
+  width: 0;
+  overflow: hidden;
+  transform: translateX(-30px);
+  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease, max-width 0.3s ease, width 0.3s ease;
+  position: absolute;
+  white-space: nowrap;
+}
+
+/* Smooth slide-in animation for header text when expanding */
+.retro-sidebar:not(.collapsed) .retro-screen {
+  opacity: 1;
+  visibility: visible;
+  max-width: 100%;
+  width: auto;
+  min-width: 200px;
+  overflow: visible;
+  transform: translateX(0);
+  transition: opacity 0.3s ease 0.15s, transform 0.3s ease 0.15s, visibility 0.3s ease 0.15s, max-width 0.3s ease 0.15s, width 0.3s ease 0.15s, min-width 0.3s ease 0.15s;
+  position: relative;
+  white-space: nowrap;
 }
 
 .retro-sidebar.collapsed .sidebar-initials {
@@ -2155,6 +2196,16 @@ blockquote {
 
 .retro-sidebar.collapsed .sidebar-link span {
   display: none;
+  opacity: 0;
+  transform: translateX(-20px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* Smooth slide-in animation for footer link text when expanding */
+.retro-sidebar:not(.collapsed) .sidebar-link span {
+  opacity: 1;
+  transform: translateX(0);
+  transition: opacity 0.3s ease 0.15s, transform 0.3s ease 0.15s;
 }
 
 .retro-sidebar.collapsed .email-icon,
@@ -2172,7 +2223,16 @@ blockquote {
   flex: 0;
   margin: 0;
   padding: 0;
-  transition: opacity 0.2s ease, visibility 0.2s ease;
+  transform: translateX(-20px);
+  transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease, width 0.3s ease;
+}
+
+/* Smooth slide-in animation when expanding */
+.retro-sidebar:not(.collapsed) .menu-text {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(0);
+  transition: opacity 0.3s ease 0.15s, visibility 0.3s ease 0.15s, transform 0.3s ease 0.15s, width 0.3s ease 0.15s;
 }
 
 .retro-sidebar.collapsed .retro-menu {
@@ -2193,6 +2253,7 @@ blockquote {
   align-items: center;
   border-left: none;
   border-right: none;
+  transition: color 0.2s ease, background 0.2s ease, padding 0.3s ease;
   border-bottom: 2px solid transparent;
   min-height: 46px;
   width: 100%;
@@ -2211,8 +2272,16 @@ blockquote {
 }
 
 .retro-sidebar.collapsed .retro-menu-item.active {
-  background: transparent;
-  border-bottom-color: #667eea;
+  background: transparent !important;
+  border-bottom: 2px solid transparent;
+  transition: none !important;
+  animation: activeUnderline 0.2s ease 0.15s forwards;
+}
+
+@keyframes activeUnderline {
+  to {
+    border-bottom-color: #667eea;
+  }
 }
 
 .retro-sidebar.collapsed .menu-icon {
@@ -2278,7 +2347,14 @@ blockquote {
   }
 
   .retro-sidebar:not(.open) .retro-screen {
-    display: none;
+    opacity: 0;
+    visibility: hidden;
+    max-width: 0;
+    min-width: 0;
+    overflow: hidden;
+    transform: translateX(-30px);
+    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease, max-width 0.3s ease, min-width 0.3s ease;
+    white-space: nowrap;
   }
 
   .retro-sidebar:not(.open) .sidebar-initials {
@@ -2336,6 +2412,18 @@ blockquote {
     visibility: hidden;
     width: 0;
     overflow: hidden;
+    transform: translateX(-20px);
+    transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease, width 0.3s ease;
+  }
+  
+  .retro-sidebar:not(.open) .retro-screen {
+    transform: translateX(-30px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+  
+  .retro-sidebar:not(.open) .sidebar-link span {
+    transform: translateX(-20px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
   }
 
   .retro-sidebar:not(.open) .retro-menu {
@@ -2361,8 +2449,10 @@ blockquote {
   }
 
   .retro-sidebar:not(.open) .retro-menu-item.active {
-    background: transparent;
-    border-bottom-color: #667eea;
+    background: transparent !important;
+    border-bottom: 2px solid transparent;
+    transition: none !important;
+    animation: activeUnderline 0.2s ease 0.15s forwards;
   }
 
   .retro-sidebar:not(.open) .menu-icon {
@@ -2381,10 +2471,19 @@ blockquote {
     height: 26px !important;
   }
 
+  /* Hide collapse button when sidebar is collapsed at 1024px */
   .retro-sidebar:not(.open) .sidebar-collapse-btn {
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
+  }
+  
+  /* Show collapse button when sidebar is expanded at 1024px */
+  .retro-sidebar.open .sidebar-collapse-btn {
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+    display: flex !important;
   }
 
   /* When sidebar is opened via hamburger, show full width */
@@ -2393,9 +2492,8 @@ blockquote {
     transform: translateX(0) !important;
   }
 
-  /* When sidebar is opened, restore full content with smooth transitions */
+  /* When sidebar is opened, restore full content with smooth slide-in transitions */
   .retro-sidebar.open .sidebar-header,
-  .retro-sidebar.open .retro-screen,
   .retro-sidebar.open .menu-text,
   .retro-sidebar.open .sidebar-link span {
     opacity: 1;
@@ -2403,6 +2501,31 @@ blockquote {
     width: auto;
     height: auto;
     display: block;
+  }
+  
+  /* Smooth slide-in animations for text when opening at 1024px */
+  .retro-sidebar.open .retro-screen {
+    opacity: 1;
+    visibility: visible;
+    max-width: 100%;
+    width: auto;
+    min-width: 200px;
+    overflow: visible;
+    transform: translateX(0);
+    transition: opacity 0.3s ease 0.15s, transform 0.3s ease 0.15s, visibility 0.3s ease 0.15s, max-width 0.3s ease 0.15s, width 0.3s ease 0.15s, min-width 0.3s ease 0.15s;
+    display: block;
+    white-space: nowrap;
+    position: relative;
+  }
+  
+  .retro-sidebar.open .menu-text {
+    transform: translateX(0);
+    transition: opacity 0.3s ease 0.15s, visibility 0.3s ease 0.15s, transform 0.3s ease 0.15s, width 0.3s ease 0.15s;
+  }
+  
+  .retro-sidebar.open .sidebar-link span {
+    transform: translateX(0);
+    transition: opacity 0.3s ease 0.15s, transform 0.3s ease 0.15s, visibility 0.3s ease 0.15s;
   }
 
   .retro-sidebar.open .retro-screen {
@@ -2429,8 +2552,8 @@ blockquote {
   }
 
   .retro-sidebar.open .retro-menu-item.active {
-    border-left-color: #667eea;
-    border-bottom: none;
+    background: rgba(102, 126, 234, 0.15) !important;
+    transition: color 0.2s ease, padding 0.3s ease !important;
   }
 
   .retro-sidebar.open .menu-icon {
@@ -2456,9 +2579,11 @@ blockquote {
   }
 }
 
-/* Show hamburger when sidebar is collapsed (desktop) */
-.menu-toggle {
-  display: none;
+/* Hide hamburger on desktop - only show on mobile */
+@media (min-width: 769px) {
+  .menu-toggle {
+    display: none !important;
+  }
 }
 
 .menu-toggle.visible {
@@ -2548,8 +2673,8 @@ blockquote {
   }
 
   .retro-sidebar.open .retro-menu-item.active {
-    border-left-color: #667eea;
-    border-bottom: none;
+    background: rgba(102, 126, 234, 0.15) !important;
+    transition: color 0.2s ease, padding 0.3s ease !important;
   }
 
   .retro-sidebar.open .menu-icon {
@@ -4750,6 +4875,210 @@ body.resizing .retro-sidebar {
 
 /* Performance optimizations for mobile - only hide particles */
 @media (max-width: 768px) {
+  /* Hide sidebar completely on mobile when not open */
+  .retro-sidebar:not(.open) {
+    transform: translateX(-100%) !important;
+    width: 240px !important;
+  }
+  
+  /* Ensure sidebar shows all text when open on mobile - narrower width */
+  .retro-sidebar.open {
+    transform: translateX(0) !important;
+    width: 240px !important;
+    z-index: 9999 !important;
+  }
+  
+  .retro-sidebar.open .sidebar-header {
+    padding: 25px 20px 20px !important;
+    min-height: auto !important;
+    height: auto !important;
+  }
+  
+  .retro-sidebar.open .retro-screen {
+    display: block !important;
+  }
+  
+  .retro-sidebar.open .sidebar-initials {
+    display: none !important;
+  }
+  
+  .retro-sidebar.open .sidebar-logo {
+    font-size: 20px !important;
+  }
+  
+  .retro-sidebar.open .sidebar-slogan {
+    font-size: 11px !important;
+  }
+  
+  .retro-sidebar.open .retro-menu {
+    padding: 20px 15px !important;
+    display: flex !important;
+    flex-direction: column !important;
+  }
+  
+  .retro-sidebar.open .retro-menu-item {
+    display: flex !important;
+    padding: 14px 20px !important;
+    justify-content: flex-start !important;
+    align-items: center !important;
+    border-left: 3px solid transparent !important;
+    border-bottom: none !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+  
+  .retro-sidebar.open .menu-text {
+    opacity: 1 !important;
+    visibility: visible !important;
+    width: auto !important;
+    display: inline !important;
+    flex: 1 !important;
+  }
+  
+  .retro-sidebar.open .menu-icon {
+    margin-right: 12px !important;
+    display: flex !important;
+  }
+  
+  .retro-sidebar.open .menu-icon svg {
+    width: 18px !important;
+    height: 18px !important;
+  }
+  
+  .retro-sidebar.open .sidebar-footer {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    padding: 25px 20px !important;
+  }
+  
+  .retro-sidebar.open .sidebar-contact {
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 100% !important;
+  }
+  
+  .retro-sidebar.open .sidebar-link {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    text-align: center !important;
+  }
+  
+  .retro-sidebar.open .sidebar-link span {
+    display: inline !important;
+  }
+  
+  .retro-sidebar.open .sidebar-email,
+  .retro-sidebar.open .sidebar-github {
+    justify-content: center !important;
+    align-items: center !important;
+  }
+  
+  /* Show hamburger button always on mobile - override any .visible class sizes */
+  .menu-toggle,
+  .menu-toggle.visible {
+    display: flex !important;
+    position: fixed;
+    top: 20px !important;
+    left: 20px !important;
+    width: 40px !important;
+    height: 40px !important;
+    z-index: 9998; /* Behind sidebar (9999) but above overlay (9998) */
+    background: rgba(40, 45, 60, 0.9);
+    border: 1px solid rgba(102, 126, 234, 0.35);
+    border-radius: 6px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px !important;
+    cursor: pointer;
+    padding: 8px !important;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.35);
+    pointer-events: auto !important;
+    visibility: visible !important;
+  }
+  
+  /* Lower hamburger button on home page to avoid viewport toolbar overlap */
+  #hero .menu-toggle,
+  #hero ~ * .menu-toggle,
+  body:has(#hero) .menu-toggle,
+  body:has(.hero-section) .menu-toggle {
+    top: 60px !important; /* Below viewport toolbar (38px height + padding) */
+  }
+  
+  /* Override portfolio-specific positioning on mobile */
+  #wrapper.portfolio .menu-toggle,
+  #wrapper.portfolio .menu-toggle.visible,
+  #wrapper.inner .menu-toggle,
+  #wrapper.inner .menu-toggle.visible {
+    top: 20px !important;
+    width: 40px !important;
+    height: 40px !important;
+  }
+  
+  /* Hide hamburger button when sidebar is open on mobile */
+  .retro-sidebar.open ~ * .menu-toggle,
+  body:has(.retro-sidebar.open) .menu-toggle {
+    z-index: 9997 !important; /* Behind sidebar when open */
+  }
+  
+  .menu-toggle span {
+    display: block;
+    width: 20px;
+    height: 2px;
+    background: rgba(200, 205, 220, 0.9);
+    border-radius: 2px;
+    transition: all 0.2s ease;
+  }
+  
+  .menu-toggle.active span:nth-child(1) {
+    transform: rotate(45deg) translate(7px, 7px);
+  }
+  
+  .menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+  }
+  
+  .menu-toggle.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -7px);
+  }
+  
+  /* Remove wrapper margin on mobile when sidebar is hidden */
+  #wrapper {
+    margin-left: 0 !important;
+    width: 100% !important;
+  }
+  
+  /* Adjust wrapper when sidebar is open on mobile */
+  body:has(.retro-sidebar.open) #wrapper,
+  .retro-sidebar.open ~ * #wrapper {
+    margin-left: 0 !important;
+    width: 100% !important;
+  }
+  
+  /* Show sidebar overlay on mobile when sidebar is open */
+  .sidebar-overlay {
+    display: block !important;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 9998;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+  }
+  
+  .sidebar-overlay.active {
+    opacity: 1;
+    visibility: visible;
+  }
+  
   /* Hide particles on mobile for better performance */
   .particles,
   .particle,
@@ -4838,24 +5167,14 @@ body.resizing .retro-sidebar {
     font-size: 12px !important;
   }
   
-  /* Fix Fancybox popup positioning on mobile to account for sidebar */
+  /* Fix Fancybox popup positioning on mobile - center since sidebar is hidden */
   .fancybox-wrap {
-    left: calc(30px + 50%) !important;
-    transform: translate(-50%, -50%) !important;
-  }
-  
-  /* When sidebar is open on mobile, adjust positioning */
-  body:has(.retro-sidebar.open) .fancybox-wrap {
-    left: calc(140px + 50%) !important;
+    left: 50% !important;
     transform: translate(-50%, -50%) !important;
   }
   
   .popup_portfolio {
-    max-width: calc(100vw - 100px) !important;
-  }
-  
-  body:has(.retro-sidebar.open) .popup_portfolio {
-    max-width: calc(100vw - 320px) !important;
+    max-width: calc(100vw - 40px) !important;
   }
   
   /* Contact page - reduce gap between buttons on mobile */
@@ -4982,14 +5301,14 @@ body.resizing .retro-sidebar {
 }
 
 /* Lock hero elements in place for short viewports (below 780px height) */
-@media (max-height: 780px) {
+@media (max-height: 890px) {
   .hero-section {
     display: block !important;
     position: relative !important;
     height: auto !important;
-    min-height: 780px !important; /* Fixed minimum to prevent collapse */
+    min-height: 890px !important; /* Fixed minimum to prevent collapse */
     overflow: visible !important;
-    padding-top: 100px !important; /* Always preserve 100px space from top */
+    padding-top: 150px !important; /* Always preserve 180px space from top */
     box-sizing: border-box !important;
   }
   
@@ -5026,7 +5345,9 @@ body.resizing .retro-sidebar {
   }
   
   .coordinate-axis {
+    position: absolute !important;
     bottom: 25px !important;
+    right: 20px !important;
   }
 }
 

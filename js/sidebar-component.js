@@ -120,6 +120,10 @@ class SidebarNav extends HTMLElement {
     // Function to collapse sidebar (saveState=true by default, false when restoring)
     const collapseSidebar = (saveState = true) => {
       sidebar.classList.add('collapsed');
+      // At 1024px, CSS uses .open class to expand, so remove it to collapse
+      if (window.innerWidth <= 1024) {
+        sidebar.classList.remove('open');
+      }
       wrapper?.classList.add('sidebar-collapsed');
       menuToggle?.classList.add('visible');
       if (saveState) {
@@ -130,6 +134,10 @@ class SidebarNav extends HTMLElement {
     // Function to expand sidebar (saveState=true by default, false when restoring)
     const expandSidebar = (saveState = true) => {
       sidebar.classList.remove('collapsed');
+      // At 1024px, CSS uses .open class to expand, so add it
+      if (window.innerWidth <= 1024) {
+        sidebar.classList.add('open');
+      }
       wrapper?.classList.remove('sidebar-collapsed');
       menuToggle?.classList.remove('visible');
       menuToggle?.classList.remove('active');
@@ -144,10 +152,13 @@ class SidebarNav extends HTMLElement {
       collapseSidebar();
     });
 
-    // Click on collapsed sidebar to expand (desktop only)
+    // Click on collapsed sidebar to expand
     // Clicking on menu items or footer links will navigate normally, clicking on sidebar background expands
     sidebar?.addEventListener('click', (e) => {
-      if (window.innerWidth > 1024 && sidebar.classList.contains('collapsed')) {
+      // Check if sidebar is collapsed (has .collapsed class OR doesn't have .open class at 1024px)
+      const isCollapsed = sidebar.classList.contains('collapsed') || 
+                         (window.innerWidth <= 1024 && !sidebar.classList.contains('open'));
+      if (isCollapsed) {
         // Only expand if not clicking on a menu item link, list item containing menu item, or footer link
         const clickedMenuItem = e.target.closest('.retro-menu-item');
         const clickedMenuItemContainer = e.target.closest('.retro-menu li');
@@ -162,8 +173,11 @@ class SidebarNav extends HTMLElement {
 
     // Hamburger button click
     menuToggle?.addEventListener('click', () => {
-      if (window.innerWidth > 1024 && sidebar.classList.contains('collapsed')) {
-        // Desktop: expand the sidebar
+      // Check if sidebar is collapsed (has .collapsed class OR doesn't have .open class at 1024px)
+      const isCollapsed = sidebar.classList.contains('collapsed') || 
+                         (window.innerWidth <= 1024 && !sidebar.classList.contains('open'));
+      if (isCollapsed) {
+        // Expand the sidebar if collapsed
         expandSidebar();
       } else {
         // Mobile: toggle open/close
@@ -194,22 +208,45 @@ class SidebarNav extends HTMLElement {
 
     // Make entire list item area clickable when sidebar is collapsed
     // This ensures clicks on empty space between icon and edge trigger navigation
-    if (window.innerWidth > 1024) {
-      const menuListItems = this.querySelectorAll('.retro-menu li');
-      menuListItems.forEach(li => {
-        li.addEventListener('click', (e) => {
-          if (sidebar.classList.contains('collapsed')) {
-            const menuItem = li.querySelector('.retro-menu-item');
-            // Only trigger if click is not directly on the menu item link
-            if (menuItem && e.target !== menuItem && !menuItem.contains(e.target)) {
-              e.preventDefault();
-              e.stopPropagation();
-              menuItem.click();
-            }
+    const menuListItems = this.querySelectorAll('.retro-menu li');
+    menuListItems.forEach(li => {
+      li.addEventListener('click', (e) => {
+        // Check if sidebar is collapsed (has .collapsed class OR doesn't have .open class at 1024px)
+        const isCollapsed = sidebar.classList.contains('collapsed') || 
+                           (window.innerWidth <= 1024 && !sidebar.classList.contains('open'));
+        if (isCollapsed) {
+          const menuItem = li.querySelector('.retro-menu-item');
+          // Only trigger if click is not directly on the menu item link
+          if (menuItem && e.target !== menuItem && !menuItem.contains(e.target)) {
+            e.preventDefault();
+            e.stopPropagation();
+            menuItem.click();
           }
-        });
+        }
       });
-    }
+    });
+
+    // Collapse sidebar when clicking outside of it (only on mobile < 768px)
+    document.addEventListener('click', (e) => {
+      // Only handle this on mobile (below 768px)
+      if (window.innerWidth > 768) return;
+      
+      // Check if sidebar is expanded (has .open class on mobile)
+      const isExpanded = sidebar.classList.contains('open');
+      
+      if (isExpanded) {
+        // Check if click is outside sidebar and not on hamburger button
+        const clickedInsideSidebar = sidebar.contains(e.target);
+        const clickedOnHamburger = menuToggle?.contains(e.target);
+        const clickedOnOverlay = overlay?.contains(e.target);
+        
+        if (!clickedInsideSidebar && !clickedOnHamburger && !clickedOnOverlay) {
+          sidebar.classList.remove('open');
+          overlay?.classList.remove('active');
+          menuToggle?.classList.remove('active');
+        }
+      }
+    });
 
     // Fallback: Re-check and apply state after DOM is fully ready
     // This handles edge cases where the initial render didn't apply correctly
@@ -229,8 +266,8 @@ class SidebarNav extends HTMLElement {
     const menuToggle = this.querySelector('#menuToggle');
     const wrapper = document.getElementById('wrapper');
     
-    // Only apply on desktop
-    if (window.innerWidth <= 1024) return;
+    // Only apply state management above 768px (where sidebar is visible)
+    if (window.innerWidth <= 768) return;
     
     const isCurrentlyCollapsed = sidebar?.classList.contains('collapsed');
     

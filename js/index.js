@@ -198,7 +198,7 @@ function initIndexPage() {
 			// Detect mobile device - only by user agent and screen size, NOT touch capability
 			// Use 1024px threshold instead of 768px to ensure laptops get animations
 			const isMobileUserAgent = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-			const isMobileDevice = isMobileUserAgent || window.innerWidth <= 1024;
+			const isMobileDevice = isMobileUserAgent || window.innerWidth <= 768;
 			
 			// Cache DOM elements
 			const headerWrapper = document.querySelector('.wrapper-holder:not(.grey)');
