@@ -4790,6 +4790,7 @@ body.resizing .retro-sidebar {
   .section-title {
     font-size: 32px !important;
     margin-bottom: 30px !important;
+    white-space: normal !important; /* Allow wrapping on mobile to prevent cut-off */
   }
   
   .career-timeline {
