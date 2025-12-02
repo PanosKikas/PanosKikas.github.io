@@ -252,6 +252,8 @@ nav ul li a {
   display: flex;
   justify-content: center;
   flex-direction: column;
+  padding-top: 100px; /* Always preserve 100px space from top */
+  box-sizing: border-box;
 }
 
 .hero-content h1 {
@@ -1112,31 +1114,6 @@ blockquote {
 }
 
 /* Hide viewport UI on mobile */
-@media (max-width: 768px) {
-  .viewport-toolbar {
-    height: 32px;
-    font-size: 11px;
-    padding: 0 12px;
-  }
-  
-  .viewport-tab {
-    padding: 6px 12px;
-    font-size: 11px;
-  }
-  
-  .toolbar-center {
-    display: none;
-  }
-  
-  .viewport-stats,
-  .viewport-scene-info {
-    display: none;
-  }
-  
-  .hero-section::after {
-    top: 32px;
-  }
-}
 
 .hero-background {
   position: absolute;
@@ -1252,15 +1229,6 @@ blockquote {
 }
 
 /* Adjust axis on mobile for cleaner look */
-@media (max-width: 768px) {
-  .coordinate-axis {
-    width: 70px;
-    height: 70px;
-    bottom: 15px;
-    right: 15px;
-    opacity: 0.6;
-  }
-}
 
 .hero-background::after {
   display: none;
@@ -2847,33 +2815,6 @@ blockquote {
 }
 
 /* Responsive Career Timeline */
-@media (max-width: 768px) {
-  .career-timeline {
-    padding-left: 40px;
-  }
-  
-  .career-marker {
-    left: -33px;
-    width: 12px;
-    height: 12px;
-  }
-  
-  .timeline-line {
-    left: 12px;
-  }
-  
-  .career-content {
-    padding: 20px;
-  }
-  
-  .career-title {
-    font-size: 18px;
-  }
-  
-  .career-description {
-    font-size: 14px;
-  }
-}
 
 /* CTA Section */
 
@@ -3139,25 +3080,6 @@ html {
 }
 
 /* Responsive Design */
-@media (max-width: 768px) {
-  .hero-title {
-    font-size: 42px;
-  }
-
-  .hero-subtitle {
-    font-size: 20px;
-  }
-
-  .hero-description {
-    font-size: 16px;
-  }
-
-  .btn-primary, .btn-secondary {
-    padding: 12px 30px;
-    font-size: 14px;
-  }
-
-}
 
 /* Portfolio Page Enhancements */
 #portfolio .portfolio-item {
@@ -4052,70 +3974,6 @@ body {
 }
 
 /* Responsive modal */
-@media (max-width: 768px) {
-  /* Fix Fancybox positioning on mobile to account for sidebar */
-  /* Center within visible content area: sidebar (60px) + half of remaining width */
-  .fancybox-wrap {
-    left: calc(30px + 50%) !important;
-    transform: translate(-50%, -50%) !important;
-  }
-  
-  /* When sidebar is open on mobile (280px), adjust positioning */
-  body:has(.retro-sidebar.open) .fancybox-wrap {
-    left: calc(140px + 50%) !important;
-    transform: translate(-50%, -50%) !important;
-  }
-  
-  .popup_portfolio {
-    max-height: 90vh;
-    overflow-y: auto;
-    overflow-x: hidden;
-    width: calc(100% - 40px) !important;
-    /* Account for sidebar (60px) + padding on both sides (40px total) */
-    max-width: calc(100vw - 100px) !important;
-    margin: 0 auto;
-  }
-  
-  /* When sidebar is open, adjust max-width */
-  body:has(.retro-sidebar.open) .popup_portfolio {
-    max-width: calc(100vw - 320px) !important;
-  }
-  
-  .popup_portfolio img {
-    max-height: 200px;
-    object-fit: cover;
-  }
-  
-  .popup_portfolio h3 {
-    font-size: 24px;
-    padding: 25px 25px 10px;
-    letter-spacing: 2px;
-  }
-  
-  .popup_portfolio time {
-    padding: 0 25px 15px;
-    font-size: 11px;
-  }
-  
-  .popup_portfolio p {
-    padding: 12px 25px;
-    font-size: 14px;
-  }
-  
-  .popup_portfolio ul {
-    padding: 10px 25px 25px;
-  }
-  
-  .popup_portfolio ul li {
-    font-size: 14px;
-    margin: 8px 0;
-    line-height: 1.5;
-  }
-  
-  .popup_portfolio p {
-    line-height: 1.6;
-  }
-}
 
 @media (max-width: 480px) {
   .popup_portfolio {
@@ -4327,56 +4185,6 @@ body {
   }
 }
 
-@media (max-width: 768px) {
-  .portfolio-section {
-    padding: 70px 20px 15px 20px;
-  }
-
-  .arcade-grid,
-  #container.arcade-grid,
-  .item-list.arcade-grid {
-    gap: 20px !important;
-    padding: 20px 15px !important;
-    grid-template-columns: 1fr !important;
-    justify-content: center !important;
-    justify-items: center !important;
-  }
-  
-  .arcade-grid li,
-  #container.arcade-grid li,
-  .item-list.arcade-grid li {
-    width: 100% !important;
-    max-width: 320px !important;
-  }
-  
-  .arcade-card,
-  .arcade-grid .item {
-    width: 100% !important;
-    max-width: 320px !important;
-  }
-  
-  .arcade-card-inner {
-    width: 100% !important;
-    max-width: 100% !important;
-    box-sizing: border-box !important;
-  }
-  
-  .arcade-card-screen {
-    height: 180px;
-  }
-  
-  .arcade-card-title {
-    font-size: 16px;
-  }
-  
-  .arcade-card-subtitle {
-    font-size: 10px;
-  }
-  
-  .arcade-card-details {
-    font-size: 8px;
-  }
-}
 
 /* Portfolio filter buttons */
 
@@ -4527,36 +4335,6 @@ body {
 }
 
 /* Responsive Contact */
-@media (max-width: 768px) {
-  .contact-section {
-    padding: 60px 20px;
-  }
-  
-  .contact-title {
-    font-size: 32px;
-    letter-spacing: 2px;
-  }
-  
-  .contact-subtitle {
-    font-size: 16px;
-  }
-  
-  .profile-image {
-    width: 150px;
-    height: 150px;
-  }
-  
-  .contact-content {
-    flex-direction: column;
-    gap: 30px;
-  }
-  
-  .contact-card {
-    min-width: 100%;
-    max-width: 100%;
-    padding: 30px;
-  }
-}
 
 /* Consistent header styling across all pages - override original green background */
 .wrapper-holder:not(.grey) {
@@ -4921,6 +4699,10 @@ body.resizing .retro-sidebar {
     min-width: unset !important;
     max-width: none !important;
     padding: 10px 12px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
   }
   
   .stat-item:last-child {
@@ -4928,227 +4710,15 @@ body.resizing .retro-sidebar {
   }
   
   .stat-number {
-    font-size: 16px !important;
-  }
-  
-  .stat-label {
-    font-size: 8px !important;
-    letter-spacing: 0.3px !important;
-  }
-}
-
-@media (max-width: 768px) {
-  .hero-section {
-    min-height: 600px;
-    padding-top: 0 !important;
-    align-items: flex-start !important; /* Anchor to top - 150px gap from hero-content padding */
-  }
-  
-  .hero-buttons {
-    gap: 15px !important;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 100px !important; /* More space on mobile for scroll indicator */
-  }
-  
-  .btn-primary, .btn-secondary {
-    padding: 14px 35px !important;
-    font-size: 13px !important;
-    width: 100%;
-    max-width: 280px;
-  }
-  
-  .scroll-indicator {
-    bottom: 20px !important;
-  }
-  
-  /* Career Timeline Mobile */
-  .career-section {
-    padding: 40px 20px !important;
-  }
-  
-  .career-header {
-    margin-bottom: 40px;
-  }
-  
-  .section-title {
-    font-size: 32px !important;
-    margin-bottom: 30px !important;
-  }
-  
-  .career-timeline {
-    padding-left: 40px !important;
-  }
-  
-  .career-marker {
-    left: -33px !important;
-    width: 14px !important;
-    height: 14px !important;
-  }
-  
-  .timeline-line {
-    left: 13px !important;
-    width: 2px;
-  }
-  
-  .career-content {
-    padding: 20px !important;
-    flex-direction: column;
-    gap: 15px;
-  }
-  
-  .career-company-icon {
-    width: 56px !important;
-    height: 56px !important;
-    min-width: 56px !important;
-  }
-  
-  .career-title {
-    font-size: 18px !important;
-  }
-  
-  .career-company {
-    font-size: 14px !important;
-  }
-  
-  .career-description {
-    font-size: 13px !important;
-  }
-  
-  .career-item {
-    margin-bottom: 35px;
-  }
-  
-  /* Portfolio Mobile */
-  .portfolio-section {
-    padding: 30px 15px 15px 15px !important;
-  }
-  
-  .portfolio-header .section-title {
-    font-size: 28px !important;
-  }
-  
-  .arcade-filters {
-    flex-direction: column;
-    gap: 10px;
-    padding: 0 10px;
-  }
-  
-  .filter-btn {
-    width: 100%;
-    padding: 12px 20px !important;
-    font-size: 12px !important;
-  }
-  
-  .arcade-grid {
-    gap: 15px !important;
-    padding: 0 10px !important;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)) !important;
-  }
-  
-  .arcade-card-inner {
-    width: 100% !important;
-    max-width: 100% !important;
-    box-sizing: border-box !important;
-  }
-  
-  /* Skills Page Mobile */
-  .skills_holder {
-    flex-direction: column !important;
-    gap: 30px;
-  }
-  
-  .skills_holder .column,
-  .skills_holder .column.column-add {
-    width: 100% !important;
-    margin: 0 !important;
-    float: none !important;
-  }
-  
-  .skills_holder .column:first-child {
-    margin-top: 20px !important;
-  }
-  
-  .skills_holder .column.column-add {
-    margin-top: 30px !important;
-  }
-  
-  #main .skills_holder h2 {
-    font-size: 24px !important;
-    margin-bottom: 20px !important;
-  }
-  
-  .skills_holder p {
-    font-size: 14px !important;
-    line-height: 1.6;
-    margin-bottom: 25px;
-  }
-  
-  .progress li {
-    height: 38px !important;
-    line-height: 38px !important;
-  }
-  
-  .progress li span {
-    font-size: 13px !important;
-    padding: 0 0 0 15px !important;
-  }
-  
-  /* Contact Mobile */
-  .contact-section {
-    padding: 40px 20px !important;
-  }
-  
-  .contact-title {
-    font-size: 32px !important;
-  }
-  
-  .contact-content {
-    flex-direction: column;
-    gap: 30px !important;
-  }
-  
-  .contact-card-link {
-    min-width: auto !important;
-    max-width: 100% !important;
-  }
-  
-  .contact-card {
-    padding: 30px 20px !important;
-  }
-  
-  /* General Mobile Improvements */
-  #main {
-    padding: 20px 15px !important;
-    margin-left: 0 !important;
-  }
-  
-  .wrapper-holder {
-    padding: 40px 15px !important;
-  }
-  
-  .wrapper-holder.grey {
-    padding: 40px 15px !important;
-  }
-  
-  /* Text sizing */
-  h1 {
-    font-size: 28px !important;
-  }
-  
-  h2 {
-    font-size: 24px !important;
-  }
-  
-  h3 {
     font-size: 20px !important;
   }
   
-  p {
-    font-size: 14px !important;
-    line-height: 1.6;
+  .stat-label {
+    font-size: 11px !important;
+    letter-spacing: 0.5px !important;
   }
 }
+
 
 /* Hide mobile menu on desktop */
 @media (min-width: 1025px) {
@@ -5188,24 +4758,114 @@ body.resizing .retro-sidebar {
     display: none !important;
   }
   
-  /* Only hide particles on mobile - keep all other animations the same */
-  
-  /* Optimize transforms - simpler on mobile */
-  .arcade-card:hover .arcade-card-inner {
-    transform: translateY(-5px) !important;
+  /* Hide Play/Pause/Step buttons on mobile */
+  .toolbar-center {
+    display: none !important;
   }
   
-  /* Reduce box-shadows on mobile */
-  .arcade-card-inner,
+  /* Hide Gizmo toggles (2D/3D) on mobile */
+  .toolbar-right {
+    display: none !important;
+  }
+  
+  /* Hide FPS stats on mobile */
+  .viewport-stats {
+    display: none !important;
+  }
+  
+  /* Hide scene info (Portfolio_HomeScene) on mobile */
+  .viewport-scene-info {
+    display: none !important;
+  }
+  
+  /* Professional Experience section mobile styles */
+  .career-section {
+    padding: 40px 20px !important;
+  }
+  
+  .career-header {
+    margin-bottom: 40px;
+  }
+  
+  .section-title {
+    font-size: 32px !important;
+    margin-bottom: 30px !important;
+  }
+  
+  .career-timeline {
+    padding-left: 40px !important;
+  }
+  
+  .career-marker {
+    left: -33px !important;
+    width: 14px !important;
+    height: 14px !important;
+  }
+  
+  .timeline-line {
+    left: 13px !important;
+    width: 2px;
+  }
+  
   .career-content {
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2) !important;
+    padding: 20px !important;
+    flex-direction: column;
+    gap: 15px;
   }
   
-  /* Priority 1: Disable expensive backdrop-filter on stat-items for mobile performance */
-  .stat-item {
-    backdrop-filter: none !important;
-    background: rgba(26, 26, 46, 0.9) !important;
-    background-color: rgba(26, 26, 46, 0.9) !important;
+  .career-company-icon {
+    width: 56px !important;
+    height: 56px !important;
+    min-width: 56px !important;
+    margin-top: 0 !important;
+  }
+  
+  .career-item {
+    margin-bottom: 35px;
+  }
+  
+  /* Portfolio filter buttons mobile positioning */
+  .arcade-filters {
+    flex-direction: column;
+    gap: 10px;
+    align-items: stretch;
+  }
+  
+  .filter-btn {
+    width: 100%;
+    padding: 12px 20px !important;
+    font-size: 12px !important;
+  }
+  
+  /* Fix Fancybox popup positioning on mobile to account for sidebar */
+  .fancybox-wrap {
+    left: calc(30px + 50%) !important;
+    transform: translate(-50%, -50%) !important;
+  }
+  
+  /* When sidebar is open on mobile, adjust positioning */
+  body:has(.retro-sidebar.open) .fancybox-wrap {
+    left: calc(140px + 50%) !important;
+    transform: translate(-50%, -50%) !important;
+  }
+  
+  .popup_portfolio {
+    max-width: calc(100vw - 100px) !important;
+  }
+  
+  body:has(.retro-sidebar.open) .popup_portfolio {
+    max-width: calc(100vw - 320px) !important;
+  }
+  
+  /* Contact page - reduce gap between buttons on mobile */
+  .contact-content {
+    flex-direction: column;
+    gap: 30px !important;
+  }
+  
+  .contact-card-link {
+    width: 100%;
+    max-width: 100%;
   }
 }
 
@@ -5248,20 +4908,21 @@ body.resizing .retro-sidebar {
     min-width: unset !important;
     padding: 10px 15px !important;
     display: flex !important;
-    flex-direction: row !important;
+    flex-direction: column !important;
     justify-content: center !important;
     align-items: center !important;
-    gap: 12px !important;
+    gap: 8px !important;
+    text-align: center !important;
   }
   
   .stat-number {
-    font-size: 16px !important;
+    font-size: 20px !important;
     margin-bottom: 0 !important;
   }
   
   .stat-label {
-    font-size: 9px !important;
-    text-align: left !important;
+    font-size: 11px !important;
+    text-align: center !important;
   }
   
   .section-title {
@@ -5327,15 +4988,18 @@ body.resizing .retro-sidebar {
     height: auto !important;
     min-height: 780px !important; /* Fixed minimum to prevent collapse */
     overflow: visible !important;
+    padding-top: 100px !important; /* Always preserve 100px space from top */
+    box-sizing: border-box !important;
   }
   
   .hero-content {
-    position: absolute !important;
-    top: 85px !important; /* Fixed 85px from top */
+    position: relative !important;
+    top: 0 !important;
     left: 0 !important;
     right: 0 !important;
     padding-top: 0 !important;
     margin: 0 auto !important;
+    height: auto !important;
   }
   
   .hero-text {
