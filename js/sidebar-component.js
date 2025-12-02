@@ -15,12 +15,28 @@ class SidebarNav extends HTMLElement {
     const storedState = localStorage.getItem('sidebarCollapsed');
     const shouldBeCollapsed = storedState === 'true';
     
-    // Define menu items
+    // Define menu items with icons
     const menuItems = [
-      { href: 'index.html', text: 'Home' },
-      { href: 'portfolio.html', text: 'Portfolio' },
-      { href: 'myskills.html', text: 'Skills' },
-      { href: 'contact.html', text: 'Contact' }
+      { 
+        href: 'index.html', 
+        text: 'Home',
+        icon: '<svg class="menu-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>'
+      },
+      { 
+        href: 'portfolio.html', 
+        text: 'Portfolio',
+        icon: '<svg class="menu-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>'
+      },
+      { 
+        href: 'myskills.html', 
+        text: 'Skills',
+        icon: '<svg class="menu-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><polyline points="16 18 22 12 16 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><polyline points="8 6 2 12 8 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>'
+      },
+      { 
+        href: 'contact.html', 
+        text: 'Contact',
+        icon: '<svg class="menu-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>'
+      }
     ];
 
     // Generate menu HTML with active state
@@ -30,6 +46,7 @@ class SidebarNav extends HTMLElement {
       return `
         <li>
           <a class="retro-menu-item${isActive ? ' active' : ''}" href="${item.href}">
+            ${item.icon}
             <span class="menu-text">${item.text}</span>
           </a>
         </li>
@@ -49,6 +66,7 @@ class SidebarNav extends HTMLElement {
       <!-- Left Sidebar Navigation -->
       <nav id="sidebar-nav" class="retro-sidebar${shouldBeCollapsed ? ' collapsed' : ''}">
         <div class="sidebar-header">
+          <div class="sidebar-initials">PK</div>
           <div class="retro-screen">
             <h1 class="sidebar-logo">PANOS KIKAS</h1>
             <div class="retro-divider"></div>
@@ -121,7 +139,26 @@ class SidebarNav extends HTMLElement {
     };
 
     // Collapse button click
-    collapseBtn?.addEventListener('click', collapseSidebar);
+    collapseBtn?.addEventListener('click', (e) => {
+      e.stopPropagation();
+      collapseSidebar();
+    });
+
+    // Click on collapsed sidebar to expand (desktop only)
+    // Clicking on menu items or footer links will navigate normally, clicking on sidebar background expands
+    sidebar?.addEventListener('click', (e) => {
+      if (window.innerWidth > 1024 && sidebar.classList.contains('collapsed')) {
+        // Only expand if not clicking on a menu item link, list item containing menu item, or footer link
+        const clickedMenuItem = e.target.closest('.retro-menu-item');
+        const clickedMenuItemContainer = e.target.closest('.retro-menu li');
+        const clickedFooterLink = e.target.closest('.sidebar-link') || e.target.closest('.sidebar-footer');
+        if (!clickedMenuItem && !clickedMenuItemContainer && !clickedFooterLink) {
+          e.preventDefault();
+          e.stopPropagation();
+          expandSidebar();
+        }
+      }
+    });
 
     // Hamburger button click
     menuToggle?.addEventListener('click', () => {
@@ -154,6 +191,25 @@ class SidebarNav extends HTMLElement {
         }
       });
     });
+
+    // Make entire list item area clickable when sidebar is collapsed
+    // This ensures clicks on empty space between icon and edge trigger navigation
+    if (window.innerWidth > 1024) {
+      const menuListItems = this.querySelectorAll('.retro-menu li');
+      menuListItems.forEach(li => {
+        li.addEventListener('click', (e) => {
+          if (sidebar.classList.contains('collapsed')) {
+            const menuItem = li.querySelector('.retro-menu-item');
+            // Only trigger if click is not directly on the menu item link
+            if (menuItem && e.target !== menuItem && !menuItem.contains(e.target)) {
+              e.preventDefault();
+              e.stopPropagation();
+              menuItem.click();
+            }
+          }
+        });
+      });
+    }
 
     // Fallback: Re-check and apply state after DOM is fully ready
     // This handles edge cases where the initial render didn't apply correctly

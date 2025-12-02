@@ -22,11 +22,10 @@
     font-family: 'novecento_sans_widebook';
     src: url('../fonts/novecentosanswide-book-webfont.eot');
     src: url('../fonts/novecentosanswide-book-webfont.eot?#iefix') format('embedded-opentype'),
-         url('../fonts/novecentosanswide-book-webfont.woff') format('woff'),
-         url('../fonts/novecentosanswide-book-webfont.ttf') format('truetype'),
-         url('../fonts/novecentosanswide-book-webfont.svg#novecento_sans_widebook') format('svg');
+         url('../fonts/novecentosanswide-book-webfont.woff') format('woff');
     font-weight: normal;
     font-style: normal;
+    /* Note: TTF removed due to glyph bbox warnings - WOFF format used instead */
 }
 @font-face {
     font-family: 'novecento_sans_widemedium';

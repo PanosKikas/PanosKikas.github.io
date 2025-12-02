@@ -1886,8 +1886,9 @@ blockquote {
   flex-direction: column;
   padding: 0;
   overflow-y: auto;
+  overflow-x: hidden;
   font-family: 'Inter', sans-serif;
-  transition: transform 0.3s ease;
+  transition: width 0.3s ease, transform 0.3s ease;
 }
 
 .retro-sidebar::-webkit-scrollbar {
@@ -1913,6 +1914,10 @@ blockquote {
   padding: 40px 30px 30px;
   border-bottom: 1px solid rgba(102, 126, 234, 0.15);
   position: relative;
+}
+
+.sidebar-initials {
+  display: none;
 }
 
 /* Sidebar Collapse Button */
@@ -1958,7 +1963,7 @@ blockquote {
   margin: 0 0 6px 0;
   letter-spacing: -0.5px;
   font-family: 'Inter', sans-serif;
-  line-height: 1.2;
+  line-height: 1.3;
   transform: none !important;
   zoom: 1 !important;
 }
@@ -2031,12 +2036,18 @@ blockquote {
 }
 
 .menu-icon {
-  display: none;
+  display: inline-block;
+  flex-shrink: 0;
+  margin-right: 12px;
+  width: 18px;
+  height: 18px;
+  opacity: 0.8;
+  transition: opacity 0.2s ease;
 }
 
 .retro-menu-item:hover .menu-icon,
 .retro-menu-item.active .menu-icon {
-  display: none;
+  opacity: 1;
 }
 
 .menu-text {
@@ -2108,14 +2119,373 @@ blockquote {
   box-sizing: border-box;
 }
 
-/* Collapsed sidebar state */
+/* Collapsed sidebar state - shows 60px wide with icons only (all breakpoints) */
 .retro-sidebar.collapsed {
-  transform: translateX(-100%);
+  width: 60px;
+  transform: translateX(0);
+  overflow-x: hidden;
+  cursor: pointer;
+}
+
+.retro-sidebar.collapsed .sidebar-header {
+  padding: 20px 0;
+  margin: 0;
+  opacity: 1;
+  visibility: visible;
+  width: 100%;
+  min-height: 60px;
+  height: 60px;
+  border-bottom: 1px solid rgba(102, 126, 234, 0.15);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.retro-sidebar.collapsed .retro-screen {
+  display: none;
+}
+
+.retro-sidebar.collapsed .sidebar-initials {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 1px;
+  font-family: 'Inter', sans-serif;
+  margin: 0;
+}
+
+.retro-sidebar.collapsed .sidebar-footer {
+  opacity: 1;
+  visibility: visible;
+  width: 100%;
+  height: auto;
+  padding: 20px 0;
+  margin: 0;
+  border-top: 1px solid rgba(102, 126, 234, 0.15);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.retro-sidebar.collapsed .sidebar-contact {
+  flex-direction: column;
+  gap: 12px;
+  justify-content: center;
+  align-items: center;
+}
+
+.retro-sidebar.collapsed .sidebar-link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px;
+}
+
+.retro-sidebar.collapsed .sidebar-link span {
+  display: none;
+}
+
+.retro-sidebar.collapsed .email-icon,
+.retro-sidebar.collapsed .github-icon {
+  width: 20px;
+  height: 20px;
+  margin: 0;
+}
+
+.retro-sidebar.collapsed .menu-text {
+  opacity: 0;
+  visibility: hidden;
+  width: 0;
+  overflow: hidden;
+  flex: 0;
+  margin: 0;
+  padding: 0;
+  transition: opacity 0.2s ease, visibility 0.2s ease;
+}
+
+.retro-sidebar.collapsed .retro-menu {
+  padding: 20px 0;
+  gap: 8px;
+  align-items: center;
+}
+
+/* Ensure list items fill full width when collapsed */
+.retro-sidebar.collapsed .retro-menu li {
+  width: 100%;
+  display: block;
+}
+
+.retro-sidebar.collapsed .retro-menu-item {
+  padding: 14px 0;
+  justify-content: center;
+  align-items: center;
+  border-left: none;
+  border-right: none;
+  border-bottom: 2px solid transparent;
+  min-height: 46px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  border-radius: 0;
+  background: transparent;
+  position: relative;
+  /* Make the entire area clickable - ensure it covers full width and height */
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+.retro-sidebar.collapsed .retro-menu-item:hover {
+  background: transparent;
+}
+
+.retro-sidebar.collapsed .retro-menu-item.active {
+  background: transparent;
+  border-bottom-color: #667eea;
+}
+
+.retro-sidebar.collapsed .menu-icon {
+  margin-right: 0;
+  margin-left: 0;
+  width: 26px;
+  height: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.retro-sidebar.collapsed .menu-icon svg {
+  width: 26px !important;
+  height: 26px !important;
+}
+
+.retro-sidebar.collapsed .sidebar-collapse-btn {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
 }
 
 #wrapper.sidebar-collapsed {
-  margin-left: 0;
-  width: 100%;
+  margin-left: 60px;
+  width: calc(100% - 60px);
+}
+
+/* Hide hamburger on desktop when sidebar is collapsed (since sidebar is visible) */
+@media (min-width: 1025px) {
+  .menu-toggle.visible {
+    display: none !important;
+  }
+}
+
+/* Mobile: use collapsed sidebar approach - reuse same collapsed styles */
+@media (max-width: 1024px) {
+  .retro-sidebar {
+    overflow-x: hidden;
+  }
+
+  /* Default to collapsed at 1024px unless explicitly opened */
+  .retro-sidebar:not(.open) {
+    width: 60px;
+    transform: translateX(0);
+  }
+
+  /* Apply collapsed content styles when not opened */
+  .retro-sidebar:not(.open) .sidebar-header {
+    padding: 20px 0;
+    margin: 0;
+    opacity: 1;
+    visibility: visible;
+    width: 100%;
+    min-height: 60px;
+    height: 60px;
+    border-bottom: 1px solid rgba(102, 126, 234, 0.15);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+  }
+
+  .retro-sidebar:not(.open) .retro-screen {
+    display: none;
+  }
+
+  .retro-sidebar:not(.open) .sidebar-initials {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: 1px;
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+  }
+
+  .retro-sidebar:not(.open) .sidebar-footer {
+    opacity: 1;
+    visibility: visible;
+    width: 100%;
+    height: auto;
+    padding: 20px 0;
+    margin: 0;
+    border-top: 1px solid rgba(102, 126, 234, 0.15);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .retro-sidebar:not(.open) .sidebar-contact {
+    flex-direction: column;
+    gap: 12px;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .retro-sidebar:not(.open) .sidebar-link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 8px;
+  }
+
+  .retro-sidebar:not(.open) .sidebar-link span {
+    display: none;
+  }
+
+  .retro-sidebar:not(.open) .email-icon,
+  .retro-sidebar:not(.open) .github-icon {
+    width: 20px;
+    height: 20px;
+    margin: 0;
+  }
+
+  .retro-sidebar:not(.open) .menu-text {
+    opacity: 0;
+    visibility: hidden;
+    width: 0;
+    overflow: hidden;
+  }
+
+  .retro-sidebar:not(.open) .retro-menu {
+    padding: 20px 0;
+    gap: 8px;
+    align-items: center;
+  }
+
+  .retro-sidebar:not(.open) .retro-menu-item {
+    padding: 14px 0;
+    justify-content: center;
+    align-items: center;
+    border-left: none;
+    border-right: none;
+    border-bottom: 2px solid transparent;
+    min-height: 46px;
+    width: 100%;
+    display: flex;
+  }
+
+  .retro-sidebar:not(.open) .retro-menu-item:hover {
+    background: transparent;
+  }
+
+  .retro-sidebar:not(.open) .retro-menu-item.active {
+    background: transparent;
+    border-bottom-color: #667eea;
+  }
+
+  .retro-sidebar:not(.open) .menu-icon {
+    margin-right: 0;
+    margin-left: 0;
+    width: 26px;
+    height: 26px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .retro-sidebar:not(.open) .menu-icon svg {
+    width: 26px !important;
+    height: 26px !important;
+  }
+
+  .retro-sidebar:not(.open) .sidebar-collapse-btn {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+
+  /* When sidebar is opened via hamburger, show full width */
+  .retro-sidebar.open {
+    width: 280px;
+    transform: translateX(0) !important;
+  }
+
+  /* When sidebar is opened, restore full content with smooth transitions */
+  .retro-sidebar.open .sidebar-header,
+  .retro-sidebar.open .retro-screen,
+  .retro-sidebar.open .menu-text,
+  .retro-sidebar.open .sidebar-link span {
+    opacity: 1;
+    visibility: visible;
+    width: auto;
+    height: auto;
+    display: block;
+  }
+
+  .retro-sidebar.open .retro-screen {
+    display: block;
+  }
+
+  .retro-sidebar.open .sidebar-initials {
+    display: none;
+  }
+
+  .retro-sidebar.open .sidebar-contact {
+    flex-direction: column;
+  }
+
+  .retro-sidebar.open .retro-menu {
+    padding: 20px 15px;
+  }
+
+  .retro-sidebar.open .retro-menu-item {
+    padding: 14px 30px;
+    justify-content: flex-start;
+    border-left: 3px solid transparent;
+    border-bottom: none;
+  }
+
+  .retro-sidebar.open .retro-menu-item.active {
+    border-left-color: #667eea;
+    border-bottom: none;
+  }
+
+  .retro-sidebar.open .menu-icon {
+    margin-right: 12px;
+  }
+
+  .retro-sidebar.open .menu-icon svg {
+    width: 18px !important;
+    height: 18px !important;
+  }
+
+  /* Wrapper margin - collapsed by default at 1024px */
+  #wrapper {
+    margin-left: 60px;
+    width: calc(100% - 60px);
+  }
+
+  /* Adjust wrapper when sidebar is open */
+  body:has(.retro-sidebar.open) #wrapper,
+  .retro-sidebar.open ~ * #wrapper {
+    margin-left: 280px !important;
+    width: calc(100% - 280px) !important;
+  }
 }
 
 /* Show hamburger when sidebar is collapsed (desktop) */
@@ -2164,23 +2534,75 @@ blockquote {
 /* Responsive sidebar */
 @media (max-width: 1024px) {
   .retro-sidebar {
-    transform: translateX(-100%);
-    width: 280px;
-    transition: transform 0.3s ease;
+    width: 60px;
+    transform: translateX(0);
+    transition: width 0.3s ease, transform 0.3s ease;
     z-index: 9999;
     visibility: visible;
     display: flex;
   }
   
   .retro-sidebar.open {
+    width: 280px;
     transform: translateX(0) !important;
     visibility: visible !important;
     display: flex !important;
   }
+
+  .retro-sidebar.open .sidebar-header,
+  .retro-sidebar.open .retro-screen,
+  .retro-sidebar.open .menu-text,
+  .retro-sidebar.open .sidebar-link span {
+    opacity: 1;
+    visibility: visible;
+    width: auto;
+    height: auto;
+    display: block;
+  }
+
+  .retro-sidebar.open .sidebar-initials {
+    display: none;
+  }
+
+  .retro-sidebar.open .sidebar-contact {
+    flex-direction: column;
+  }
+
+  .retro-sidebar.open .retro-menu {
+    padding: 20px 15px;
+  }
+
+  .retro-sidebar.open .retro-menu-item {
+    padding: 14px 30px;
+    justify-content: flex-start;
+    border-left: 3px solid transparent;
+    border-bottom: none;
+  }
+
+  .retro-sidebar.open .retro-menu-item.active {
+    border-left-color: #667eea;
+    border-bottom: none;
+  }
+
+  .retro-sidebar.open .menu-icon {
+    margin-right: 12px;
+  }
+
+  .retro-sidebar.open .menu-icon svg {
+    width: 18px !important;
+    height: 18px !important;
+  }
+
+  /* Adjust wrapper when sidebar is open */
+  body:has(.retro-sidebar.open) #wrapper,
+  .retro-sidebar.open ~ * #wrapper {
+    margin-left: 280px !important;
+    width: calc(100% - 280px) !important;
+  }
   
   #wrapper {
-    margin-left: 0;
-    width: 100%;
+    margin-left: 60px;
+    width: calc(100% - 60px);
   }
   
   /* Mobile menu toggle button - Game Boy style */
@@ -2464,6 +2886,7 @@ blockquote {
   text-shadow: 0 2px 10px rgba(102, 126, 234, 0.3);
   position: relative;
   padding-bottom: 20px;
+  white-space: nowrap;
 }
 
 .portfolio-header {
@@ -3630,10 +4053,32 @@ body {
 
 /* Responsive modal */
 @media (max-width: 768px) {
+  /* Fix Fancybox positioning on mobile to account for sidebar */
+  /* Center within visible content area: sidebar (60px) + half of remaining width */
+  .fancybox-wrap {
+    left: calc(30px + 50%) !important;
+    transform: translate(-50%, -50%) !important;
+  }
+  
+  /* When sidebar is open on mobile (280px), adjust positioning */
+  body:has(.retro-sidebar.open) .fancybox-wrap {
+    left: calc(140px + 50%) !important;
+    transform: translate(-50%, -50%) !important;
+  }
+  
   .popup_portfolio {
     max-height: 90vh;
     overflow-y: auto;
     overflow-x: hidden;
+    width: calc(100% - 40px) !important;
+    /* Account for sidebar (60px) + padding on both sides (40px total) */
+    max-width: calc(100vw - 100px) !important;
+    margin: 0 auto;
+  }
+  
+  /* When sidebar is open, adjust max-width */
+  body:has(.retro-sidebar.open) .popup_portfolio {
+    max-width: calc(100vw - 320px) !important;
   }
   
   .popup_portfolio img {
@@ -4338,8 +4783,8 @@ body.resizing .retro-sidebar {
 /* Mobile Sidebar Navigation */
 @media (max-width: 1024px) {
   #wrapper {
-    margin-left: 0 !important;
-    width: 100% !important;
+    margin-left: 60px !important;
+    width: calc(100% - 60px) !important;
   }
   
   .wrapper-holder {
@@ -4361,17 +4806,18 @@ body.resizing .retro-sidebar {
 }
 
 @media (max-width: 1024px) {
-  /* Sidebar - Hidden by default, toggle with hamburger */
+  /* Sidebar - Collapsed by default (60px), toggle with hamburger to full width (280px) */
   .retro-sidebar {
-    transform: translateX(-100%);
-    width: 280px;
-    transition: transform 0.3s ease;
+    width: 60px;
+    transform: translateX(0);
+    transition: width 0.3s ease, transform 0.3s ease;
     z-index: 9999;
     visibility: visible;
     display: flex;
   }
   
   .retro-sidebar.open {
+    width: 280px;
     transform: translateX(0) !important;
     visibility: visible !important;
     display: flex !important;
@@ -4448,79 +4894,20 @@ body.resizing .retro-sidebar {
     pointer-events: auto;
   }
   
-  /* Sidebar header adjustments for mobile */
-  .sidebar-header {
+  /* Sidebar header adjustments for mobile - only when sidebar is open */
+  .retro-sidebar.open .sidebar-header {
     padding-top: 60px !important; /* Add space at top so hamburger doesn't overlap */
   }
   
-  /* Keep sidebar header text consistent at all mobile sizes */
-  .sidebar-logo {
+  /* Keep sidebar header text consistent at all mobile sizes - only when open */
+  .retro-sidebar.open .sidebar-logo {
     font-size: 24px !important;
   }
   
-  .sidebar-slogan {
+  .retro-sidebar.open .sidebar-slogan {
     font-size: 13px !important;
   }
   
-  /* Hero Section Mobile */
-  .hero-section {
-    padding: 20px 20px 40px;
-    min-height: 650px;
-    height: auto;
-    align-items: flex-start; /* Anchor content to top - 150px gap from hero-content padding */
-  }
-  
-  .hero-title {
-    font-size: 36px !important;
-    letter-spacing: 2px !important;
-    line-height: 1.1 !important;
-  }
-  
-  .hero-title .title-line {
-    display: block;
-  }
-  
-  .hero-specialize {
-    font-size: 14px !important;
-    margin-bottom: 10px;
-  }
-  
-  .hero-subtitle {
-    font-size: 20px !important;
-    min-height: 32px;
-  }
-  
-  .hero-description {
-    font-size: 15px !important;
-    padding: 0 10px;
-  }
-  
-  .hero-stats {
-    gap: 10px !important;
-    margin: 25px 0 !important;
-    flex-wrap: wrap !important;
-    justify-content: center !important;
-    padding: 0 10px !important;
-  }
-  
-  .stat-item {
-    flex: 0 1 auto !important;
-    min-width: 90px !important;
-    max-width: none !important;
-    padding: 12px 16px !important;
-    width: calc(33.333% - 10px) !important;
-  }
-  
-  .stat-number {
-    font-size: 18px !important;
-    white-space: nowrap !important;
-  }
-  
-  .stat-label {
-    font-size: 9px !important;
-    letter-spacing: 0.5px !important;
-    white-space: nowrap !important;
-  }
 }
 
 /* Extra small mobile stat items (between 480-600px) */
