@@ -55,41 +55,146 @@
 		<sidebar-nav></sidebar-nav>
 		<div class="wrapper-holder grey">
 			<section id="main">
-				<div class="skills_holder">
-					<div class="column">
-						<h2>Programming Skills:</h2>
-						<p>My programming language of choice is C# and my preferred game engine is Unity.
-							I also have extensive knowlede of .NET Framework, Unreal Engine, C++ as well as advanced knowledge of Python and Javascript</p>
-						<ul class="progress">
-							<li><span class="csharp">C#</span></li>
-							<li><span class="unityengine">Unity Engine</span></li>
-							<li><span class="dotnet">.NET Framework</span></li>
-							<li><span class="unreal">Unreal Engine</span></li>
-							<li><span class="cplusplus">C++</span></li>
-							<li><span class="python">Python</span></li>
-							<li><span class="javascript">Javascript</span></li>
-							<li><span class="sql">SQL</span></li>
-							<li><span class="java">Java</span></li>
-						</ul>
+				<div class="skills-container">
+					<div class="portfolio-header">
+						<h2 class="section-title">Skills</h2>
 					</div>
-					<div class="column column-add">
-						<h2>Development Skills:</h2>
-						<p>By adhering to clean code practices, applying design patterns, and following the SOLID principles, I ensure that the programs I build are robust and maintainable. </p>
-						<ul class="progress">
-							<li><span class="solid">Solid Principles</span></li>
-							<li><span class="versioncontrol">Version Control</span></li>
-							<li><span class="oopprinciples">Object Oriented Programming</span></li>
-							<li><span class="designpatterns">Design Patterns</span></li>
-							<li><span class="tdd">Test Driven Development</span></li>
-							<li><span class="agile">Agile Methodology</span></li>
-						</ul>
-					</div>
-				</div>
+					
+					<div class="skills-section active">
+						<div class="skills-subsection">
+								<h3 class="subsection-title">Programming Languages</h3>
+								<div class="skills-grid">
+									<div class="skill-card skill-expert">
+										<div class="skill-icon">
+											<img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/csharp/csharp-original.svg" alt="C#" />
+										</div>
+										<div class="skill-content">
+											<h3>C#</h3>
+											<span class="skill-level skill-advanced">Advanced</span>
+										</div>
+									</div>
+									<div class="skill-card skill-advanced">
+										<div class="skill-icon">
+											<img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/cplusplus/cplusplus-original.svg" alt="C++" />
+										</div>
+										<div class="skill-content">
+											<h3>C++</h3>
+											<span class="skill-level skill-advanced">Advanced</span>
+										</div>
+									</div>
+									<div class="skill-card skill-proficient">
+										<div class="skill-icon">
+											<img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg" alt="Python" />
+										</div>
+										<div class="skill-content">
+											<h3>Python</h3>
+											<span class="skill-level skill-intermediate">Intermediate</span>
+										</div>
+									</div>
+									<div class="skill-card skill-proficient">
+										<div class="skill-icon">
+											<img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg" alt="SQL" />
+										</div>
+										<div class="skill-content">
+											<h3>SQL</h3>
+											<span class="skill-level skill-intermediate">Intermediate</span>
+										</div>
+									</div>
+								</div>
+							</div>
 
-				<p>
+							<div class="skills-subsection">
+								<h3 class="subsection-title">Game Engines</h3>
+								<div class="skills-grid">
+									<div class="skill-card skill-expert">
+										<div class="skill-icon">
+											<img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/unity.svg" alt="Unity" class="white-logo" />
+										</div>
+										<div class="skill-content">
+											<h3>Unity Engine</h3>
+											<span class="skill-level skill-advanced">Advanced</span>
+										</div>
+									</div>
+									<div class="skill-card skill-advanced">
+										<div class="skill-icon">
+											<img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/unrealengine.svg" alt="Unreal Engine" class="white-logo" />
+										</div>
+										<div class="skill-content">
+											<h3>Unreal Engine</h3>
+											<span class="skill-level skill-advanced">Advanced</span>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="skills-subsection">
+								<h3 class="subsection-title">Frameworks & Tools</h3>
+								<div class="skills-grid">
+									<div class="skill-card skill-advanced">
+										<div class="skill-icon">
+											<img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/dotnet.svg" alt=".NET Core" class="white-logo" />
+										</div>
+										<div class="skill-content">
+											<h3>.NET Core</h3>
+											<span class="skill-level skill-advanced">Advanced</span>
+										</div>
+									</div>
+									<div class="skill-card skill-expert">
+										<div class="skill-icon">
+											<picture>
+												<source srcset="images/git.webp" type="image/webp">
+												<img src="images/git.png" alt="Git" />
+											</picture>
+										</div>
+										<div class="skill-content">
+											<h3>Git</h3>
+											<span class="skill-level skill-advanced">Advanced</span>
+										</div>
+									</div>
+									<div class="skill-card skill-proficient">
+										<div class="skill-icon">
+											<picture>
+												<source srcset="images/photon.webp" type="image/webp">
+												<img src="images/photon.png" alt="Photon" style="border-radius: 8px;" />
+											</picture>
+										</div>
+										<div class="skill-content">
+											<h3>Photon</h3>
+											<span class="skill-level skill-intermediate">Intermediate</span>
+										</div>
+									</div>
+									<div class="skill-card skill-proficient">
+										<div class="skill-icon">
+											<picture>
+												<source srcset="images/openxr.webp" type="image/webp">
+												<img src="images/openxr.png" alt="OpenXR" style="border-radius: 8px;" />
+											</picture>
+										</div>
+										<div class="skill-content">
+											<h3>OpenXR</h3>
+											<span class="skill-level skill-intermediate">Intermediate</span>
+										</div>
+									</div>
+									<div class="skill-card skill-proficient">
+										<div class="skill-icon">
+											<picture>
+												<source srcset="images/plasticscm.webp" type="image/webp">
+												<img src="images/plasticscm.png" alt="Plastic SCM" />
+											</picture>
+										</div>
+										<div class="skill-content">
+											<h3>Plastic SCM</h3>
+											<span class="skill-level skill-intermediate">Intermediate</span>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+				</div>
 			</section>
 		</div>
 	</div>
+
 
 </body>
 </html>
