@@ -424,7 +424,7 @@
 			// Store scroll position before opening fancybox
 			var scrollPosition = 0;
 
-			// Function to get visible fancybox items
+			// Function to get visible fancybox items (for filtering purposes)
 			function getVisibleFancyboxItems() {
 				var visibleItems = [];
 				$('.fancybox').each(function() {
@@ -437,6 +437,40 @@
 					}
 				});
 				return visibleItems;
+			}
+
+			// Function to get all fancybox items for navigation (including scrolled-out items, respecting filters)
+			function getAllFancyboxItemsForNavigation() {
+				var allItems = [];
+				var activeFilter = 'all';
+				
+				// Determine active filter
+				if ($('#filter-commercial').hasClass('active')) {
+					activeFilter = 'commercial';
+				} else if ($('#filter-hobby').hasClass('active')) {
+					activeFilter = 'hobby';
+				}
+				
+				$('.fancybox').each(function() {
+					var $card = $(this).closest('.arcade-card');
+					if ($card.length) {
+						var shouldInclude = false;
+						
+						// Include item if it matches the active filter
+						if (activeFilter === 'all') {
+							shouldInclude = true;
+						} else if (activeFilter === 'commercial' && $card.hasClass('commercial')) {
+							shouldInclude = true;
+						} else if (activeFilter === 'hobby' && !$card.hasClass('commercial')) {
+							shouldInclude = true;
+						}
+						
+						if (shouldInclude) {
+							allItems.push(this);
+						}
+					}
+				});
+				return allItems;
 			}
 
 			// Function to update Fancybox group based on visible items
@@ -474,8 +508,8 @@
 				},
 			afterShow: function() {
 				// Ensure navigation arrows respect the filtered group
-				var visibleItems = getVisibleFancyboxItems();
-				if (visibleItems.length > 1) {
+				var allItems = getAllFancyboxItemsForNavigation();
+				if (allItems.length > 1) {
 						// Force show navigation arrows
 						setTimeout(function() {
 							// Unbind Fancybox's default navigation handlers and replace with our filtered version
@@ -492,16 +526,16 @@
 								var isNext = $(this).hasClass('fancybox-next');
 								var direction = isNext ? 1 : -1;
 								
-								// Get all visible fancybox items (only filtered items)
-								var visibleItems = getVisibleFancyboxItems();
+								// Get all fancybox items (including scrolled-out ones, respecting filters)
+								var allItems = getAllFancyboxItemsForNavigation();
 								
-								if (visibleItems.length === 0) {
+								if (allItems.length === 0) {
 									return false;
 								}
 								
-								// Find current item in visible list
+								// Find current item in all items list
 								var currentElement = current.element[0];
-								var currentIndex = visibleItems.indexOf(currentElement);
+								var currentIndex = allItems.indexOf(currentElement);
 								
 								if (currentIndex === -1) {
 									currentIndex = 0;
@@ -510,19 +544,19 @@
 								// Calculate next/prev index with wrapping
 								var nextIndex = currentIndex + direction;
 								if (nextIndex < 0) {
-									nextIndex = visibleItems.length - 1;
-								} else if (nextIndex >= visibleItems.length) {
+									nextIndex = allItems.length - 1;
+								} else if (nextIndex >= allItems.length) {
 									nextIndex = 0;
 								}
 								
-								// Navigate to next/prev visible item
-								var nextItem = visibleItems[nextIndex];
+								// Navigate to next/prev item (even if scrolled out of view)
+								var nextItem = allItems[nextIndex];
 								var nextHref = $(nextItem).attr('href');
 								
 								// Update rel attributes to filter group before opening
 								$('.fancybox').attr('rel', 'gallery1'); // Reset all to gallery1 first
-								// Then set filtered-gallery only on visible items
-								visibleItems.forEach(function(item) {
+								// Then set filtered-gallery only on filtered items
+								allItems.forEach(function(item) {
 									$(item).attr('rel', 'filtered-gallery');
 								});
 								
@@ -577,29 +611,29 @@
 				var isNext = $(this).hasClass('fancybox-next');
 				var direction = isNext ? 1 : -1;
 				
-				var visibleItems = getVisibleFancyboxItems();
-				if (visibleItems.length === 0) {
+				var allItems = getAllFancyboxItemsForNavigation();
+				if (allItems.length === 0) {
 					return false;
 				}
 				
 				var currentElement = current.element[0];
-				var currentIndex = visibleItems.indexOf(currentElement);
+				var currentIndex = allItems.indexOf(currentElement);
 				if (currentIndex === -1) {
 					currentIndex = 0;
 				}
 				
 				var nextIndex = currentIndex + direction;
 				if (nextIndex < 0) {
-					nextIndex = visibleItems.length - 1;
-				} else if (nextIndex >= visibleItems.length) {
+					nextIndex = allItems.length - 1;
+				} else if (nextIndex >= allItems.length) {
 					nextIndex = 0;
 				}
 				
-				var nextItem = visibleItems[nextIndex];
+				var nextItem = allItems[nextIndex];
 				var nextHref = $(nextItem).attr('href');
 				
 				$('.fancybox').attr('rel', 'gallery1'); // Reset all to gallery1 first
-				visibleItems.forEach(function(item) {
+				allItems.forEach(function(item) {
 					$(item).attr('rel', 'filtered-gallery');
 				});
 				
