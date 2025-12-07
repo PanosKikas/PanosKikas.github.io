@@ -5185,6 +5185,12 @@ body.resizing .retro-sidebar {
     font-size: 13px !important;
   }
   
+  /* Fix Fancybox popup positioning - center between collapsed sidebar (60px) and window edge */
+  .fancybox-wrap {
+    left: calc(30px + 50vw) !important;
+    transform: translate(-50%, -50%) !important;
+  }
+  
 }
 
 /* Extra small mobile stat items (between 480-600px) */
