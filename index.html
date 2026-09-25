@@ -5,7 +5,41 @@
 <head>
 	<meta charset="utf-8">
 	<link rel="icon" type="image/svg+xml" href="favicon.svg">
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+	<link rel="apple-touch-icon" href="apple-touch-icon.png">
+	<link rel="canonical" href="https://panoskikas.github.io/">
+	<script type="application/ld+json">
+{
+		"@context": "https://schema.org",
+		"@type": "Person",
+		"name": "Panos Kikas",
+		"alternateName": "Panagiotis Kikas",
+		"url": "https://panoskikas.github.io/",
+		"image": "https://panoskikas.github.io/images/profile.png",
+		"jobTitle": "Systems Designer",
+		"worksFor": {
+			"@type": "Organization",
+			"name": "Rockstar Games",
+			"url": "https://www.rockstargames.com/"
+		},
+		"alumniOf": {
+			"@type": "CollegeOrUniversity",
+			"name": "University of Macedonia"
+		},
+		"knowsAbout": [
+			"Game Development",
+			"Systems Design",
+			"Unity",
+			"Unreal Engine",
+			"C#",
+			"C++"
+		],
+		"sameAs": [
+			"https://github.com/PanosKikas",
+			"https://www.linkedin.com/in/panos-kikas-36a2221b6/"
+		]
+	}
+	</script>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<meta name="format-detection" content="telephone=no">
 	<meta name="description" content="Panos Kikas - Systems Designer at Rockstar Games. Unity Engine specialist with 5+ years of experience in game development, C#/C++ programming, and systems design.">
@@ -17,39 +51,35 @@
 	<meta property="og:url" content="https://panoskikas.github.io/">
 	<meta property="og:title" content="Panos Kikas - Systems Designer">
 	<meta property="og:description" content="Systems Designer at Rockstar Games. Unity Engine specialist with 5+ years of experience in game development.">
-	<meta property="og:image" content="https://panoskikas.github.io/images/profile.png">
+	<meta property="og:image" content="https://panoskikas.github.io/images/og-image.png">
+	<meta property="og:image:width" content="1200">
+	<meta property="og:image:height" content="630">
+	<meta property="og:image:alt" content="Panos Kikas - portfolio styled as a game engine editor">
 	
 	<!-- Twitter -->
-	<meta property="twitter:card" content="summary_large_image">
-	<meta property="twitter:url" content="https://panoskikas.github.io/">
-	<meta property="twitter:title" content="Panos Kikas - Systems Designer">
-	<meta property="twitter:description" content="Systems Designer at Rockstar Games. Unity Engine specialist with 5+ years of experience in game development.">
-	<meta property="twitter:image" content="https://panoskikas.github.io/images/profile.png">
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:url" content="https://panoskikas.github.io/">
+	<meta name="twitter:title" content="Panos Kikas - Systems Designer">
+	<meta name="twitter:description" content="Systems Designer at Rockstar Games. Unity Engine specialist with 5+ years of experience in game development.">
+	<meta name="twitter:image" content="https://panoskikas.github.io/images/og-image.png">
 	
 	<title>Panos Kikas - Home</title>
-	<link rel="stylesheet" href="js/fancybox/jquery.fancybox.css" type="text/css" media="screen" />
-	<link rel="stylesheet" href="css/all.css" />
-	<link rel="stylesheet" href="css/screen.css" />
-	<link rel="stylesheet" href="assets/css/style.css" />
+	<link rel="stylesheet" href="css/all.css?v=20260926" />
+	<link rel="stylesheet" href="css/screen.css?v=20260926" />
+	<link rel="stylesheet" href="assets/css/style.css?v=20260926" />
+	<link rel="stylesheet" href="assets/css/editor-theme.css?v=20260926" />
 	<!-- DNS prefetch for external resources -->
 	<link rel="dns-prefetch" href="https://fonts.googleapis.com">
 	<link rel="dns-prefetch" href="https://fonts.gstatic.com">
-	<link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
 	
 	<!-- Preconnect for critical resources -->
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
-	<script src="js/isotope.pkgd.min.js"></script>
-	<script src="js/cells-by-row.js"></script>
-	<script type="text/javascript" src="js/fancybox/jquery.fancybox.pack.js"></script>
-	<script type="text/javascript" src="js/main.js"></script>
-	<script type="text/javascript" src="js/sidebar-component.js"></script>
-	<script type="text/javascript" src="js/index.js"></script>
-	<!--[if lt IE 9]>
-		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-	<![endif]-->
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+	<script type="text/javascript" src="js/sidebar-component.js?v=20260926"></script>
+	<script defer src="js/site.js?v=20260926"></script>
+	<script type="text/javascript" src="js/index.js?v=20260926"></script>
+	<script type="text/javascript" src="js/editor-scene.js?v=20260926"></script>
 </head>
 <body>
 	<div id="wrapper">
@@ -66,13 +96,28 @@
 						<span class="viewport-tab">Game</span>
 					</div>
 					<div class="toolbar-center">
-						<button class="play-btn active" title="Playing" disabled>▶</button>
-						<button class="pause-btn" title="Pause">⏸</button>
-						<button class="step-btn" title="Step">⏭</button>
+						<button class="play-btn active" title="Playing" aria-label="Play" disabled><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M4 2.5v11l9-5.5z"/></svg></button>
+						<button class="pause-btn" title="Pause" aria-label="Pause"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><rect x="4" y="3" width="2.6" height="10"/><rect x="9.4" y="3" width="2.6" height="10"/></svg></button>
+						<button class="step-btn" title="Step" aria-label="Step"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M3 3v10l7-5z"/><rect x="11" y="3" width="2" height="10"/></svg></button>
 					</div>
 					<div class="toolbar-right">
 						<span class="gizmo-toggle active">2D</span>
-						<span class="gizmo-toggle">3D</span>
+						<span class="gizmo-toggle" title="3D view: drag the scene to orbit">3D</span>
+						<button class="shortcuts-btn" type="button" aria-label="Keyboard shortcuts" aria-expanded="false" aria-controls="shortcutsPanel" title="Keyboard shortcuts (?)">
+							<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><rect x="1.5" y="4" width="13" height="8" rx="1.5"/><path d="M4 6.5h.01M6.5 6.5h.01M9 6.5h.01M11.5 6.5h.01M5 9.5h6"/></svg>
+						</button>
+						<div class="shortcuts-panel" id="shortcutsPanel" role="dialog" aria-label="Keyboard shortcuts" hidden>
+							<div class="shortcuts-title">Shortcuts</div>
+							<dl>
+								<dt><kbd>P</kbd></dt><dd>Play / pause</dd>
+								<dt><kbd>N</kbd></dt><dd>Step one frame (paused)</dd>
+								<dt><kbd>G</kbd></dt><dd>Toggle Scene / Game view</dd>
+								<dt><kbd>2</kbd> <kbd>3</kbd></dt><dd>2D / 3D view</dd>
+								<dt><kbd>F</kbd></dt><dd>Reset selected object</dd>
+								<dt><kbd>/</kbd></dt><dd>Search</dd>
+								<dt><kbd>?</kbd></dt><dd>Show this panel</dd>
+							</dl>
+						</div>
 					</div>
 				</div>
 				
@@ -91,7 +136,13 @@
 			
 			<div class="hero-background">
 				<div class="hero-image-overlay"></div>
-				<div class="particles"></div>
+				<!-- Scene gizmos, hidden in Game view like the editor -->
+				<div class="scene-gizmos">
+					<svg class="scene-gizmo gizmo-camera" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><title>Main Camera</title><rect x="3" y="10" width="17" height="13" rx="2"/><path d="M20 14.5 28 10v13l-8-4.5"/><circle cx="8" cy="7" r="3"/><circle cx="15" cy="7" r="3"/><circle class="camera-rec" cx="7" cy="14" r="1.4" fill="currentColor" stroke="none"/></svg>
+					<div class="light-beams" aria-hidden="true"></div>
+					<svg class="scene-gizmo gizmo-light" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><title>Directional Light</title><circle cx="16" cy="16" r="5.5"/><path class="light-rays" d="M16 3v4M16 25v4M3 16h4M25 16h4M6.8 6.8l2.8 2.8M22.4 22.4l2.8 2.8M6.8 25.2l2.8-2.8M22.4 9.6l2.8-2.8"/><path d="M16 21.5 16 31" stroke-dasharray="1.5 2.5" opacity=".6"/></svg>
+				</div>
+				<div class="orbit-hint" aria-hidden="true">Drag to rotate · Double-click to reset</div>
 				<!-- 3D Coordinate Axis Indicator -->
 				<svg class="coordinate-axis" width="90" height="90" viewBox="0 0 90 90" xmlns="http://www.w3.org/2000/svg">
 					<!-- X-axis (Red) - pointing right -->
@@ -115,6 +166,13 @@
 			</div>
 			<div class="hero-content">
 				<div class="hero-text">
+					<span class="sel-handle" data-corner="nw" aria-hidden="true"></span>
+					<span class="sel-handle" data-corner="ne" aria-hidden="true"></span>
+					<span class="sel-handle" data-corner="sw" aria-hidden="true"></span>
+					<span class="sel-handle" data-corner="se" aria-hidden="true"></span>
+					<span class="sel-readout" aria-hidden="true"></span>
+					<div class="hero-object">
+					<div class="panel-titlebar" aria-hidden="true"><span class="panel-title">Player Profile</span></div>
 					<h1 class="hero-title">
 						<span class="title-line">Hey, I'm</span>
 						<span class="title-line highlight">Panos Kikas</span>
@@ -123,11 +181,15 @@
 						<span>I specialize in</span>
 					</div>
 					<div class="hero-subtitle">
-						<span class="typing-text">Systems Designer</span>
-						<span class="cursor">|</span>
+						<!-- Inspector-style enum field; js/editor-scene.js cycles the value -->
+						<span class="focus-field" aria-hidden="true">
+							<span class="focus-track"><span class="focus-value">Systems Design</span></span>
+							<svg class="focus-chevron" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m3 4.5 3 3 3-3"/></svg>
+						</span>
+						<span class="visually-hidden">Systems design, Unity Engine, Unreal Engine and SOLID principles</span>
 					</div>
 					<p class="hero-description">
-						I'm currently working as a Systems Designer at <strong>Rockstar Games</strong>
+						I'm a game developer working as a Systems Designer at <strong>Rockstar Games</strong>
 					</p>
 					<div class="hero-stats">
 						<div class="stat-item">
@@ -139,7 +201,7 @@
 							<div class="stat-label">Primary Engine</div>
 						</div>
 						<div class="stat-item">
-							<div class="stat-number">C# /C++</div>
+							<div class="stat-number">C# / C++</div>
 							<div class="stat-label">Languages</div>
 						</div>
 					</div>
@@ -147,16 +209,17 @@
 						<a href="portfolio.html" class="btn-primary">View My Games</a>
 						<a href="contact.html" class="btn-secondary">Get in Touch</a>
 					</div>
+					</div>
 				</div>
 			</div>
-			<div class="scroll-indicator">
+			<a href="#career" class="scroll-indicator" aria-label="Scroll to experience">
 				<span class="scroll-text">Scroll</span>
 				<div class="scroll-arrow">
 					<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 						<path d="M7 10L12 15L17 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
 					</svg>
 				</div>
-			</div>
+			</a>
 		</section>
 
 		<!-- Career Journey Section -->
@@ -170,19 +233,21 @@
 					<div class="career-item active">
 						<div class="career-marker"></div>
 						<div class="career-content">
-							<img src="images/rockstargameslogo.svg" alt="Rockstar Games" class="career-company-icon" />
+							<img loading="lazy" decoding="async" src="images/rockstargameslogo.svg" alt="Rockstar Games" class="career-company-icon" />
 							<div class="career-text">
 								<div class="career-date">Sep 2024 - Present</div>
 								<h3 class="career-title">Systems Designer</h3>
 								<div class="career-company">Rockstar Games</div>
-								<p class="career-description"></p>
 							</div>
 						</div>
 					</div>
 					<div class="career-item">
 						<div class="career-marker"></div>
 						<div class="career-content">
-							<img src="images/bitwisegrouplogo.png" alt="Bitwise Group" class="career-company-icon" />
+							<picture>
+								<source srcset="images/bitwisegrouplogo.webp" type="image/webp">
+								<img loading="lazy" decoding="async" src="images/bitwisegrouplogo.png" alt="Bitwise Group" class="career-company-icon" />
+							</picture>
 							<div class="career-text">
 								<div class="career-date">Mar 2024 - Aug 2024</div>
 								<h3 class="career-title">Software Engineer</h3>
@@ -194,7 +259,7 @@
 					<div class="career-item">
 						<div class="career-marker"></div>
 						<div class="career-content">
-							<img src="images/legendaryplay.svg" alt="Legendary Play" class="career-company-icon" />
+							<img loading="lazy" decoding="async" src="images/legendaryplay.svg" alt="Legendary Play" class="career-company-icon" />
 							<div class="career-text">
 								<div class="career-date">Oct 2022 - Feb 2024</div>
 								<h3 class="career-title">Mid-Level Unity Developer</h3>
@@ -206,7 +271,7 @@
 					<div class="career-item">
 						<div class="career-marker"></div>
 						<div class="career-content">
-							<img src="images/luminousxrlogo.jpg" alt="Luminous Group" class="career-company-icon" />
+							<img loading="lazy" decoding="async" src="images/luminousxrlogo.jpg" alt="Luminous Group" class="career-company-icon" />
 							<div class="career-text">
 								<div class="career-date">Apr 2021 - Jul 2022</div>
 								<h3 class="career-title">Unity Developer</h3>
@@ -218,7 +283,7 @@
 					<div class="career-item">
 						<div class="career-marker"></div>
 						<div class="career-content">
-							<img src="images/trapticslogo.jpg" alt="Traptics" class="career-company-icon" />
+							<img loading="lazy" decoding="async" src="images/trapticslogo.jpg" alt="Traptics" class="career-company-icon" />
 							<div class="career-text">
 								<div class="career-date">Oct 2020 - Feb 2021</div>
 								<h3 class="career-title">Junior Game Developer</h3>
@@ -230,9 +295,12 @@
 					<div class="career-item">
 						<div class="career-marker"></div>
 						<div class="career-content">
-							<img src="images/unimacedionalogo.png" alt="University" class="career-company-icon" />
+							<picture>
+								<source srcset="images/unimacedionalogo.webp" type="image/webp">
+								<img loading="lazy" decoding="async" src="images/unimacedionalogo.png" alt="University" class="career-company-icon" />
+							</picture>
 							<div class="career-text">
-								<div class="career-date">Sept 2019</div>
+								<div class="career-date">Sep 2019</div>
 								<h3 class="career-title">Bachelor's Degree in Computer Science</h3>
 								<div class="career-company">University of Macedonia</div>
 								<p class="career-description">Graduated from the University of Macedonia with a Computer Science Degree</p>

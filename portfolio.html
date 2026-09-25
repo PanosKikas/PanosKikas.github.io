@@ -7,8 +7,10 @@
 <head>
 	<meta charset="utf-8">
 	<link rel="icon" type="image/svg+xml" href="favicon.svg">
+	<link rel="apple-touch-icon" href="apple-touch-icon.png">
+	<link rel="canonical" href="https://panoskikas.github.io/portfolio.html">
 	<meta name="viewport"
-		content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+		content="width=device-width, initial-scale=1">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<meta name="format-detection" content="telephone=no">
 	<meta name="description" content="Portfolio of Panos Kikas - Game development projects including Esports Heroes, XR Training applications, Unity games, and more.">
@@ -19,40 +21,35 @@
 	<meta property="og:url" content="https://panoskikas.github.io/portfolio.html">
 	<meta property="og:title" content="Panos Kikas - Portfolio">
 	<meta property="og:description" content="Game development portfolio featuring Unity projects, mobile games, and XR applications.">
-	<meta property="og:image" content="https://panoskikas.github.io/images/profile.png">
+	<meta property="og:image" content="https://panoskikas.github.io/images/og-image.png">
+	<meta property="og:image:width" content="1200">
+	<meta property="og:image:height" content="630">
+	<meta property="og:image:alt" content="Panos Kikas - portfolio styled as a game engine editor">
 	
 	<!-- Twitter -->
-	<meta property="twitter:card" content="summary_large_image">
-	<meta property="twitter:url" content="https://panoskikas.github.io/portfolio.html">
-	<meta property="twitter:title" content="Panos Kikas - Portfolio">
-	<meta property="twitter:description" content="Game development portfolio featuring Unity projects, mobile games, and XR applications.">
-	<meta property="twitter:image" content="https://panoskikas.github.io/images/profile.png">
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:url" content="https://panoskikas.github.io/portfolio.html">
+	<meta name="twitter:title" content="Panos Kikas - Portfolio">
+	<meta name="twitter:description" content="Game development portfolio featuring Unity projects, mobile games, and XR applications.">
+	<meta name="twitter:image" content="https://panoskikas.github.io/images/og-image.png">
 	
 	<title>Panos Kikas - Portfolio</title>
-	<link rel="stylesheet" href="js/fancybox/jquery.fancybox.css" type="text/css" media="screen" />
-	<link rel="stylesheet" href="css/all.css" />
-	<link rel="stylesheet" href="css/screen.css" />
-	<link rel="stylesheet" href="assets/css/style.css" />
+	<link rel="stylesheet" href="css/all.css?v=20260926" />
+	<link rel="stylesheet" href="css/screen.css?v=20260926" />
+	<link rel="stylesheet" href="assets/css/style.css?v=20260926" />
+	<link rel="stylesheet" href="assets/css/editor-theme.css?v=20260926" />
 	<!-- DNS prefetch for external resources -->
 	<link rel="dns-prefetch" href="https://fonts.googleapis.com">
 	<link rel="dns-prefetch" href="https://fonts.gstatic.com">
-	<link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
 	
 	<!-- Preconnect for critical resources -->
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
 		rel="stylesheet">
-	<!--[if lt IE 9]>
-		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-	<![endif]-->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"
-		integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
-	<script src="js/isotope.pkgd.min.js" type="text/javascript"></script>
-	<script src="js/cells-by-row.js" type="text/javascript"></script>
-	<script type="text/javascript" src="js/fancybox/jquery.fancybox.pack.js"></script>
-	<script type="text/javascript" src="js/main.js"></script>
-	<script type="text/javascript" src="js/sidebar-component.js"></script>
+	<script type="text/javascript" src="js/sidebar-component.js?v=20260926"></script>
+	<script defer src="js/site.js?v=20260926"></script>
+	<script defer src="js/project-dialog.js?v=20260926"></script>
 </head>
 
 <body>
@@ -69,21 +66,24 @@
 
 				<div class="arcade-filters">
 					<button class="filter-btn active" id="filter-all">All</button>
-					<button class="filter-btn" id="filter-commercial">Profiessional</button>
+					<button class="filter-btn" id="filter-commercial">Professional</button>
 					<button class="filter-btn" id="filter-hobby">Personal</button>
 				</div>
 
 				<div class="arcade-grid" id="container">
 					<!-- Esports Heroes -->
 					<div class="arcade-card commercial" data-filter="*">
-						<a href="#portfolio_8" class="fancybox arcade-card-link" rel="gallery1"></a>
+						<a href="#portfolio_8" class="arcade-card-link" aria-label="Open project details"></a>
 						<div class="arcade-card-inner">
 							<div class="arcade-card-screen">
-								<img src="images/ESHPreview.png" alt="Esports Heroes" />
+								<picture>
+									<source srcset="images/ESHPreview.webp" type="image/webp">
+									<img src="images/ESHPreview.png" alt="Esports Heroes" />
+								</picture>
 								<div class="scanlines"></div>
 							</div>
 							<div class="arcade-card-info">
-								<h3 class="arcade-card-title">ESPORTS HEROES</h3>
+								<h3 class="arcade-card-title">Esports Heroes</h3>
 								<p class="arcade-card-subtitle">Multiplayer Idle RPG</p>
 								<div class="arcade-card-tags">
 									<span class="arcade-tag">Unity</span>
@@ -98,7 +98,7 @@
 
 					<!-- XR Training -->
 					<div class="arcade-card commercial" data-filter="*">
-						<a href="#portfolio_6" class="fancybox arcade-card-link" rel="gallery1"></a>
+						<a href="#portfolio_6" class="arcade-card-link" aria-label="Open project details"></a>
 						<div class="arcade-card-inner">
 							<div class="arcade-card-screen">
 								<picture>
@@ -108,7 +108,7 @@
 								<div class="scanlines"></div>
 							</div>
 							<div class="arcade-card-info">
-								<h3 class="arcade-card-title">XR TRAINING</h3>
+								<h3 class="arcade-card-title">XR Training</h3>
 								<p class="arcade-card-subtitle">Educational</p>
 								<div class="arcade-card-tags">
 									<span class="arcade-tag">Unity</span>
@@ -123,7 +123,7 @@
 
 					<!-- Dungeon Mobile -->
 					<div class="arcade-card" data-filter="*">
-						<a href="#portfolio_1" class="fancybox arcade-card-link" rel="gallery1"></a>
+						<a href="#portfolio_1" class="arcade-card-link" aria-label="Open project details"></a>
 						<div class="arcade-card-inner">
 							<div class="arcade-card-screen">
 								<picture>
@@ -133,7 +133,7 @@
 								<div class="scanlines"></div>
 							</div>
 							<div class="arcade-card-info">
-								<h3 class="arcade-card-title">DUNGEON MOBILE</h3>
+								<h3 class="arcade-card-title">Dungeon Mobile</h3>
 								<p class="arcade-card-subtitle">Roguelite</p>
 								<div class="arcade-card-tags">
 									<span class="arcade-tag">Unity</span>
@@ -146,14 +146,17 @@
 
 					<!-- TriviYES! -->
 					<div class="arcade-card" data-filter="*">
-						<a href="#portfolio_2" class="fancybox arcade-card-link" rel="gallery1"></a>
+						<a href="#portfolio_2" class="arcade-card-link" aria-label="Open project details"></a>
 						<div class="arcade-card-inner">
 							<div class="arcade-card-screen">
-								<img src="images/triviyes.png" alt="TriviYES!" />
+								<picture>
+									<source srcset="images/triviyes.webp" type="image/webp">
+									<img loading="lazy" decoding="async" src="images/triviyes.png" alt="TriviYES!" />
+								</picture>
 								<div class="scanlines"></div>
 							</div>
 							<div class="arcade-card-info">
-								<h3 class="arcade-card-title">TRIVIYES!</h3>
+								<h3 class="arcade-card-title">TriviYES!</h3>
 								<p class="arcade-card-subtitle">Trivia</p>
 								<div class="arcade-card-tags">
 									<span class="arcade-tag">Unity</span>
@@ -168,17 +171,17 @@
 
 					<!-- Monster's Lair -->
 					<div class="arcade-card" data-filter="*">
-						<a href="#portfolio_4" class="fancybox arcade-card-link" rel="gallery1"></a>
+						<a href="#portfolio_4" class="arcade-card-link" aria-label="Open project details"></a>
 						<div class="arcade-card-inner">
 							<div class="arcade-card-screen">
 								<picture>
 									<source srcset="images/monsterlair.webp" type="image/webp">
-									<img src="images/monsterlair.png" alt="Monster's Lair" />
+									<img loading="lazy" decoding="async" src="images/monsterlair.png" alt="Monster's Lair" />
 								</picture>
 								<div class="scanlines"></div>
 							</div>
 							<div class="arcade-card-info">
-								<h3 class="arcade-card-title">MONSTER'S LAIR</h3>
+								<h3 class="arcade-card-title">Monster's Lair</h3>
 								<p class="arcade-card-subtitle">Tower Defense</p>
 								<div class="arcade-card-tags">
 									<span class="arcade-tag">Unity</span>
@@ -190,14 +193,14 @@
 
 					<!-- Ludo Mobile -->
 					<div class="arcade-card commercial" data-filter="*">
-						<a href="#portfolio_5" class="fancybox arcade-card-link" rel="gallery1"></a>
+						<a href="#portfolio_5" class="arcade-card-link" aria-label="Open project details"></a>
 						<div class="arcade-card-inner">
 							<div class="arcade-card-screen">
-								<img src="images/Ludo_Preview.png" alt="Ludo Mobile" />
+								<img loading="lazy" decoding="async" src="images/Ludo_Preview.png" alt="Ludo Mobile" />
 								<div class="scanlines"></div>
 							</div>
 							<div class="arcade-card-info">
-								<h3 class="arcade-card-title">LUDO MOBILE</h3>
+								<h3 class="arcade-card-title">Ludo Mobile</h3>
 								<p class="arcade-card-subtitle">Casual</p>
 								<div class="arcade-card-tags">
 									<span class="arcade-tag">Unity</span>
@@ -209,14 +212,17 @@
 
 					<!-- Atari RL -->
 					<div class="arcade-card" data-filter="*">
-						<a href="#portfolio_3" class="fancybox arcade-card-link" rel="gallery1"></a>
+						<a href="#portfolio_3" class="arcade-card-link" aria-label="Open project details"></a>
 						<div class="arcade-card-inner">
 							<div class="arcade-card-screen">
-								<img src="images/dissertationatari.png" alt="Atari RL" />
+								<picture>
+									<source srcset="images/dissertationatari.webp" type="image/webp">
+									<img loading="lazy" decoding="async" src="images/dissertationatari.png" alt="Atari RL" />
+								</picture>
 								<div class="scanlines"></div>
 							</div>
 							<div class="arcade-card-info">
-								<h3 class="arcade-card-title">ATARI RL</h3>
+								<h3 class="arcade-card-title">Atari RL</h3>
 								<p class="arcade-card-subtitle">Machine Learning</p>
 								<div class="arcade-card-tags">
 									<span class="arcade-tag">Python</span>
@@ -238,7 +244,7 @@
 		<div id="portfolio_1" class="popup_portfolio">
 			<picture>
 				<source srcset="images/dungeonmobileingame.webp" type="image/webp">
-				<img src="images/dungeonmobileingame.png" alt="" />
+				<img width="1280" height="816" loading="lazy" decoding="async" src="images/dungeonmobileingame.png" alt="" />
 			</picture>
 			<h3>Dungeon Mobile</h3>
 			<time datetime="2020-04-03">Under Development</time>
@@ -262,7 +268,7 @@
 		<div id="portfolio_2" class="popup_portfolio">
 			<picture>
 				<source srcset="images/triviyesingame.webp" type="image/webp">
-				<img src="images/triviyesingame.png" alt="" />
+				<img width="1280" height="581" loading="lazy" decoding="async" src="images/triviyesingame.png" alt="" />
 			</picture>
 			<h3>TriviYES!</h3>
 			<time datetime="2020-09-20">Made: 20/09/2020</time>
@@ -285,7 +291,7 @@
 		<div id="portfolio_3" class="popup_portfolio">
 			<picture>
 				<source srcset="images/atariimage.webp" type="image/webp">
-				<img src="images/atariimage.png" alt="" />
+				<img width="1280" height="744" loading="lazy" decoding="async" src="images/atariimage.png" alt="" />
 			</picture>
 			<h3>Playing Atari Games with Reinforcement Learning</h3>
 			<time datetime="2019-02-07">Made: 02/07/19</time>
@@ -309,7 +315,7 @@
 		<div id="portfolio_4" class="popup_portfolio">
 			<picture>
 				<source srcset="images/Monsterlairingame.webp" type="image/webp">
-				<img src="images/Monsterlairingame.png" alt="" />
+				<img width="1280" height="719" loading="lazy" decoding="async" src="images/Monsterlairingame.png" alt="" />
 			</picture>
 			<h3>Monster's Lair</h3>
 			<time datetime="2016-06-15">Made: 15/06/2016</time>
@@ -333,7 +339,7 @@
 		<div id="portfolio_5" class="popup_portfolio">
 			<picture>
 				<source srcset="images/Ludo_main.webp" type="image/webp">
-				<img src="images/Ludo_main.png" alt="" />
+				<img width="1280" height="768" loading="lazy" decoding="async" src="images/Ludo_main.png" alt="" />
 			</picture>
 			<h3>Ludo Mobile Clone</h3>
 			<time datetime="2021-11-15">Made: 15/11/2021</time>
@@ -360,7 +366,7 @@
 		<div id="portfolio_6" class="popup_portfolio">
 			<picture>
 				<source srcset="images/Luminous_main.webp" type="image/webp">
-				<img src="images/Luminous_main.jpg" alt="" />
+				<img width="1280" height="720" loading="lazy" decoding="async" src="images/Luminous_main.jpg" alt="" />
 			</picture>
 			<h3>XR Training Applications</h3>
 			<time datetime="2021-11-15">Made: 01/04/2020 - 01/07/2021</time>
@@ -382,7 +388,7 @@
 		<div id="portfolio_8" class="popup_portfolio">
 			<picture>
 				<source srcset="images/ESHMain.webp" type="image/webp">
-				<img src="images/ESHMain.png" alt="" />
+				<img width="1280" height="720" loading="lazy" decoding="async" src="images/ESHMain.png" alt="" />
 			</picture>
 			<h3>Esports Heroes</h3>
 			<time datetime="2021-11-15">From: 01/10/2022 - 01/02/2024</time>
@@ -412,242 +418,6 @@
 	</div>
 
 	<script>
-		// Initialize fancybox with filter-aware navigation
-		$(document).ready(function () {
-			// Store scroll position before opening fancybox
-			var scrollPosition = 0;
-
-			// Function to get visible fancybox items (for filtering purposes)
-			function getVisibleFancyboxItems() {
-				var visibleItems = [];
-				$('.fancybox').each(function() {
-					var $card = $(this).closest('.arcade-card');
-					if ($card.length && 
-						$card.css('display') !== 'none' && 
-						$card.css('visibility') !== 'hidden' &&
-						parseFloat($card.css('opacity')) > 0) {
-						visibleItems.push(this);
-					}
-				});
-				return visibleItems;
-			}
-
-			// Function to get all fancybox items for navigation (including scrolled-out items, respecting filters)
-			function getAllFancyboxItemsForNavigation() {
-				var allItems = [];
-				var activeFilter = 'all';
-				
-				// Determine active filter
-				if ($('#filter-commercial').hasClass('active')) {
-					activeFilter = 'commercial';
-				} else if ($('#filter-hobby').hasClass('active')) {
-					activeFilter = 'hobby';
-				}
-				
-				$('.fancybox').each(function() {
-					var $card = $(this).closest('.arcade-card');
-					if ($card.length) {
-						var shouldInclude = false;
-						
-						// Include item if it matches the active filter
-						if (activeFilter === 'all') {
-							shouldInclude = true;
-						} else if (activeFilter === 'commercial' && $card.hasClass('commercial')) {
-							shouldInclude = true;
-						} else if (activeFilter === 'hobby' && !$card.hasClass('commercial')) {
-							shouldInclude = true;
-						}
-						
-						if (shouldInclude) {
-							allItems.push(this);
-						}
-					}
-				});
-				return allItems;
-			}
-
-			// Function to update Fancybox group based on visible items
-			function updateFancyboxGroup() {
-				// Always keep all items in the same group so Fancybox shows arrows
-				// We'll handle filtering in the navigation handler
-				$('.fancybox').attr('rel', 'gallery1');
-				return getVisibleFancyboxItems();
-			}
-
-			// Initialize - ensure all items are in the same group
-			// Keep all items in gallery1 so Fancybox can always open them
-			$('.fancybox').attr('rel', 'gallery1');
-
-			$('.fancybox').fancybox({
-				helpers: {
-					overlay: {
-						locked: false
-					}
-				},
-				beforeShow: function () {
-					// Save current scroll position
-					scrollPosition = $(window).scrollTop();
-					// Prevent browser from scrolling to anchor
-					if (window.history && window.history.pushState) {
-						window.history.pushState('', document.title, window.location.pathname);
-					}
-					// Prevent body scrolling while modal is open
-					$('body').css({
-						'overflow': 'hidden',
-						'position': 'fixed',
-						'width': '100%',
-						'top': '-' + scrollPosition + 'px'
-					});
-				},
-			afterShow: function() {
-				// Ensure navigation arrows respect the filtered group
-				var allItems = getAllFancyboxItemsForNavigation();
-				if (allItems.length > 1) {
-						// Force show navigation arrows
-						setTimeout(function() {
-							// Unbind Fancybox's default navigation handlers and replace with our filtered version
-							$('.fancybox-nav').off('click.fb').on('click.custom-nav', function(e) {
-								var current = $.fancybox.current;
-								if (!current) {
-									return true;
-								}
-								
-								e.preventDefault();
-								e.stopPropagation();
-								e.stopImmediatePropagation();
-								
-								var isNext = $(this).hasClass('fancybox-next');
-								var direction = isNext ? 1 : -1;
-								
-								// Get all fancybox items (including scrolled-out ones, respecting filters)
-								var allItems = getAllFancyboxItemsForNavigation();
-								
-								if (allItems.length === 0) {
-									return false;
-								}
-								
-								// Find current item in all items list
-								var currentElement = current.element[0];
-								var currentIndex = allItems.indexOf(currentElement);
-								
-								if (currentIndex === -1) {
-									currentIndex = 0;
-								}
-								
-								// Calculate next/prev index with wrapping
-								var nextIndex = currentIndex + direction;
-								if (nextIndex < 0) {
-									nextIndex = allItems.length - 1;
-								} else if (nextIndex >= allItems.length) {
-									nextIndex = 0;
-								}
-								
-								// Navigate to next/prev item (even if scrolled out of view)
-								var nextItem = allItems[nextIndex];
-								var nextHref = $(nextItem).attr('href');
-								
-								// Update rel attributes to filter group before opening
-								$('.fancybox').attr('rel', 'gallery1'); // Reset all to gallery1 first
-								// Then set filtered-gallery only on filtered items
-								allItems.forEach(function(item) {
-									$(item).attr('rel', 'filtered-gallery');
-								});
-								
-								// Close current and open next visible item
-								$.fancybox.close();
-								
-								setTimeout(function() {
-									var $targetItem = $('.fancybox[href="' + nextHref + '"]');
-									if ($targetItem.length) {
-										$targetItem.trigger('click');
-									}
-								}, 150);
-								
-								return false;
-							});
-						}, 100);
-					}
-				},
-				afterClose: function () {
-					// Re-enable body scrolling
-					$('body').css({
-						'overflow': '',
-						'position': '',
-						'width': '',
-						'top': ''
-					});
-				},
-				// Allow scrolling inside modal
-				autoCenter: true,
-				fitToView: true,
-				scrolling: 'auto',
-				// Don't change URL hash
-				hash: false
-			});
-
-			// Also override navigation handlers that might be created dynamically
-			// This is a fallback in case afterShow doesn't catch them
-			$(document).on('click.custom-nav-fallback', '.fancybox-nav', function(e) {
-				// Check if custom handler already processed this
-				if ($(this).data('custom-nav-bound')) {
-					return;
-				}
-				
-				var current = $.fancybox.current;
-				if (!current) {
-					return true;
-				}
-				
-				e.preventDefault();
-				e.stopPropagation();
-				
-				var isNext = $(this).hasClass('fancybox-next');
-				var direction = isNext ? 1 : -1;
-				
-				var allItems = getAllFancyboxItemsForNavigation();
-				if (allItems.length === 0) {
-					return false;
-				}
-				
-				var currentElement = current.element[0];
-				var currentIndex = allItems.indexOf(currentElement);
-				if (currentIndex === -1) {
-					currentIndex = 0;
-				}
-				
-				var nextIndex = currentIndex + direction;
-				if (nextIndex < 0) {
-					nextIndex = allItems.length - 1;
-				} else if (nextIndex >= allItems.length) {
-					nextIndex = 0;
-				}
-				
-				var nextItem = allItems[nextIndex];
-				var nextHref = $(nextItem).attr('href');
-				
-				$('.fancybox').attr('rel', 'gallery1'); // Reset all to gallery1 first
-				allItems.forEach(function(item) {
-					$(item).attr('rel', 'filtered-gallery');
-				});
-				
-				$.fancybox.close();
-				setTimeout(function() {
-					var $targetItem = $('.fancybox[href="' + nextHref + '"]');
-					if ($targetItem.length) {
-						$targetItem.trigger('click');
-					}
-				}, 150);
-				
-				return false;
-			});
-
-			// Update group when filter changes (not needed since we keep all in same group)
-			// But we can still call this to track visibility if needed
-			$('#filter-all, #filter-commercial, #filter-hobby').on('click', function() {
-				// Group remains the same, navigation handler will filter
-			});
-		});
-
 		// Scroll animations for portfolio cards
 		const observerOptions = {
 			threshold: 0.1,
@@ -658,17 +428,17 @@
 			entries.forEach((entry, index) => {
 				if (entry.isIntersecting) {
 					setTimeout(() => {
-						entry.target.style.opacity = '1';
-						entry.target.style.transform = 'translateY(0) scale(1)';
-					}, index * 100);
+						entry.target.classList.remove('reveal-pending');
+					}, index * 70);
+					portfolioObserver.unobserve(entry.target);
 				}
 			});
 		}, observerOptions);
 
+		// Entrance is a CSS class (editor-theme.css), not inline styles, so it
+		// doesn't override the cards' hover transform afterwards
 		document.querySelectorAll('.arcade-card').forEach(card => {
-			card.style.opacity = '0';
-			card.style.transform = 'translateY(30px) scale(0.95)';
-			card.style.transition = 'all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+			card.classList.add('reveal-pending');
 			portfolioObserver.observe(card);
 		});
 

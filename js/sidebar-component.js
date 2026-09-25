@@ -68,9 +68,9 @@ class SidebarNav extends HTMLElement {
         <div class="sidebar-header">
           <div class="sidebar-initials">PK</div>
           <div class="retro-screen">
-            <h1 class="sidebar-logo">PANOS KIKAS</h1>
+            <h1 class="sidebar-logo">Panos Kikas</h1>
             <div class="retro-divider"></div>
-            <h2 class="sidebar-slogan">GAME DEVELOPER</h2>
+            <h2 class="sidebar-slogan">Game Developer</h2>
           </div>
           <button class="sidebar-collapse-btn" id="sidebarCollapseBtn" title="Collapse Sidebar">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -82,6 +82,11 @@ class SidebarNav extends HTMLElement {
           ${menuHTML}
         </ul>
         <div class="sidebar-footer">
+          <button type="button" class="sidebar-quickopen" data-open-palette aria-label="Search (press /)">
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="7" cy="7" r="4.5"/><path d="M10.5 10.5 14 14"/></svg>
+            <span>Search</span>
+            <kbd>/</kbd>
+          </button>
           <div class="sidebar-contact">
             <a href="mailto:panoskikas@protonmail.com" class="sidebar-link sidebar-email">
               <svg class="email-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

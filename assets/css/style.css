@@ -17,7 +17,7 @@ body {
   font-weight: 300;
   line-height: 20px;
   letter-spacing: 0.02em;
-  overflow-x: hidden;
+  overflow-x: clip;
   margin: 0 auto;
   padding: 0;
   -ms-box-sizing: border-box;
@@ -247,7 +247,7 @@ nav ul li a {
 
 #hero .hero-content {
   height: 100vh;
-  text-align: left;
+  text-align: center;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -262,16 +262,6 @@ nav ul li a {
   margin-bottom: 10px;
   text-transform: uppercase;
   color: #fff;
-}
-
-.hero-content p {
-  font-size: 13px;
-  letter-spacing: 3px;
-  margin-top: 0;
-  margin-bottom: 30px;
-  text-transform: capitalize;
-  color: #fff;
-  font-weight: 500;
 }
 
 .hero-content .list-social li {
@@ -1647,6 +1637,7 @@ blockquote {
   opacity: 0.7;
   animation: fadeInScrollIndicator 2s ease-out;
   transition: opacity 0.5s ease, pointer-events 0.5s ease;
+  text-decoration: none;
 }
 
 @keyframes fadeInScrollIndicator {
@@ -1762,6 +1753,7 @@ blockquote {
   font-weight: 300;
   text-align: center;
   font-family: 'Inter', sans-serif;
+  color: rgba(255, 255, 255, 0.85);
 }
 
 .hero-buttons {
@@ -3072,7 +3064,7 @@ blockquote {
 html {
   background: #1a1a2e !important;
   background-color: #1a1a2e !important;
-  overflow-x: hidden;
+  overflow-x: clip;
   width: 100%;
 }
 

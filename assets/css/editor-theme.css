@@ -1,0 +1,1873 @@
+/*--------------------------------------------------------------
+# Editor theme (index.html)
+# Loaded after style.css. Flattens the hero and career timeline
+# into a game-engine editor look: Tokyo Night-tinted panels, one accent,
+# no glows or gradients.
+--------------------------------------------------------------*/
+:root {
+  /* Neutrals tinted toward Tokyo Night (blue-violet), not flat grey */
+  --ed-scene: #1a1b26;
+  --ed-panel: #1f2335;
+  --ed-raised: #292e42;
+  --ed-hover: #343a55;
+  --ed-line: #2f3449;
+  --ed-chrome-line: #13141c;
+  --ed-text: #f4f6ff;       /* near-white; the tint lives in the backgrounds */
+  --ed-text-2: #c9cee8;
+  --ed-text-dim: #8e95bb;
+  --ed-accent: #6c7fe8;
+  --ed-accent-dim: rgba(108, 127, 232, 0.16);
+  /* WCAG AA: white text on --ed-accent-fill is 4.8:1 (hover 5.4:1);
+     --ed-accent-text on panels is 6.3:1. --ed-accent stays for lines and icons. */
+  --ed-accent-fill: #5567dc;
+  --ed-accent-fill-hover: #4f5fd4;
+  --ed-accent-text: #8fa0f5;
+  --ed-rockstar: #fca803;
+  --ed-select: var(--ed-accent); /* selection uses the site accent */
+  --ed-select-line: rgba(108, 127, 232, 0.5); /* softer frame line; handles use --ed-select */
+  --ed-light-blue: 122, 162, 247;   /* #7aa2f7 */
+  --ed-light-purple: 187, 154, 247; /* #bb9af7 */
+  --ed-light-cyan: 125, 207, 255;   /* #7dcfff */
+  --ed-mono: 'JetBrains Mono', 'Consolas', monospace;
+}
+
+html,
+body,
+html body,
+body #wrapper,
+#wrapper .wrapper-holder.grey {
+  background: var(--ed-scene) !important;
+  background-color: var(--ed-scene) !important;
+}
+
+/* Pure white from style.css reads harsh against the tinted neutrals */
+.wrapper-holder.grey #main h2.section-title,
+.wrapper-holder.grey #main h2.contact-title,
+.sidebar-logo,
+.stat-number,
+.section-title,
+.wrapper-holder.grey h2.section-title,
+.btn-secondary { color: var(--ed-text) !important; }
+
+/* ---------- Sidebar ---------- */
+.retro-sidebar {
+  background: var(--ed-panel);
+  backdrop-filter: none;
+  border-right: 1px solid var(--ed-chrome-line);
+  box-shadow: none;
+}
+.sidebar-header,
+.sidebar-footer { border-color: var(--ed-line); }
+.sidebar-slogan { color: var(--ed-text-2); }
+.sidebar-collapse-btn {
+  background: var(--ed-raised);
+  border-color: var(--ed-line);
+  border-radius: 3px;
+}
+.sidebar-collapse-btn:hover { background: var(--ed-hover); border-color: var(--ed-line); }
+.retro-menu-item {
+  padding: 11px 26px;
+  border-radius: 0 3px 3px 0;
+  color: var(--ed-text-2);
+}
+.retro-menu-item:hover {
+  background: var(--ed-raised);
+  border-left-color: var(--ed-line);
+}
+.retro-menu-item.active,
+.retro-sidebar:not(.collapsed) .retro-menu-item.active {
+  background: var(--ed-accent-dim) !important;
+  border-left-color: var(--ed-accent);
+  color: var(--ed-text);
+}
+.sidebar-link { color: var(--ed-text-dim); }
+.sidebar-link:hover { color: var(--ed-text); }
+.retro-sidebar::-webkit-scrollbar-thumb { background: var(--ed-line); }
+/* Page scrollbar: style.css uses the old purple gradient */
+*,
+.popup_portfolio { scrollbar-color: var(--ed-hover) transparent; }
+::-webkit-scrollbar-track { background: var(--ed-scene); }
+::-webkit-scrollbar-thumb,
+::-webkit-scrollbar-thumb:hover,
+.popup_portfolio::-webkit-scrollbar-thumb,
+.popup_portfolio::-webkit-scrollbar-thumb:hover { background: var(--ed-hover); border-color: var(--ed-scene); }
+.menu-toggle {
+  background: var(--ed-raised) !important;
+  border: 1px solid var(--ed-line) !important;
+  border-radius: 3px !important;
+  box-shadow: none !important;
+}
+
+/* ---------- Viewport toolbar ---------- */
+.viewport-toolbar {
+  height: 36px;
+  padding: 0 10px;
+  background: var(--ed-panel);
+  border-bottom: 1px solid var(--ed-chrome-line);
+  backdrop-filter: none;
+  box-shadow: none;
+}
+.viewport-tab {
+  padding: 5px 12px;
+  border-radius: 3px;
+  color: var(--ed-text-dim);
+  transition: background-color 0.12s, color 0.12s;
+}
+.viewport-tab:hover:not(.active) { background: var(--ed-raised); transform: none; }
+.viewport-tab.active {
+  background: var(--ed-raised);
+  color: var(--ed-text);
+  box-shadow: inset 0 -2px 0 var(--ed-accent);
+}
+.toolbar-center { gap: 0 !important; }
+.play-btn, .pause-btn, .step-btn {
+  width: 30px;
+  height: 24px;
+  border-radius: 0;
+  background: var(--ed-raised);
+  border: 1px solid var(--ed-chrome-line);
+  color: var(--ed-text-2);
+  box-shadow: none;
+  transition: background-color 0.12s, color 0.12s;
+}
+.play-btn { border-radius: 3px 0 0 3px; }
+.step-btn { border-radius: 0 3px 3px 0; }
+.pause-btn { border-left: 0; border-right: 0; }
+.play-btn svg, .pause-btn svg, .step-btn svg { width: 11px; height: 11px; display: block; }
+.pause-btn:hover, .step-btn:hover {
+  background: var(--ed-hover);
+  border-color: var(--ed-chrome-line);
+  color: var(--ed-text);
+  transform: none;
+  box-shadow: none;
+}
+.play-btn:disabled,
+.play-btn.active,
+.pause-btn.active {
+  background: var(--ed-accent-fill);
+  border-color: var(--ed-chrome-line);
+  color: #fff;
+  box-shadow: none;
+}
+.toolbar-right { gap: 0 !important; }
+.gizmo-toggle {
+  padding: 4px 10px;
+  border-radius: 0;
+  border: 1px solid var(--ed-chrome-line);
+  background: var(--ed-raised);
+  color: var(--ed-text-dim);
+}
+.gizmo-toggle:first-child { border-radius: 3px 0 0 3px; border-right: 0; }
+.gizmo-toggle:last-of-type { border-radius: 0 3px 3px 0; }
+
+/* Keyboard shortcuts button + panel (toolbar, right) */
+.toolbar-right { position: relative; align-items: center; }
+.shortcuts-btn {
+  width: 26px;
+  height: 24px;
+  margin-left: 8px;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 3px;
+  color: var(--ed-text-dim);
+  cursor: pointer;
+}
+.shortcuts-btn svg { width: 15px; height: 15px; }
+.shortcuts-btn:hover,
+.shortcuts-btn[aria-expanded="true"] { background: var(--ed-raised); border-color: var(--ed-line); color: var(--ed-text); }
+.shortcuts-btn:focus-visible { outline: 2px solid rgb(var(--ed-light-cyan)); outline-offset: 1px; }
+.shortcuts-panel {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  z-index: 30;
+  width: 290px;
+  padding: 12px 14px;
+  background: var(--ed-panel);
+  border: 1px solid var(--ed-line);
+  border-radius: 8px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
+  text-align: left;
+}
+.shortcuts-panel[hidden] { display: none; }
+.shortcuts-title {
+  margin-bottom: 8px;
+  font: 500 11.5px/1 var(--ed-mono);
+  color: var(--ed-text-dim);
+}
+.shortcuts-panel dl {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 7px 12px;
+  margin: 0;
+  align-items: center;
+}
+.shortcuts-panel dt { white-space: nowrap; }
+.shortcuts-panel dd { margin: 0; font-size: 12.5px; color: var(--ed-text-2); }
+kbd {
+  display: inline-block;
+  min-width: 20px;
+  padding: 1px 5px;
+  font: 500 11px/16px var(--ed-mono);
+  text-align: center;
+  color: var(--ed-text);
+  background: var(--ed-raised);
+  border: 1px solid var(--ed-line);
+  border-bottom-width: 2px;
+  border-radius: 4px;
+}
+@media (max-width: 768px) {
+  .shortcuts-btn, .shortcuts-panel { display: none !important; }
+}
+.gizmo-toggle.active {
+  background: var(--ed-accent-fill);
+  border-color: var(--ed-chrome-line);
+  color: #fff;
+  box-shadow: none;
+}
+.gizmo-toggle:hover:not(.active) { background: var(--ed-hover); }
+
+/* ---------- Scene overlays ---------- */
+.viewport-scene-info,
+.viewport-stats {
+  right: 12px;
+  background: rgba(26, 27, 38, 0.85);
+  border: 1px solid var(--ed-line);
+  border-radius: 3px;
+  box-shadow: none;
+  font-family: var(--ed-mono);
+}
+.viewport-scene-info {
+  top: 48px;
+  padding: 5px 10px;
+  color: var(--ed-text-2);
+}
+.viewport-scene-info::before { content: none; }
+.viewport-scene-info .scene-name { color: var(--ed-text-2); font-weight: 500; }
+.viewport-stats {
+  top: 88px; /* 8px below the scene name */
+  padding: 7px 10px;
+  color: var(--ed-text-dim);
+}
+.viewport-stats .stat-val { color: var(--ed-text-2); }
+
+/* ---------- Scene background ---------- */
+.hero-image-overlay {
+  background:
+    radial-gradient(ellipse 45% 40% at 50% 50%, rgba(var(--ed-light-blue), 0.13) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 45% at 18% 15%, rgba(var(--ed-light-purple), 0.10) 0%, transparent 70%),
+    radial-gradient(ellipse 45% 40% at 88% 90%, rgba(var(--ed-light-cyan), 0.07) 0%, transparent 70%),
+    radial-gradient(ellipse 80% 70% at 50% 45%, #1f2233 0%, var(--ed-scene) 100%);
+  animation: none;
+}
+.hero-image-overlay::before {
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.055) 1px, transparent 1px) 0 0 / 100px 100px,
+    linear-gradient(90deg, rgba(255, 255, 255, 0.055) 1px, transparent 1px) 0 0 / 100px 100px,
+    linear-gradient(rgba(255, 255, 255, 0.022) 1px, transparent 1px) 0 0 / 20px 20px,
+    linear-gradient(90deg, rgba(255, 255, 255, 0.022) 1px, transparent 1px) 0 0 / 20px 20px;
+  -webkit-mask-image: radial-gradient(ellipse 75% 70% at 50% 50%, #000 35%, transparent 100%);
+  mask-image: radial-gradient(ellipse 75% 70% at 50% 50%, #000 35%, transparent 100%);
+  animation: none;
+}
+.hero-section::before { background: radial-gradient(ellipse at center, transparent 45%, rgba(0, 0, 0, 0.35) 100%); }
+.hero-section::after {
+  top: 36px;
+  border: 0;
+  box-shadow: none;
+}
+.hero-background .particles { display: none !important; }
+
+/* ---------- Hero text: the selected object ---------- */
+.hero-text {
+  position: relative;
+  align-self: center;
+  width: fit-content;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0;
+  /* The selection frame is the object's rectangular bounds; the panel itself
+     (fill, edges, notched corners) is drawn by .hero-object inside it. */
+  --panel-depth: 0 24px 60px rgba(0, 0, 0, 0.45), 0 0 90px rgba(var(--ed-light-blue), 0.10);
+  background: transparent !important;
+  /* box-shadow rather than outline: outlines break up under 3D transforms in Chrome */
+  box-shadow: 0 0 0 1px var(--ed-select-line), var(--panel-depth);
+}
+
+/* ---------- In-game menu panel ---------- */
+/* Default size on desktop; js/editor-scene.js keeps this in sync (DESKTOP_BASE_SCALE) */
+@media (min-width: 769px) {
+  .hero-object { zoom: 1.0584; }
+}
+.hero-object {
+  --notch: 18px;
+  --pad-x: 56px;
+  --pad-top: 30px;
+  --panel-edge: rgba(255, 255, 255, 0.09);
+  --panel-fill-top: rgba(36, 40, 59, 0.9);
+  --panel-fill-bottom: rgba(26, 27, 38, 0.92);
+  position: relative;
+  padding: 0 var(--pad-x) 40px;
+  /* Notched corners (top-left, bottom-right) like sci-fi HUD panels */
+  clip-path: polygon(var(--notch) 0, 100% 0, 100% calc(100% - var(--notch)), calc(100% - var(--notch)) 100%, 0 100%, 0 var(--notch));
+  background:
+    /* edge lines along the two cut corners (the clip removes the inset border there) */
+    linear-gradient(to bottom right, transparent calc(50% - 0.8px), var(--panel-edge) calc(50% - 0.8px), var(--panel-edge) calc(50% + 0.8px), transparent calc(50% + 0.8px)) top left / var(--notch) var(--notch) no-repeat,
+    linear-gradient(to bottom right, transparent calc(50% - 0.8px), var(--panel-edge) calc(50% - 0.8px), var(--panel-edge) calc(50% + 0.8px), transparent calc(50% + 0.8px)) bottom right / var(--notch) var(--notch) no-repeat,
+    linear-gradient(180deg, var(--panel-fill-top) 0%, var(--panel-fill-bottom) 100%);
+  box-shadow: inset 0 0 0 1px var(--panel-edge);
+}
+.panel-titlebar {
+  display: flex;
+  align-items: center;
+  height: 30px;
+  margin: 0 calc(-1 * var(--pad-x)) var(--pad-top);
+  padding: 0 16px 0 calc(var(--notch) + 8px);
+  background: rgba(255, 255, 255, 0.03);
+  border-bottom: 1px solid var(--panel-edge);
+  text-align: left;
+}
+.panel-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font: 500 11.5px/1 var(--ed-mono);
+  color: var(--ed-text-dim);
+}
+.panel-title::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  background: rgb(var(--ed-light-blue));
+  transform: rotate(45deg);
+}
+/* Corner handles: drag to scale the object (js/editor-scene.js) */
+.sel-handle {
+  position: absolute;
+  z-index: 3;
+  width: 9px;
+  height: 9px;
+  background: var(--ed-scene);
+  border: 1.5px solid var(--ed-select);
+  touch-action: none;
+  transition: transform 0.1s;
+}
+.sel-handle::after {
+  /* larger hit area than the visible square */
+  content: '';
+  position: absolute;
+  inset: -9px;
+}
+.sel-handle[data-corner="nw"] { top: -5px; left: -5px; cursor: nwse-resize; }
+.sel-handle[data-corner="se"] { bottom: -5px; right: -5px; cursor: nwse-resize; }
+.sel-handle[data-corner="ne"] { top: -5px; right: -5px; cursor: nesw-resize; }
+.sel-handle[data-corner="sw"] { bottom: -5px; left: -5px; cursor: nesw-resize; }
+.sel-handle:hover,
+.hero-text.scaling .sel-handle { transform: scale(1.3); background: var(--ed-select); }
+
+.sel-readout {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: -1px;
+  padding: 2px 7px;
+  font: 500 11px/16px var(--ed-mono);
+  color: #fff;
+  background: var(--ed-accent-fill);
+  border-radius: 2px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.15s;
+}
+.hero-text.scaling .sel-readout { opacity: 1; }
+
+.hero-section.game-view .hero-text { box-shadow: var(--panel-depth); }
+.hero-section.game-view .sel-handle { opacity: 0; pointer-events: none; }
+
+.hero-content .hero-title {
+  font-family: 'Inter', sans-serif;
+  font-size: 68px;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  line-height: 1.02;
+  text-transform: none;
+  margin-bottom: 18px;
+}
+.hero-content .hero-title .title-line:first-child {
+  font-size: 22px;
+  font-weight: 500;
+  letter-spacing: 0;
+  color: var(--ed-text-2);
+  margin-bottom: 8px;
+}
+.hero-title .title-line.highlight {
+  color: var(--ed-text);
+  text-shadow: none;
+}
+.hero-specialize {
+  font-size: 15px;
+  color: var(--ed-text-dim);
+  margin-bottom: 6px;
+  letter-spacing: 0;
+}
+.hero-subtitle {
+  font-size: 22px;
+  min-height: 44px;
+  margin: 4px 0 22px;
+  gap: 0;
+}
+.hero-subtitle {
+  color: var(--ed-text);
+}
+/* Inspector-style enum field; the value rolls to the next option */
+.focus-field {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  height: 44px;
+  padding: 0 12px 0 16px;
+  background: var(--ed-panel);
+  border: 1px solid var(--ed-line);
+  border-radius: 6px;
+}
+.focus-track {
+  position: relative;
+  display: inline-block;
+  height: 30px;
+  transition: width 0.4s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.focus-value {
+  position: absolute;
+  left: 0;
+  top: 0;
+  white-space: nowrap;
+  font: 600 22px/30px 'Inter', sans-serif;
+  letter-spacing: -0.01em;
+  color: var(--ed-text);
+  transition: transform 0.45s cubic-bezier(0.2, 0.7, 0.2, 1), opacity 0.3s;
+}
+.focus-value.entering { transform: translateY(45%); opacity: 0; transition: none; }
+.focus-value.leaving { transform: translateY(-45%); opacity: 0; transition: transform 0.45s cubic-bezier(0.2, 0.7, 0.2, 1), opacity 0.2s; }
+.focus-chevron {
+  width: 14px;
+  height: 14px;
+  color: var(--ed-text-dim);
+}
+/* replayed by js/editor-scene.js each time the value changes */
+.focus-chevron.nudge { animation: chevronNudge 0.35s ease-out; }
+@keyframes chevronNudge {
+  0% { transform: translateY(0); color: var(--ed-text-dim); }
+  35% { transform: translateY(3px); color: rgb(var(--ed-light-blue)); }
+  100% { transform: translateY(0); color: var(--ed-text-dim); }
+}
+.visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+.hero-description {
+  font-size: 17px;
+  color: var(--ed-text-2);
+  opacity: 1;
+}
+.hero-description strong { color: var(--ed-rockstar); }
+
+/* Stat cards: flat editor fields */
+/* Inside the selected object everything paints into one plane. style.css
+   promotes buttons and stat items to their own GPU layers (translateZ(0),
+   backface-visibility, will-change) and clips buttons with overflow:hidden;
+   under the 3D rotation those separate layers band and seam on some GPUs. */
+.hero-object .btn-primary,
+.hero-object .btn-secondary,
+.hero-object .btn-primary:hover,
+.hero-object .btn-secondary:hover,
+.hero-object .stat-item,
+.hero-object .stat-item:hover {
+  transform: none;
+  backface-visibility: visible;
+  will-change: auto;
+  overflow: visible;
+}
+
+/* Load: the object fades in, then gets selected (frame, then handles) */
+.hero-content .hero-title .title-line { animation: none; opacity: 1; }
+.hero-object { animation: objectIn 0.6s ease-out 0.1s backwards; }
+.hero-text { animation: selectIn 0.25s ease-out 0.7s backwards; }
+.sel-handle {
+  animation:
+    handleIn 0.2s cubic-bezier(0.3, 1.6, 0.5, 1) 0.8s backwards,
+    handlePulse 0.9s ease-out 1.05s 1;
+}
+@keyframes objectIn { from { opacity: 0; } }
+@keyframes selectIn { from { box-shadow: 0 0 0 1px transparent, var(--panel-depth); } }
+@keyframes handleIn { from { transform: scale(0); } }
+/* one-off "just selected" ping on each corner handle */
+@keyframes handlePulse {
+  0% { box-shadow: 0 0 0 0 rgba(108, 127, 232, 0.7); }
+  100% { box-shadow: 0 0 0 9px rgba(108, 127, 232, 0); }
+}
+
+/* Stats: one segmented strip, like a toolbar row, not three separate cards */
+.hero-stats {
+  width: fit-content;
+  max-width: 100%;
+  margin: 30px auto;
+  gap: 0;
+  flex-wrap: nowrap;
+  background: var(--ed-panel);
+  border: 1px solid var(--ed-line);
+  border-radius: 6px;
+}
+.stat-item {
+  flex: 0 1 auto;
+  min-width: 150px;
+  max-width: none;
+  padding: 14px 26px 12px;
+  background: transparent !important;
+  border: 0;
+  border-radius: 0;
+}
+.stat-item + .stat-item { border-left: 1px solid var(--ed-line); }
+.stat-item:hover {
+  transform: none;
+  border-color: var(--ed-line);
+  box-shadow: none;
+}
+.stat-number {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+.stat-label {
+  text-transform: none;
+  letter-spacing: 0;
+  font-size: 13px;
+  color: var(--ed-text-2);
+}
+
+/* Buttons: flat editor buttons */
+.hero-buttons,
+.hero-content .hero-buttons { gap: 10px; margin-bottom: 0 !important; }
+.btn-primary, .btn-secondary {
+  padding: 12px 24px;
+  border-radius: 6px;
+  text-transform: none;
+  letter-spacing: 0;
+  font-size: 15px;
+  transition: background-color 0.12s, border-color 0.12s;
+}
+a.btn-primary::before, a.btn-secondary::before { content: none; }
+.btn-primary {
+  background: var(--ed-accent-fill) !important;
+  border: 1px solid var(--ed-accent-fill);
+  box-shadow: none;
+}
+.btn-primary:hover {
+  background: var(--ed-accent-fill-hover) !important;
+  transform: none;
+  box-shadow: none;
+}
+.btn-secondary {
+  background: var(--ed-raised) !important;
+  border: 1px solid var(--ed-line) !important;
+}
+.btn-secondary:hover {
+  background: var(--ed-hover) !important;
+  border-color: var(--ed-line) !important;
+  transform: none;
+}
+
+/* ---------- 3D view: one object in a perspective scene ---------- */
+.hero-section {
+  --rot-x: 0deg;
+  --rot-y: 0deg;
+  --cam-perspective: 1200px;
+}
+
+/* The per-element tilts from style.css fight the whole-object rotation */
+.hero-section.view-3d .hero-title,
+.hero-section.view-3d .hero-title .title-line,
+.hero-section.view-3d .hero-title .title-line.highlight,
+.hero-section.view-3d .hero-specialize,
+.hero-section.view-3d .hero-subtitle,
+.hero-section.view-3d .hero-description,
+.hero-section.view-3d .stat-item,
+.hero-section.view-3d .stat-item:hover,
+.hero-section.view-3d .btn-primary,
+.hero-section.view-3d .btn-primary:hover,
+.hero-section.view-3d .btn-secondary,
+.hero-section.view-3d .btn-secondary:hover,
+.hero-section.view-3d .btn-primary:active,
+.hero-section.view-3d .btn-secondary:active {
+  transform: none;
+  box-shadow: none;
+  text-shadow: none;
+  border-bottom-width: 1px;
+}
+.hero-section.view-3d .stat-item { border-bottom: 0; }
+
+/* Object and floor share one fixed camera: same perspective, same vanishing point.
+   Dragging turns the object in place; the floor never moves. */
+.hero-text {
+  transition: transform 0.5s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.hero-section.view-3d .hero-text {
+  box-shadow: 0 0 0 1px var(--ed-select-line), var(--panel-depth);
+  transform: perspective(var(--cam-perspective)) rotateX(var(--rot-x)) rotateY(var(--rot-y));
+}
+.hero-section.view-3d .hero-object {
+  /* Opaque in 3D, so the floor grid doesn't show through behind the content */
+  --panel-fill-top: rgb(36, 40, 59);
+  --panel-fill-bottom: rgb(26, 27, 38);
+}
+.hero-section.view-3d:not(.game-view) { cursor: grab; }
+.hero-section.view-3d.dragging { cursor: grabbing; }
+.hero-section.view-3d:not(.game-view) :is(a, button) { cursor: pointer; }
+/* Rotation is eased in JS; the CSS transition only animates the 2D/3D switch */
+.hero-section.rotating .hero-text,
+.hero-section.dragging .hero-text { transition: none; }
+.hero-section.dragging .hero-content { user-select: none; }
+
+/* Ground grid in perspective, only visible in 3D */
+.hero-section .hero-image-overlay {
+  perspective: var(--cam-perspective);
+  perspective-origin: 50% 50%;
+  transition: background-color 0.4s;
+}
+.hero-section .hero-image-overlay::before { transition: opacity 0.4s; }
+.hero-section .hero-image-overlay::after {
+  display: block;
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 86%;
+  width: 2400px;
+  height: 1100px;
+  margin: -550px 0 0 -1200px;
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px) 0 0 / 100px 100px,
+    linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px) 0 0 / 100px 100px,
+    linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px) 0 0 / 20px 20px,
+    linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px) 0 0 / 20px 20px;
+  -webkit-mask-image: radial-gradient(closest-side, #000 25%, transparent 100%);
+  mask-image: radial-gradient(closest-side, #000 25%, transparent 100%);
+  /* edge-on (invisible) in 2D; tilts into perspective when 3D is switched on */
+  transform: rotateX(90deg);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s, transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.hero-section.view-3d .hero-image-overlay::before { opacity: 0; }
+.hero-section.view-3d .hero-image-overlay::after { opacity: 1; transform: rotateX(70deg); }
+/* Dark procedural skybox: sky, horizon haze at eye level, ground */
+.hero-section.view-3d .hero-image-overlay {
+  background:
+    radial-gradient(ellipse 40% 22% at 50% 78%, rgba(var(--ed-light-blue), 0.14) 0%, transparent 70%),
+    radial-gradient(ellipse 70% 12% at 50% 50%, rgba(var(--ed-light-purple), 0.22) 0%, transparent 75%),
+    linear-gradient(180deg,
+      #141725 0%,
+      #1d1f3a 36%,
+      #2e2f5c 49.6%,
+      #1a1c2a 50.4%,
+      #15161f 100%);
+}
+
+/* Scene <-> Game switch: one 0.6s cross-fade. The content settles gently
+   (class added by js/editor-scene.js) while the lighting layer and every
+   editor overlay fade on the same timing. */
+.hero-section {
+  --view-fade: 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.hero-section.view-switching .hero-content {
+  animation: viewSettle 0.6s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+@keyframes viewSettle {
+  from { opacity: 0.7; transform: scale(1.006); }
+}
+
+/* Game view: the scene as the player sees it. Editor overlays (grid, gizmos,
+   selection, stats) are hidden; lighting gets a soft cinematic falloff.
+   The lighting is its own layer so it can cross-fade (gradients can't transition). */
+.hero-background::after {
+  display: block;
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at center, transparent 50%, rgba(0, 0, 0, 0.4) 100%),
+    radial-gradient(ellipse 50% 45% at 50% 50%, rgba(var(--ed-light-blue), 0.16) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 45% at 18% 15%, rgba(var(--ed-light-purple), 0.12) 0%, transparent 70%),
+    radial-gradient(ellipse 45% 40% at 88% 90%, rgba(var(--ed-light-cyan), 0.08) 0%, transparent 70%),
+    radial-gradient(ellipse 90% 80% at 50% 45%, #20233a 0%, #101119 100%);
+  opacity: 0;
+  transition: opacity var(--view-fade);
+}
+.hero-section.game-view .hero-background::after { opacity: 1; }
+
+/* Every editor overlay fades out/in together */
+.hero-section .hero-image-overlay::before,
+.hero-section .viewport-stats,
+.hero-section .viewport-scene-info,
+.hero-section .coordinate-axis,
+.hero-section .scene-gizmos,
+.hero-section .sel-handle {
+  transition: opacity var(--view-fade), transform 0.1s;
+}
+.hero-section .hero-text {
+  transition: transform 0.5s cubic-bezier(0.2, 0.7, 0.2, 1), box-shadow var(--view-fade);
+}
+.hero-section.game-view .hero-image-overlay::after { opacity: 0; }
+/* More specific than the 3D selection rule above, so Game view always hides it */
+.hero-section.game-view.view-3d .hero-text {
+  box-shadow: var(--panel-depth);
+}
+
+/* Scene gizmos (camera, light) */
+.scene-gizmos {
+  /* Same origin as the 2D grid, so icons can sit on grid intersections */
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  pointer-events: none;
+  transition: opacity 0.3s;
+}
+.scene-gizmo {
+  position: absolute;
+  width: 26px;
+  height: 26px;
+  margin: -13px 0 0 -13px; /* center the icon on its grid point */
+  color: rgba(230, 234, 255, 0.38);
+  pointer-events: auto;
+  transition: color 0.15s;
+}
+.scene-gizmo:hover { color: rgba(230, 234, 255, 0.8); }
+.gizmo-camera { left: 100px; top: 400px; }
+.gizmo-light {
+  left: round(down, 100% - 100px, 100px);
+  top: 300px;
+  color: rgba(240, 200, 110, 0.5);
+}
+.gizmo-light:hover { color: rgba(240, 200, 110, 0.9); }
+.hero-section.view-3d .scene-gizmos { opacity: 0.6; }
+.hero-section.game-view .scene-gizmos { opacity: 0; }
+
+/* Idle gizmo: the camera's record light blinks */
+.gizmo-camera .camera-rec {
+  /* same strength as the camera's lines (0.38), brighter with it on hover */
+  color: rgba(247, 118, 142, 0.38);
+  opacity: 0.3;
+  animation: cameraRec 4s steps(1) infinite;
+}
+.gizmo-camera:hover .camera-rec { color: rgba(247, 118, 142, 0.8); }
+@keyframes cameraRec {
+  0%, 70% { opacity: 0.3; }
+  72%, 86% { opacity: 1; }
+}
+
+/* Directional light beams: three parallel dashed rays pointing at the panel,
+   like the light direction gizmo in Unity (static) */
+.light-beams {
+  position: absolute;
+  left: round(down, 100% - 100px, 100px);
+  top: 300px;
+  width: 110px;
+  height: 17px;
+  margin-top: -8.5px;
+  transform-origin: 0 50%;
+  transform: rotate(150deg) translateX(20px);
+  --beam: rgba(240, 200, 110, 0.45);
+  --dash: repeating-linear-gradient(90deg, var(--beam) 0 5px, transparent 5px 10px);
+  background:
+    var(--dash) 0 0 / 100% 1px no-repeat,
+    var(--dash) 0 8px / 100% 1px no-repeat,
+    var(--dash) 0 16px / 100% 1px no-repeat;
+  -webkit-mask-image: linear-gradient(90deg, #000 20%, transparent);
+  mask-image: linear-gradient(90deg, #000 20%, transparent);
+}
+.hero-section.paused .camera-rec { animation-play-state: paused; }
+
+.orbit-hint {
+  position: absolute;
+  left: 16px;
+  bottom: 16px;
+  z-index: 4;
+  padding: 4px 9px;
+  font: 400 11.5px/16px var(--ed-mono);
+  color: var(--ed-text-2);
+  background: rgba(26, 27, 38, 0.85);
+  border: 1px solid var(--ed-line);
+  border-radius: 3px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s;
+}
+.hero-section.view-3d:not(.game-view) .orbit-hint:not(.used) { opacity: 1; transition-delay: 0.6s; }
+
+/* Hide where the icons would crowd the selected object */
+@media (max-width: 1199px) {
+  .scene-gizmos { display: none; }
+}
+
+.scroll-text { text-transform: none; letter-spacing: 0; font-size: 13px; }
+.scroll-arrow { color: var(--ed-text-2); animation: bounceArrow 2s ease-in-out infinite; }
+.scroll-indicator:hover .scroll-arrow { color: var(--ed-text); animation-duration: 1s; }
+.hero-section.paused .scroll-arrow { animation-play-state: paused; }
+.scroll-arrow svg { filter: none; }
+
+/* The hero's scroll parallax (index.js) slides the faded hero down over the
+   next section; stack the career section above it so it still gets the mouse. */
+#wrapper .wrapper-holder.grey {
+  position: relative;
+  z-index: 2;
+}
+
+/* ---------- Career timeline ----------
+   Compact cards on a keyframe track: same panels, borders and radius as the
+   hero's field and stats strip; the current role is the selected key. */
+.career-section {
+  padding: 72px 40px 88px;
+  background: var(--ed-scene) !important;
+  border-top: 1px solid var(--ed-chrome-line);
+}
+.career-header { margin-bottom: 36px; }
+.section-title {
+  font-family: 'Inter', sans-serif;
+  font-size: 32px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  text-shadow: none;
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+.section-title::after { content: none; }
+
+.career-section .career-timeline {
+  max-width: 860px;
+  padding-left: 48px;
+}
+.timeline-line {
+  left: 17px;
+  top: 8px;
+  bottom: 8px;
+  width: 1px;
+  background: var(--ed-line);
+  box-shadow: none;
+}
+
+.career-item { margin-bottom: 12px; }
+.career-item:last-child { margin-bottom: 0; }
+
+/* Keyframes: diamonds on the track, vertically centered on each card */
+.career-marker {
+  width: 11px;
+  height: 11px;
+  left: -36px;
+  top: calc(50% - 5.5px);
+  border-radius: 1px;
+  transform: rotate(45deg);
+  background: #414868;
+  border: 1px solid var(--ed-scene);
+  box-shadow: none;
+}
+.career-item.active .career-marker {
+  background: var(--ed-select);
+  border-color: var(--ed-scene);
+  box-shadow: 0 0 0 3px var(--ed-scene), 0 0 0 4px rgba(108, 127, 232, 0.5);
+  animation: none;
+}
+
+.career-content {
+  display: grid;
+  grid-template-columns: 44px 1fr;
+  gap: 18px;
+  align-items: start;
+  padding: 18px 22px;
+  background: var(--ed-panel);
+  border: 1px solid var(--ed-line);
+  border-radius: 8px;
+  box-shadow: none;
+  transform: none;
+  backface-visibility: visible;
+  will-change: auto;
+  transition: border-color 0.2s, background-color 0.2s, box-shadow 0.2s, transform 0.2s ease-out;
+}
+.career-item:hover .career-content {
+  /* replaces style.css's purple glow: nudge right, lift the panel, brighten the edge */
+  background: var(--ed-raised);
+  border-color: rgba(var(--ed-light-blue), 0.45);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+  transform: translateX(4px);
+}
+.career-item.active:hover .career-content { border-color: rgba(108, 127, 232, 0.85); }
+/* the hovered role's keyframe lights up on the track */
+.career-item:hover .career-marker { background: rgb(var(--ed-light-blue)); }
+.career-content::before { content: none; }
+.career-item.active .career-content {
+  background: var(--ed-panel);
+  border-color: rgba(108, 127, 232, 0.55);
+  box-shadow: none;
+  transform: none;
+}
+.career-company-icon {
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  margin-top: 2px;
+  border-radius: 8px;
+}
+
+/* Title and company stacked, date right-aligned on the title line */
+.career-text { min-width: 0; }
+.career-date {
+  float: right;
+  margin: 4px 0 0 16px;
+  font-family: var(--ed-mono);
+  font-size: 12px;
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: 0;
+  white-space: nowrap;
+}
+.career-section .career-date,
+.career-section .career-item:not(.active) .career-date {
+  color: var(--ed-text-dim) !important;
+}
+.career-section .career-item.active .career-date { color: var(--ed-accent-text) !important; }
+.career-title,
+.career-item.active .career-title {
+  margin: 0;
+  font-size: 18px;
+  line-height: 1.4;
+  color: var(--ed-text);
+  text-shadow: none;
+}
+.career-section .career-item:not(.active) .career-title { color: var(--ed-text) !important; }
+.career-company,
+.career-item.active .career-company {
+  margin: 2px 0 0;
+  font-size: 14.5px;
+  font-weight: 500;
+  color: var(--ed-rockstar);
+}
+.career-section .career-description,
+.career-section .career-item:not(.active) .career-description {
+  margin: 8px 0 0 !important;
+  padding: 0;
+  color: var(--ed-text-2) !important;
+  font-size: 14.5px;
+  line-height: 1.6;
+  max-width: 68ch;
+}
+
+/* ---------- Mobile ---------- */
+@media (max-width: 768px) {
+  .hero-text { display: block; }
+  .hero-object { --pad-x: 18px; --pad-top: 24px; --notch: 14px; padding: 0 var(--pad-x) 30px; }
+  .hero-stats {
+    flex-direction: row !important;
+    gap: 0 !important;
+    width: 100%;
+  }
+  .stat-item {
+    flex: 1 1 0 !important;
+    width: auto !important;
+    min-width: 0 !important;
+    padding: 12px 6px !important;
+    gap: 2px !important;
+  }
+  .stat-number { font-size: 19px; }
+  .stat-label { font-size: 11.5px; }
+  .hero-content .hero-title { font-size: 40px !important; letter-spacing: -0.02em !important; }
+  .hero-content .hero-title .title-line:first-child { font-size: 18px; }
+  .hero-section { padding-bottom: 90px !important; }
+  .hero-subtitle { font-size: 18px !important; }
+  .focus-value { font-size: 18px; }
+  .focus-field { height: 40px; }
+  .section-title { font-size: 28px !important; }
+  .career-section { padding: 48px 16px 64px !important; }
+  .career-section .career-timeline { padding-left: 32px !important; }
+  .timeline-line { left: 11px !important; }
+  .career-marker { left: -26px !important; width: 11px !important; height: 11px !important; top: calc(50% - 5.5px); }
+  .career-item { margin-bottom: 10px; }
+  .career-content,
+  .career-item.active .career-content {
+    grid-template-columns: 36px 1fr;
+    gap: 14px;
+    padding: 14px 16px !important;
+  }
+  .career-company-icon { width: 36px !important; height: 36px !important; min-width: 36px !important; }
+  .career-date { float: none; display: block; margin: 0 0 4px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-object, .hero-text, .sel-handle { animation: none; }
+  .focus-value, .focus-track { transition: none; }
+  .scroll-arrow { animation: none; }
+  .hero-text,
+  .hero-section .hero-image-overlay::after { transition: none; }
+  .hero-section.view-switching .hero-content { animation: none; }
+  .camera-rec, .focus-chevron.nudge { animation: none; }
+  .hero-background::after,
+  .hero-section .hero-image-overlay::before,
+  .hero-section .viewport-stats,
+  .hero-section .viewport-scene-info,
+  .hero-section .coordinate-axis,
+  .hero-section .scene-gizmos,
+  .hero-section .sel-handle { transition: none; }
+}
+
+/*--------------------------------------------------------------
+# Portfolio page (portfolio.html)
+# Same panels, borders and accent as the home page; replaces the
+# arcade-cabinet styling in style.css (scanlines, rainbow borders,
+# pulsing corners, all-caps titles).
+--------------------------------------------------------------*/
+.portfolio-section .portfolio-header {
+  margin-bottom: 28px;
+  animation: none;
+}
+.portfolio-header .section-title::after { content: none; }
+/* css/all.css styles "#main h2" with the old Novecento font in all caps */
+#main h2.section-title {
+  font-family: 'Inter', sans-serif;
+  font-size: 32px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  text-transform: none;
+}
+.portfolio-section .portfolio-intro {
+  margin: 10px 0 0;
+  font-size: 16px;
+  font-weight: 400;
+}
+/* style.css forces .wrapper-holder.grey p to white */
+.wrapper-holder.grey p.portfolio-intro,
+.wrapper-holder.grey p.contact-subtitle { color: var(--ed-text-2) !important; }
+
+/* Filters: one segmented toggle, like the 2D/3D switch */
+.portfolio-section .arcade-filters {
+  width: fit-content;
+  margin: 0 auto 36px;
+  gap: 0;
+  padding: 3px;
+  background: var(--ed-panel);
+  border: 1px solid var(--ed-line);
+  border-radius: 8px;
+}
+.portfolio-section .filter-btn {
+  padding: 8px 18px;
+  background: transparent;
+  backdrop-filter: none;
+  border: 0;
+  border-radius: 5px;
+  box-shadow: none;
+  font-size: 13.5px;
+  font-weight: 500;
+  text-transform: none;
+  letter-spacing: 0;
+  color: var(--ed-text-2) !important;
+  transition: background-color 0.15s, color 0.15s;
+  animation: none;
+}
+.portfolio-section .filter-btn::before { content: none; }
+.portfolio-section .filter-btn:hover {
+  background: var(--ed-raised);
+  color: var(--ed-text) !important;
+  transform: none;
+  box-shadow: none;
+}
+.portfolio-section .filter-btn.active {
+  background: var(--ed-accent-fill);
+  color: #fff !important;
+  box-shadow: none;
+  animation: none;
+}
+.portfolio-section .filter-btn:focus-visible {
+  outline: 2px solid rgb(var(--ed-light-cyan));
+  outline-offset: 2px;
+}
+
+/* Cards: flat panels like the career cards */
+.arcade-card { transition: opacity 0.35s ease-out, transform 0.35s ease-out; }
+.arcade-card.reveal-pending { opacity: 0; transform: translateY(12px); }
+.arcade-card-inner {
+  background: var(--ed-panel);
+  backdrop-filter: none;
+  border: 1px solid var(--ed-line);
+  border-radius: 8px;
+  box-shadow: none;
+  transform: none;
+  backface-visibility: visible;
+  transition: border-color 0.2s, background-color 0.2s, box-shadow 0.2s, transform 0.2s ease-out;
+}
+.arcade-card-inner::before,
+.arcade-card-inner::after,
+.arcade-card:hover .arcade-card-inner .arcade-card-screen::after { content: none; animation: none; }
+.arcade-card:hover .arcade-card-inner {
+  background: var(--ed-raised);
+  border-color: rgba(var(--ed-light-blue), 0.45);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.3);
+  transform: translateY(-4px);
+}
+.arcade-card-screen {
+  height: 200px;
+  background: var(--ed-scene);
+  border-bottom: 1px solid var(--ed-line);
+}
+.arcade-card-screen img { transition: transform 0.35s ease-out; }
+.arcade-card:hover .arcade-card-screen img { transform: scale(1.03); filter: none; }
+.arcade-card .scanlines { display: none; }
+
+.arcade-card-info {
+  padding: 18px 20px 20px;
+  background: transparent;
+  border-top: 0;
+}
+.arcade-card-info::before { content: none; }
+.portfolio-section h3.arcade-card-title,
+.arcade-card-title {
+  margin-bottom: 4px;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  text-transform: none;
+  text-shadow: none;
+  color: var(--ed-text) !important;
+}
+.portfolio-section .arcade-card-subtitle,
+.wrapper-holder.grey .arcade-card-subtitle {
+  font-size: 14px;
+  color: var(--ed-text-2) !important;
+}
+.arcade-card-tags { gap: 6px; }
+.arcade-tag {
+  padding: 3px 8px;
+  background: var(--ed-raised);
+  border-radius: 4px;
+  box-shadow: inset 0 0 0 1px var(--ed-line);
+  font: 500 11.5px/1.4 var(--ed-mono);
+  text-transform: none;
+  letter-spacing: 0;
+  color: var(--ed-text-2);
+}
+.arcade-card-details {
+  font: 400 12px/1.5 var(--ed-mono);
+  text-transform: none;
+  letter-spacing: 0;
+  color: var(--ed-text-dim);
+}
+
+/* Project popup */
+.popup_portfolio {
+  background: var(--ed-panel);
+  backdrop-filter: none;
+  border: 1px solid var(--ed-line);
+  border-radius: 8px;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
+}
+.popup_portfolio img { border-bottom: 1px solid var(--ed-line); filter: none; }
+/* Popup screenshots carry width/height attributes (portfolio.html) so the lazy
+   images reserve their space and the popup opens at its final height */
+.popup_portfolio h3 {
+  padding: 28px 40px 6px;
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  text-transform: none;
+  color: var(--ed-text) !important;
+}
+.popup_portfolio time {
+  font: 400 12.5px/1.5 var(--ed-mono);
+  letter-spacing: 0;
+  text-transform: none;
+  text-shadow: none;
+  color: var(--ed-text-dim) !important;
+}
+.popup_portfolio p,
+.popup_portfolio ul li {
+  color: var(--ed-text-2) !important;
+  text-shadow: none;
+}
+.popup_portfolio ul li::before {
+  content: '';
+  top: 0.62em;
+  left: 4px;
+  width: 6px;
+  height: 6px;
+  background: var(--ed-accent);
+  transform: rotate(45deg);
+}
+.popup_portfolio a {
+  color: #7aa2f7 !important;
+  text-decoration-color: rgba(122, 162, 247, 0.45);
+}
+.popup_portfolio a:hover {
+  color: #a9c1ff !important;
+  text-decoration-color: rgba(122, 162, 247, 0.8);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .arcade-card,
+  .arcade-card-inner,
+  .arcade-card-screen img { transition: none; }
+  .arcade-card.reveal-pending { opacity: 1; transform: none; }
+}
+
+@media (max-width: 768px) {
+  /* style.css stacks the filters vertically on small screens */
+  .portfolio-section .arcade-filters { flex-direction: row !important; flex-wrap: nowrap; }
+  .portfolio-section .filter-btn { width: auto !important; padding: 8px 14px; }
+}
+
+/*--------------------------------------------------------------
+# Skills page (myskills.html)
+--------------------------------------------------------------*/
+/* Slightly larger overall than the default scale (same approach as the hero panel) */
+@media (min-width: 769px) {
+  .skills-container { zoom: 1.12; }
+}
+.skills-container {
+  max-width: 1120px;
+  margin: 0 auto;
+}
+.skills-container .portfolio-header { margin-bottom: 36px; animation: none; }
+.skills-subsection { margin-bottom: 40px; }
+.subsection-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 0;
+  padding-bottom: 10px;
+  font-family: 'Inter', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  text-shadow: none;
+  color: var(--ed-text) !important;
+  border-bottom: 1px solid var(--ed-line);
+}
+/* same diamond marker as the career keyframes and panel title */
+.subsection-title::before {
+  content: '';
+  width: 7px;
+  height: 7px;
+  background: var(--ed-accent);
+  transform: rotate(45deg);
+}
+.skills-grid {
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 12px;
+  margin-top: 16px;
+}
+.skill-card {
+  padding: 14px 16px;
+  gap: 14px;
+  background: var(--ed-panel);
+  backdrop-filter: none;
+  border: 1px solid var(--ed-line);
+  border-radius: 8px;
+  box-shadow: none;
+  transition: border-color 0.2s, background-color 0.2s, box-shadow 0.2s, transform 0.2s ease-out;
+}
+.skill-card:hover {
+  background: var(--ed-raised);
+  border-color: rgba(var(--ed-light-blue), 0.45);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.3);
+  transform: translateY(-3px);
+}
+.skill-icon,
+.skill-card:hover .skill-icon {
+  width: 48px;
+  height: 48px;
+  padding: 7px;
+  background: var(--ed-raised);
+  border: 1px solid var(--ed-line);
+  border-radius: 8px;
+}
+.skill-card:hover .skill-icon img { transform: none; }
+.skill-content h3 {
+  margin: 0 0 6px;
+  font-size: 15.5px;
+  font-weight: 600;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--ed-text) !important;
+}
+/* Level: Tokyo Night green / yellow, as small editor tags */
+.skill-level {
+  margin: 0;
+  padding: 2px 8px;
+  border-radius: 4px;
+  box-shadow: none;
+  font: 500 11.5px/1.5 var(--ed-mono);
+  text-transform: none;
+  letter-spacing: 0;
+}
+.skills-grid span.skill-level.skill-advanced {
+  background: rgba(158, 206, 106, 0.12);
+  border: 1px solid rgba(158, 206, 106, 0.35);
+  color: #9ece6a !important; /* style.css forces .wrapper-holder.grey span to white */
+  box-shadow: none;
+}
+.skills-grid span.skill-level.skill-intermediate {
+  background: rgba(224, 175, 104, 0.12);
+  border: 1px solid rgba(224, 175, 104, 0.35);
+  color: #e0af68 !important; /* style.css forces .wrapper-holder.grey span to white */
+  box-shadow: none;
+}
+.skills-grid span.skill-level.skill-beginner {
+  background: rgba(125, 207, 255, 0.12);
+  border: 1px solid rgba(125, 207, 255, 0.35);
+  color: #7dcfff !important; /* style.css forces .wrapper-holder.grey span to white */
+  box-shadow: none;
+}
+/* The MySQL dolphin is dark blue on a dark well; lift it */
+.skill-icon img[alt="SQL"] { filter: brightness(1.9) saturate(1.2); }
+@media (prefers-reduced-motion: reduce) {
+  .skill-card { transition: none; }
+}
+
+/*--------------------------------------------------------------
+# Contact page (contact.html)
+--------------------------------------------------------------*/
+/* Vertically centered in the window instead of bunched at the top */
+#main.contact-section {
+  min-height: calc(100vh - 42px); /* leave the status bar just in view */
+  padding: 56px 40px;
+  justify-content: center;
+  box-sizing: border-box;
+}
+/* Four equal cards: one row on desktop, 2x2 on tablets, stacked on phones */
+.contact-section .contact-content {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  width: 100%;
+  max-width: 680px !important;
+}
+.contact-section .contact-card-link {
+  min-width: 0 !important;
+  max-width: none !important;
+  width: auto !important;
+}
+.contact-section .contact-card { height: 100%; padding: 26px 20px; }
+.contact-section span.contact-link { overflow-wrap: anywhere; }
+
+@media (max-width: 560px) {
+  #main.contact-section { padding: 88px 16px 40px; }
+  .contact-section .contact-content { grid-template-columns: 1fr; }
+}
+.contact-section .contact-header { margin-bottom: 40px; }
+.profile-image {
+  width: 168px;
+  height: 168px;
+  border: 1px solid var(--ed-line);
+  box-shadow:
+    0 0 0 6px var(--ed-panel),
+    0 0 0 7px var(--ed-line),
+    0 16px 40px rgba(0, 0, 0, 0.35),
+    0 0 70px rgba(var(--ed-light-blue), 0.12);
+}
+.contact-section .contact-profile { margin-bottom: 28px; }
+/* css/all.css styles "#main h2" with the old Novecento font in all caps */
+#main h2.contact-title {
+  margin-bottom: 10px;
+  font-family: 'Inter', sans-serif;
+  font-size: 32px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  text-transform: none;
+  color: var(--ed-text) !important;
+}
+.contact-subtitle {
+  text-wrap: balance;
+  font-size: 16px;
+  color: var(--ed-text-2) !important;
+}
+
+.contact-section .contact-content {
+  gap: 16px;
+  max-width: 720px;
+}
+.contact-section .contact-card-link {
+  min-width: 260px;
+  max-width: 352px;
+}
+.contact-card {
+  padding: 28px 24px;
+  background: var(--ed-panel);
+  backdrop-filter: none;
+  border: 1px solid var(--ed-line);
+  border-radius: 8px;
+  box-shadow: none;
+  transition: border-color 0.2s, background-color 0.2s, box-shadow 0.2s, transform 0.2s ease-out;
+}
+.contact-card-link:hover .contact-card {
+  background: var(--ed-raised);
+  border-color: rgba(var(--ed-light-blue), 0.45);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.3);
+  transform: translateY(-3px);
+}
+.contact-card-link:focus-visible { outline: none; }
+.contact-card-link:focus-visible .contact-card {
+  outline: 2px solid rgb(var(--ed-light-cyan));
+  outline-offset: 3px;
+}
+.contact-section .contact-card .contact-icon {
+  width: 52px;
+  height: 52px;
+  margin-bottom: 18px;
+  background: var(--ed-raised);
+  border: 1px solid var(--ed-line);
+  border-radius: 8px;
+  color: #7aa2f7;
+}
+.contact-icon svg { width: 24px; height: 24px; }
+.contact-section .contact-card-link:hover .contact-icon {
+  background: rgba(var(--ed-light-blue), 0.12);
+  border-color: rgba(var(--ed-light-blue), 0.4);
+  color: #a9c1ff;
+  transform: none;
+}
+.contact-card-title {
+  margin-bottom: 8px;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--ed-text) !important;
+}
+.contact-section span.contact-link {
+  font: 400 13.5px/1.5 var(--ed-mono);
+  color: var(--ed-text-2) !important;
+}
+.contact-card-link:hover span.contact-link {
+  color: var(--ed-text) !important;
+  border-bottom-color: rgba(var(--ed-light-blue), 0.6);
+}
+@media (prefers-reduced-motion: reduce) {
+  .contact-card { transition: none; }
+}
+
+/*--------------------------------------------------------------
+# Site-wide: quick open, command palette, toast, CV buttons (js/site.js)
+--------------------------------------------------------------*/
+[data-cv][hidden] { display: none !important; }
+.btn-cv { display: inline-flex !important; align-items: center; gap: 8px; }
+.btn-cv[hidden] { display: none !important; }
+.btn-cv svg { width: 15px; height: 15px; }
+.contact-section .contact-content { max-width: 1100px; }
+
+.sidebar-quickopen {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  margin-bottom: 16px;
+  padding: 7px 8px 7px 10px;
+  background: var(--ed-scene);
+  border: 1px solid var(--ed-line);
+  border-radius: 6px;
+  color: var(--ed-text-dim);
+  font: 400 13px/1 'Inter', sans-serif;
+  text-align: left;
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s;
+}
+.sidebar-quickopen span { flex: 1; }
+.sidebar-quickopen:hover { border-color: rgba(var(--ed-light-blue), 0.45); color: var(--ed-text-2); }
+.sidebar-quickopen:focus-visible { outline: 2px solid rgb(var(--ed-light-cyan)); outline-offset: 2px; }
+.retro-sidebar.collapsed .sidebar-quickopen { display: none; }
+
+.palette-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 14vh 16px 16px;
+  background: rgba(12, 13, 20, 0.6);
+}
+.palette-backdrop[hidden] { display: none; }
+.palette {
+  width: min(560px, 100%);
+  background: var(--ed-panel);
+  border: 1px solid var(--ed-line);
+  border-radius: 10px;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(255, 255, 255, 0.03) inset;
+  overflow: hidden;
+  animation: paletteIn 0.14s ease-out;
+}
+@keyframes paletteIn { from { opacity: 0; transform: translateY(-6px) scale(0.99); } }
+.palette-search {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 14px;
+  border-bottom: 1px solid var(--ed-line);
+  color: var(--ed-text-dim);
+}
+.palette-search svg { width: 16px; height: 16px; flex-shrink: 0; }
+.palette-search input {
+  flex: 1;
+  height: 48px;
+  padding: 0;
+  background: transparent;
+  border: 0;
+  outline: 0;
+  color: var(--ed-text);
+  font: 400 15px 'Inter', sans-serif;
+}
+.palette-search input::placeholder { color: var(--ed-text-dim); }
+.palette-list {
+  max-height: min(360px, 50vh);
+  margin: 0;
+  padding: 6px;
+  overflow-y: auto;
+  list-style: none;
+}
+.palette-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 9px 10px;
+  border-radius: 6px;
+  color: var(--ed-text-2);
+  font-size: 14px;
+  cursor: pointer;
+}
+.palette-item.active { background: var(--ed-accent-dim); color: var(--ed-text); box-shadow: inset 2px 0 0 var(--ed-accent); }
+.palette-hint { font: 400 11.5px var(--ed-mono); color: var(--ed-text-dim); }
+.palette-empty { padding: 14px 10px; color: var(--ed-text-dim); font-size: 13.5px; }
+.palette-foot {
+  display: flex;
+  gap: 16px;
+  padding: 8px 14px;
+  border-top: 1px solid var(--ed-line);
+  font-size: 12px;
+  color: var(--ed-text-dim);
+}
+
+.site-toast {
+  position: fixed;
+  left: 50%;
+  bottom: 28px;
+  z-index: 10001;
+  padding: 9px 14px;
+  background: var(--ed-raised);
+  border: 1px solid var(--ed-line);
+  border-radius: 6px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  color: var(--ed-text);
+  font-size: 13.5px;
+  opacity: 0;
+  transform: translate(-50%, 8px);
+  pointer-events: none;
+  transition: opacity 0.2s, transform 0.2s;
+}
+.site-toast.visible { opacity: 1; transform: translate(-50%, 0); }
+
+@media (prefers-reduced-motion: reduce) {
+  .palette { animation: none; }
+  .site-toast { transition: none; }
+}
+
+/*--------------------------------------------------------------
+# Mobile flow fixes
+--------------------------------------------------------------*/
+@media (max-width: 768px) {
+  /* Open menu: style.css lays the footer out as a centered row, which squeezes
+     the Search box against the links; stack it like the desktop sidebar */
+  .retro-sidebar.open .sidebar-footer {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    padding: 20px 24px !important;
+  }
+  .retro-sidebar.open .sidebar-contact { align-items: flex-start !important; }
+  .retro-sidebar.open .sidebar-link { justify-content: flex-start !important; text-align: left !important; }
+
+  /* Hero: fill the screen instead of style.css's fixed 890px minimum */
+  .hero-section {
+    min-height: 100svh !important;
+    padding-top: 120px !important;
+  }
+
+  /* Buttons: the two main actions side by side, CV full width underneath */
+  .hero-content .hero-buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .hero-buttons .btn-primary,
+  .hero-buttons .btn-secondary {
+    display: flex !important;
+    justify-content: center;
+    padding: 12px 10px !important;
+    text-align: center;
+  }
+  .hero-buttons .btn-cv { grid-column: 1 / -1; }
+
+  /* Keep stat values on one line */
+  .stat-number { white-space: nowrap; }
+
+  /* Two-line section headings need real line spacing */
+  #main h2.section-title,
+  .section-title {
+    line-height: 1.15 !important;
+  }
+}
+@media (max-width: 380px) {
+  .hero-object { --pad-x: 14px; }
+  .stat-number { font-size: 17px !important; }
+  .stat-label { font-size: 10.5px !important; }
+  .stat-item { padding: 10px 4px !important; }
+}
+
+@media (max-width: 768px) {
+  /* Project popup: one consistent 18px inset (style.css mixes 40px and 15px) */
+  .popup_portfolio h3 { padding: 22px 18px 4px !important; font-size: 24px; }
+  .popup_portfolio time,
+  .popup_portfolio p { padding-left: 18px !important; padding-right: 18px !important; }
+  .popup_portfolio > u,
+  .popup_portfolio > br + u { padding-left: 18px !important; }
+  .popup_portfolio ul { padding: 6px 18px 22px !important; }
+  .popup_portfolio ul li { font-size: 14.5px; }
+}
+@media (max-width: 600px) {
+  /* One card per row: size to content instead of the desktop's fixed 400px */
+  .arcade-grid .arcade-card,
+  .arcade-grid .arcade-card-inner { height: auto !important; }
+}
+
+/* At <=1024px the sidebar shrinks to a 60px icon rail on its own (no .collapsed class) */
+@media (max-width: 1024px) {
+  .retro-sidebar:not(.open) .sidebar-quickopen { display: none; }
+}
+
+/* Icon rail (collapsed sidebar, or auto-collapsed at <=1024px): a rounded tile
+   marks the current page, like an editor's activity bar, instead of style.css's
+   full-width underline */
+.retro-sidebar.collapsed .retro-menu-item {
+  width: 40px !important;
+  height: 40px;
+  min-height: 40px;
+  margin: 0 auto;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 8px !important;
+  color: var(--ed-text-dim);
+  animation: none !important;
+  transition: background-color 0.15s, color 0.15s !important;
+}
+.retro-sidebar.collapsed .retro-menu-item:hover {
+  background: var(--ed-raised) !important;
+  color: var(--ed-text);
+}
+.retro-sidebar.collapsed .retro-menu-item.active {
+  background: var(--ed-accent-dim) !important;
+  box-shadow: inset 0 0 0 1px rgba(108, 127, 232, 0.35);
+  color: #a9b8ff;
+}
+.retro-sidebar.collapsed .retro-menu-item .menu-icon { margin: 0 !important; }
+@media (min-width: 769px) and (max-width: 1024px) {
+  .retro-sidebar:not(.open) .retro-menu-item {
+    width: 40px !important;
+    height: 40px;
+    min-height: 40px;
+    margin: 0 auto;
+    padding: 0 !important;
+    justify-content: center;
+    border: 0 !important;
+    border-radius: 8px !important;
+    animation: none !important;
+    transition: background-color 0.15s, color 0.15s !important;
+  }
+  .retro-sidebar:not(.open) .retro-menu-item:hover { background: var(--ed-raised) !important; }
+  .retro-sidebar:not(.open) .retro-menu-item.active {
+    background: var(--ed-accent-dim) !important;
+    box-shadow: inset 0 0 0 1px rgba(108, 127, 232, 0.35);
+    color: #a9b8ff;
+  }
+  .retro-sidebar:not(.open) .retro-menu-item .menu-icon { margin: 0 !important; }
+}
+
+
+/* Auto rail (769-1024px): center the icon inside its tile; style.css keeps the
+   hidden label's width, which pushed icons left */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .retro-sidebar:not(.open) .retro-menu-item { justify-content: center !important; gap: 0 !important; }
+  .retro-sidebar:not(.open) .retro-menu-item .menu-text { display: none !important; }
+}
+
+/*--------------------------------------------------------------
+# Project dialog (portfolio.html, js/project-dialog.js)
+--------------------------------------------------------------*/
+html.dialog-open { overflow: hidden; }
+.project-dialog {
+  width: min(900px, calc(100vw - 40px));
+  max-width: none;
+  max-height: none;
+  margin: auto;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  overflow: visible;
+  color: inherit;
+}
+.project-dialog::backdrop { background: rgba(12, 13, 20, 0.82); }
+.project-dialog[open] { animation: dialogIn 0.18s ease-out; }
+.project-dialog[open]::backdrop { animation: backdropIn 0.18s ease-out; }
+@keyframes dialogIn { from { opacity: 0; transform: translateY(8px) scale(0.99); } }
+@keyframes backdropIn { from { opacity: 0; } }
+
+/* The copied popup: full dialog width, scrolls inside itself */
+.project-dialog .popup_portfolio {
+  display: block;
+  width: 100%;
+  max-width: none;
+  max-height: 88vh;
+  margin: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.project-dialog-body { position: relative; z-index: 1; }
+/* Above the popup body, which style.css gives its own stacking layer */
+.project-dialog-close,
+.project-dialog-nav {
+  position: absolute;
+  z-index: 10;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  background: var(--ed-panel);
+  border: 1px solid var(--ed-line);
+  border-radius: 50%;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+  color: var(--ed-text-2);
+  cursor: pointer;
+  transition: background-color 0.15s, border-color 0.15s, color 0.15s;
+}
+.project-dialog-close:hover,
+.project-dialog-nav:hover {
+  background: var(--ed-raised);
+  border-color: rgba(var(--ed-light-blue), 0.6);
+  color: var(--ed-text);
+}
+.project-dialog-close:focus-visible,
+.project-dialog-nav:focus-visible {
+  outline: 2px solid rgb(var(--ed-light-cyan));
+  outline-offset: 2px;
+}
+.project-dialog-close {
+  top: -16px;
+  right: -16px;
+  width: 34px;
+  height: 34px;
+}
+.project-dialog-close svg { width: 14px; height: 14px; }
+.project-dialog-nav {
+  top: 50%;
+  width: 48px;
+  height: 48px;
+  margin-top: -24px;
+}
+.project-dialog-nav svg { width: 16px; height: 16px; }
+.project-dialog-nav.prev { left: -72px; }
+.project-dialog-nav.next { right: -72px; }
+.project-dialog-nav[hidden] { display: none; }
+
+/* No room beside the panel: rely on ← → keys (same as before) */
+@media (max-width: 1050px) {
+  .project-dialog-nav { display: none; }
+}
+@media (max-width: 600px) {
+  .project-dialog { width: calc(100vw - 32px); }
+  .project-dialog-close { top: -12px; right: -8px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .project-dialog[open],
+  .project-dialog[open]::backdrop { animation: none; }
+}
+
+/*--------------------------------------------------------------
+# Footer (js/site.js): editor status bar
+--------------------------------------------------------------*/
+.site-footer { margin-top: 72px; }
+.status-bar {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  min-height: 42px;
+  padding: 8px 20px;
+  background: var(--ed-panel);
+  border-top: 1px solid var(--ed-chrome-line);
+  font: 400 12px/1.4 var(--ed-mono);
+  color: var(--ed-text-dim);
+}
+.wrapper-holder.grey .status-bar span { color: var(--ed-text-dim) !important; }
+.status-ready { display: inline-flex; align-items: center; gap: 7px; }
+.status-sep { opacity: 0.6; }
+.site-footer .status-links { display: flex !important; gap: 16px; margin: 0 0 0 auto !important; padding: 0; width: auto; height: auto; position: static; background: none; }
+.status-links a { color: var(--ed-text-2); text-decoration: none; }
+.status-links a:hover { color: var(--ed-text); text-decoration: underline; text-underline-offset: 3px; }
+.status-links a:focus-visible { outline: 2px solid rgb(var(--ed-light-cyan)); outline-offset: 2px; border-radius: 2px; }
+/* Portfolio / Skills sections have their own bottom padding; pull the footer up */
+.portfolio-section + .site-footer,
+#main + .site-footer { margin-top: 0; }
+@media (max-width: 768px) {
+  .status-bar { padding: 10px 16px; }
+}
+/* style.css pads these pages' content 15px at the bottom, lifting the status bar off the edge */
+#wrapper.portfolio .wrapper-holder.grey { padding-bottom: 0 !important; }
+
+@media (max-width: 768px) {
+  .site-footer .status-links { margin-left: 0 !important; width: 100%; }
+}
+
+/* Phones: menu button auto-hides while scrolling down (js/site.js) */
+@media (max-width: 768px) {
+  .menu-toggle { transition: transform 0.25s ease, opacity 0.25s ease !important; }
+  body.menu-button-hidden .menu-toggle { transform: translateY(-90px); opacity: 0; pointer-events: none !important; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .menu-toggle { transition: none !important; }
+}
+/* <=1024px: the content wrapper has 20px side padding; let the status bar span edge to edge */
+@media (max-width: 1024px) {
+  .site-footer { margin-left: -20px; margin-right: -20px; }
+}
+@media (max-width: 768px) {
+  /* stack status and copyright instead of wrapping a dangling "·" */
+  .status-bar { column-gap: 12px; row-gap: 6px; }
+  .status-bar .status-sep { display: none; }
+}
+/* Short pages (Skills on 1080p+): keep the status bar at the bottom of the window */
+#wrapper .wrapper-holder.grey {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  min-height: 100svh;
+}
+#wrapper .wrapper-holder.grey > #main,
+#wrapper .wrapper-holder.grey > .career-section { width: 100%; box-sizing: border-box; }
+#wrapper .wrapper-holder.grey > .site-footer { margin-top: auto; }
+
+/* Desktop shows the build line (the sidebar already has the links);
+   phones show only the links (the sidebar is tucked behind the menu) */
+@media (min-width: 769px) {
+  .site-footer .status-links { display: none !important; }
+}
+@media (max-width: 768px) {
+  .status-ready { display: none; }
+}
