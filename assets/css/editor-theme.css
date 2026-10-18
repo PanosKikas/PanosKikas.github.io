@@ -810,9 +810,18 @@ a.btn-primary::before, a.btn-secondary::before { content: none; }
 }
 .hero-section.view-3d:not(.game-view) .orbit-hint:not(.used) { opacity: 1; transition-delay: 0.6s; }
 
-/* Hide where the icons would crowd the selected object */
-@media (max-width: 1199px) {
+/* Hide where the icons would crowd the selected object. Measured on the hero,
+   not the window: the expanded sidebar takes 280px of it */
+.hero-section { container: hero / inline-size; }
+@container hero (max-width: 1199px) {
   .scene-gizmos { display: none; }
+}
+/* Short windows pin the panel 150px from the top (style.css), level with the
+   FPS readout; drop the readout where the panel reaches under it */
+@media (max-height: 890px) {
+  @container hero (max-width: 1149px) {
+    .viewport-stats { display: none; }
+  }
 }
 
 .scroll-text { text-transform: none; letter-spacing: 0; font-size: 13px; }
@@ -1361,7 +1370,9 @@ a.btn-primary::before, a.btn-secondary::before { content: none; }
 .contact-section span.contact-link { overflow-wrap: anywhere; }
 
 @media (max-width: 560px) {
-  #main.contact-section { padding: 88px 16px 40px; }
+  /* #wrapper outranks css/screen.css's "#wrapper.portfolio #main" (contact.html
+     reuses that class), which zeroed this padding at <=550px */
+  #wrapper #main.contact-section { padding: 88px 16px 40px; }
   .contact-section .contact-content { grid-template-columns: 1fr; }
 }
 .contact-section .contact-header { margin-bottom: 40px; }
@@ -1600,6 +1611,15 @@ a.btn-primary::before, a.btn-secondary::before { content: none; }
     min-height: 100svh !important;
     padding-top: 120px !important;
   }
+  /* Taller than 890px, style.css keeps the template's 100vh box with its own
+     100px top padding below the 120px above, which pushed the panel ~150px
+     under center; fill the padded hero instead (shorter screens already get
+     height: auto from style.css) */
+  #hero .hero-content { height: 100%; padding-top: 0; }
+  /* The scroll hint and axis gizmo sit in the 90px band under the panel;
+     style.css's offsets put both on its bottom edge */
+  .hero-section .scroll-indicator { bottom: 14px !important; }
+  .hero-section .coordinate-axis { bottom: -24px !important; } /* the 2D glyph only fills the top half of its box */
 
   /* Buttons: the two main actions side by side, CV full width underneath */
   .hero-content .hero-buttons {
@@ -1861,6 +1881,11 @@ html.dialog-open { overflow: hidden; }
 }
 #wrapper .wrapper-holder.grey > #main,
 #wrapper .wrapper-holder.grey > .career-section { width: 100%; box-sizing: border-box; }
+/* css/screen.css swaps #main's auto margins for fixed side margins at <=1190px;
+   100% width plus those margins overflowed and pushed the content right */
+@media (max-width: 1190px) {
+  #wrapper .wrapper-holder.grey > #main { width: auto; }
+}
 #wrapper .wrapper-holder.grey > .site-footer { margin-top: auto; }
 
 /* Desktop shows the build line (the sidebar already has the links);
