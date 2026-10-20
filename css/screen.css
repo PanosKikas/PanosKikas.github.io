@@ -1,92 +1,20 @@
 
 @media only screen and (max-width : 1190px) {
 	#main {margin:0 20px;}
-
-	.skills_holder .column{width: 450px;}
-	
-	.item-list{margin: 0;}
-/* 	.item-list li{ width: 30%; margin-left: 0;text-align: center;} */
-
-	#container.item-list{width: 900px; margin: 0 auto;}
 }
 
-@media only screen and (max-width : 980px) {
-
-	#nav {float:none; width: 100%;}
-	#nav ul {
-		text-align:center;
-		margin:0;
-	}
-	#nav ul li {
-		display:inline-block;
-		padding: 0 15px;
-		float:none;
-	}
-
-	.skills_holder .column{
-		width: 100%;
-		float: none;
-		display: block;
-	}
-	.skills_holder .column.column-add {padding: 0 !important;}
-
-	#main .skills_holder h2{margin: 0 0 25px;}
-	
-	#container.item-list{width: 600px;}
-	
-}
 @media only screen and (max-width : 840px) {
 	
 	#main h2{margin: 0 0 30px;}
 
 }
-@media only screen and (max-width : 768px) {
-	
-	.menu_trigger {
-		display: block;
-		top: 28px;
-	}
-	#nav {display: none;padding: 0;margin: 0 0 25px;top: 20px;}
-	#nav ul li {
-		display:block;
-		padding: 0;	
-	}
-	#nav ul a {
-		display:block;
-		padding: 8px;
-	}
-	#nav ul a:hover {
-		color: #fff;
-		text-decoration:none;
-	}
-
-	.footer-content .social li.google a{	background-size: 20px auto;	}
-
-	#wrapper.inner .menu_trigger,#wrapper.portfolio .menu_trigger{top: 6px;}
-}
-@media only screen and (max-width : 680px) {
-	#container.item-list{width: 300px;}
-	.item-list li{margin-left:0;}
-}
-@media only screen and (max-width : 640px) {
-	.menu_trigger {
-		top: 25px;
-	}
-
-	.skills_holder{margin: 0 0 10px;}
-	
-}
 
 @media only screen and (max-width : 550px) {
 
-	#nav ul a:hover, #nav ul a.active,#nav ul a{border: none;}
 	#wrapper.portfolio #main{padding:93px 0 0 0; }
 	
 }
 @media only screen and (max-width : 480px) {
 
 	#main{margin: 0 10px;}
-/* 	.item-list{margin: 0;}
-	.item-list li{margin: 0 0 20px;} */
-	.menu_trigger{top: 20px;}
 }

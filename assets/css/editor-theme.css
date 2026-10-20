@@ -279,7 +279,6 @@ kbd {
   border: 0;
   box-shadow: none;
 }
-.hero-background .particles { display: none !important; }
 
 /* ---------- Hero text: the selected object ---------- */
 .hero-text {
@@ -1035,8 +1034,8 @@ a.btn-primary::before, a.btn-secondary::before { content: none; }
 /*--------------------------------------------------------------
 # Portfolio page (portfolio.html)
 # Same panels, borders and accent as the home page; replaces the
-# arcade-cabinet styling in style.css (scanlines, rainbow borders,
-# pulsing corners, all-caps titles).
+# arcade-cabinet styling in style.css (rainbow borders, pulsing
+# corners, all-caps titles).
 --------------------------------------------------------------*/
 .portfolio-section .portfolio-header {
   margin-bottom: 28px;
@@ -1132,7 +1131,6 @@ a.btn-primary::before, a.btn-secondary::before { content: none; }
 }
 .arcade-card-screen img { transition: transform 0.35s ease-out; }
 .arcade-card:hover .arcade-card-screen img { transform: scale(1.03); filter: none; }
-.arcade-card .scanlines { display: none; }
 
 .arcade-card-info {
   padding: 18px 20px 20px;
@@ -1403,14 +1401,6 @@ a.btn-primary::before, a.btn-secondary::before { content: none; }
   color: var(--ed-text-2) !important;
 }
 
-.contact-section .contact-content {
-  gap: 16px;
-  max-width: 720px;
-}
-.contact-section .contact-card-link {
-  min-width: 260px;
-  max-width: 352px;
-}
 .contact-card {
   padding: 28px 24px;
   background: var(--ed-panel);
@@ -1471,10 +1461,6 @@ a.btn-primary::before, a.btn-secondary::before { content: none; }
 # Site-wide: quick open, command palette, toast, CV buttons (js/site.js)
 --------------------------------------------------------------*/
 [data-cv][hidden] { display: none !important; }
-.btn-cv { display: inline-flex !important; align-items: center; gap: 8px; }
-.btn-cv[hidden] { display: none !important; }
-.btn-cv svg { width: 15px; height: 15px; }
-.contact-section .contact-content { max-width: 1100px; }
 
 .sidebar-quickopen {
   display: flex;
@@ -1621,7 +1607,7 @@ a.btn-primary::before, a.btn-secondary::before { content: none; }
   .hero-section .scroll-indicator { bottom: 14px !important; }
   .hero-section .coordinate-axis { bottom: -24px !important; } /* the 2D glyph only fills the top half of its box */
 
-  /* Buttons: the two main actions side by side, CV full width underneath */
+  /* Buttons: the two main actions side by side */
   .hero-content .hero-buttons {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -1634,7 +1620,6 @@ a.btn-primary::before, a.btn-secondary::before { content: none; }
     padding: 12px 10px !important;
     text-align: center;
   }
-  .hero-buttons .btn-cv { grid-column: 1 / -1; }
 
   /* Keep stat values on one line */
   .stat-number { white-space: nowrap; }
@@ -1837,7 +1822,6 @@ html.dialog-open { overflow: hidden; }
 }
 .wrapper-holder.grey .status-bar span { color: var(--ed-text-dim) !important; }
 .status-ready { display: inline-flex; align-items: center; gap: 7px; }
-.status-sep { opacity: 0.6; }
 .site-footer .status-links { display: flex !important; gap: 16px; margin: 0 0 0 auto !important; padding: 0; width: auto; height: auto; position: static; background: none; }
 .status-links a { color: var(--ed-text-2); text-decoration: none; }
 .status-links a:hover { color: var(--ed-text); text-decoration: underline; text-underline-offset: 3px; }
@@ -1868,9 +1852,7 @@ html.dialog-open { overflow: hidden; }
   .site-footer { margin-left: -20px; margin-right: -20px; }
 }
 @media (max-width: 768px) {
-  /* stack status and copyright instead of wrapping a dangling "·" */
   .status-bar { column-gap: 12px; row-gap: 6px; }
-  .status-bar .status-sep { display: none; }
 }
 /* Short pages (Skills on 1080p+): keep the status bar at the bottom of the window */
 #wrapper .wrapper-holder.grey {

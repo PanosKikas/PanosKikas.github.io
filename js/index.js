@@ -29,15 +29,13 @@ function initIndexPage() {
 			window.pageInitialized.smoothScroll = true;
 		}
 
-		// Parallax effect for hero and header visibility - disabled on mobile for performance
+		// Parallax effect for hero - disabled on mobile for performance
 		if (!window.pageInitialized.scrollHandler) {
 			// Detect mobile device - only by user agent and screen size, NOT touch capability
-			// Use 1024px threshold instead of 768px to ensure laptops get animations
 			const isMobileUserAgent = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 			const isMobileDevice = isMobileUserAgent || window.innerWidth <= 768;
 			
 			// Cache DOM elements
-			const headerWrapper = document.querySelector('.wrapper-holder:not(.grey)');
 			const scrollIndicator = document.querySelector('.scroll-indicator');
 			const hero = document.querySelector('.hero-section');
 			
@@ -73,15 +71,6 @@ function initIndexPage() {
 					} else {
 						scrollIndicator.style.opacity = '0.7';
 						scrollIndicator.style.pointerEvents = 'auto';
-					}
-				}
-				
-				// Add scrolled class to header wrapper for styling
-				if (headerWrapper) {
-					if (scrolled > 100) {
-						headerWrapper.classList.add('scrolled');
-					} else {
-						headerWrapper.classList.remove('scrolled');
 					}
 				}
 				ticking = false;
