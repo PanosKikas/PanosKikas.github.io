@@ -2,6 +2,25 @@
  * Sidebar Web Component
  * A reusable navigation sidebar that automatically highlights the active page
  */
+
+// localStorage throws (SecurityError) when the visitor blocks site data;
+// fall back to the default expanded state instead of not rendering the sidebar
+function readSidebarCollapsed() {
+  try {
+    return localStorage.getItem('sidebarCollapsed') === 'true';
+  } catch (e) {
+    return false;
+  }
+}
+
+function saveSidebarCollapsed(collapsed) {
+  try {
+    localStorage.setItem('sidebarCollapsed', String(collapsed));
+  } catch (e) {
+    // Not remembered across pages, but the sidebar still works
+  }
+}
+
 class SidebarNav extends HTMLElement {
   constructor() {
     super();
@@ -12,8 +31,7 @@ class SidebarNav extends HTMLElement {
     const currentPage = window.location.pathname.split('/').pop() || 'index.html';
     
     // Check if sidebar should start collapsed (read localStorage BEFORE rendering)
-    const storedState = localStorage.getItem('sidebarCollapsed');
-    const shouldBeCollapsed = storedState === 'true';
+    const shouldBeCollapsed = readSidebarCollapsed();
     
     // Define menu items with icons
     const menuItems = [
@@ -132,7 +150,7 @@ class SidebarNav extends HTMLElement {
       wrapper?.classList.add('sidebar-collapsed');
       menuToggle?.classList.add('visible');
       if (saveState) {
-        localStorage.setItem('sidebarCollapsed', 'true');
+        saveSidebarCollapsed(true);
       }
     };
 
@@ -147,7 +165,7 @@ class SidebarNav extends HTMLElement {
       menuToggle?.classList.remove('visible');
       menuToggle?.classList.remove('active');
       if (saveState) {
-        localStorage.setItem('sidebarCollapsed', 'false');
+        saveSidebarCollapsed(false);
       }
     };
 
@@ -265,8 +283,7 @@ class SidebarNav extends HTMLElement {
 
   // Ensure the sidebar state matches localStorage
   ensureCorrectState() {
-    const storedState = localStorage.getItem('sidebarCollapsed');
-    const shouldBeCollapsed = storedState === 'true';
+    const shouldBeCollapsed = readSidebarCollapsed();
     const sidebar = this.querySelector('.retro-sidebar');
     const menuToggle = this.querySelector('#menuToggle');
     const wrapper = document.getElementById('wrapper');
